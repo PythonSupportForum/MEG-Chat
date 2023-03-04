@@ -116,6 +116,9 @@ if(isset($_POST['submit']) && !$total_error){
         </div>
     </body>
     <style>
+        #submit{
+            font-size: 300%;
+        }
         .input{
             height: 150%;
             width: 180;
