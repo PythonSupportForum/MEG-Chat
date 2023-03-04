@@ -93,7 +93,7 @@ window.post_request = function(url, data = {}, then = false){
 	xhr.send(postdata);
 };
 
-window.page_navigate = function(url, from, to) {
+window.page_navigate = function(url, from, to, loading_message = true) {
     if(!from) {
 		from="body";
 		window.history.pushState({}, "", url);
@@ -104,7 +104,7 @@ window.page_navigate = function(url, from, to) {
     var fertig = false;
 	
 	setTimeout(function(){
-	    if(!fertig) to.innerHTML = "<h2 style='text-align: center; margin-top: 80px; ' class='text'>Wird geladen..</h2>";
+	    if(!fertig && loading_message) to.innerHTML = "<h2 style='text-align: center; margin-top: 80px; ' class='text'>Wird geladen..</h2>";
 	}, 100);
 	
     var XHRt = new XMLHttpRequest();
@@ -188,3 +188,9 @@ window.vote = function(id){
 		}
 	});
 };
+
+setInterval(function(){
+	if(document.getElementById("all_chats_container")){
+		page_navigate(window.location.href, "#all_chats_container", "#all_chats_container", false);
+	}
+}, 1000);

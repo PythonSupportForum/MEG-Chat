@@ -79,7 +79,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <script src="/resources/js/script.js"></script>
     </head>
-    <body>
+    <body style="background-color: #303030; color: lightgray; ">
         <div style="float: left; width: 540px; max-width: 100%; height: auto; max-height: 100%; overflow-x: hidden; overflow-y: auto; ">
 			<div style="width: 100%; height: 145px; margin-top: 20px; ">
 			    <div style="width: 50%; height: 100%; float: left; cursor: pointer; " class="centriert" onclick="page_navigate('/');">
@@ -223,7 +223,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 						document.getElementById("private_message_text").style.height = "30px";
 						
 						function send_chess_message(){
-                            console.log(value);
+                            post_request("/send_message.php", {text: value, chat: <? echo htmlspecialchars($chat_data['id']); ?>});
 						}
 						send_chess_message();
 					}
@@ -237,21 +237,20 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 					}, 50);
 					data = JSON.parse(data);
 					data.forEach(function(z){
-						console.log(z);
 						last_message_id = z.id;
 		
 						var ne = document.createElement("div");
 						ne.style = "width: 100%; margin-top: 10px; height: auto; word-warp: break-word; color: white; text-align: left; float: left; font-size: 12px;";
 						var na = document.createElement("u");
 						na.innerText = z.author.username;
-						na.style = "font-weight: bold; cursor: pointer;";
+						na.style = "font-weight: bold; cursor: pointer; ";
 						na.onclick = function(){
 							
 						};
 						ne.appendChild(na);
 						var nt = document.createElement("span");
 						nt.style = "margin-left: 10px; ";
-						nt.innerText = z.text;
+						nt.innerText = "\n"+z.text;
 						ne.appendChild(nt);
 						
 						document.getElementById("chat_inner_data").insertAdjacentHTML("beforeend", ne.outerHTML+"<br>");
@@ -259,10 +258,12 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 					});
 				});
 			}
-            get_messages_data();
         </script>
         <? } ?>
     </body>
+    <script>
+        get_messages_data();
+    </script>
     <style>
 		html, body {
 			background-color: #303030;
