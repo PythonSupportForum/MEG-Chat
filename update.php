@@ -8,7 +8,7 @@ echo "<strong>Status Code: </strong>".$return_var;
 echo "<br>";
 echo "<strong>Rückgabe: </strong><br>".$message;
 
-if ( $status == 0 ) {
+if ( $return_var == 0 ) {
     ?>
     <p style="color: green; ">Erfolgreich gespeichert!</p>
     <?
