@@ -92,13 +92,13 @@ $s_data = (array)$row;
                 <div style="width: 100%; height: auto; margin-top: 25px; " class="centriert">
 					<div style="width: 500px; max-width: 100%;">
 						<div class="tab">
-						  <button class="tablinks" onclick="openTab(event, 'profile')">Profil</button>
+						  <button class="tablinks active" onclick="openTab(event, 'profile')">Profil</button>
 						  <button class="tablinks" onclick="openTab(event, 'chats_together')">Gemeinsame Chats</button>
 						  <button class="tablinks" onclick="openTab(event, 'contact')">Kontakt</button>
 						</div>
-						<div id="profile" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; ">
+						<div id="profile" class="tabcontent" style="display: block; text-align: left; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; ">
 						  <h3>Über mich:</h3>
-						  <p><? echo htmlspecialchars(empty($s_data['about_me']) ? "noch nichts" : $s_data['about_me']); ?></p>
+						  <p id="about_me_text"><? echo htmlspecialchars(empty($s_data['about_me']) ? "noch nichts" : $s_data['about_me']); ?></p>
 						  <?
 						  if(isset($_SESSION['pupil'])){
 							  if($pupil_data['id'] == $s_data['id']){
@@ -167,7 +167,15 @@ $s_data = (array)$row;
 						</div>
 						
 						<div id="contact" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; ">
-						  <p><strong>Email:</strong> <? echo htmlspecialchars($s_data['email']); ?></p>
+						  <p><strong>Email:</strong> <span id="email_text"><? echo htmlspecialchars($s_data['email']); ?></span> <?
+						  if(isset($_SESSION['pupil'])){
+							  if($pupil_data['id'] == $s_data['id']){
+								  ?>
+								  <button onclick="edit_email();">Bearbeiten</button>
+								  <?
+						      }
+						  }
+						  ?></p>
 						</div>
 					</div>
 				</div>
@@ -183,7 +191,21 @@ $s_data = (array)$row;
 					if(data.length > 2){
 					    popup("Fehler!", data);
 					} else {
-					    page_navigate();
+					    page_navigate(window.location.href, "#about_me_text");
+					}
+				});
+				
+			}
+			window.edit_email = function(){
+				html_popup("Email Adresse bearbeiten", '<input type="email" id="about_me_editor" value="<? echo htmlspecialchars($s_data['email']); ?>" placeholder="mustermann.max@meg-bruehl.de"></input><button onclick="save_email();">Speichern</button>');
+			};
+			window.save_email = function(){
+				var value = document.getElementById("email_editor").value;
+				post_request("/profile_edit.php", {key: "email", value: value}, function(data){
+					if(data.length > 2){
+					    popup("Fehler!", data);
+					} else {
+					    page_navigate(window.location.href, "#email_text");
 					}
 				});
 				
