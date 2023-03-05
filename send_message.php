@@ -48,5 +48,5 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 if(!$chat_data) return;
 
 $stmtMessage = $db->prepare("INSERT INTO ".DBTBL.".chats_messages (chat, author, text) VALUES (:chat, :author, :text); ");
-$stmtMessage->execute(array('chat' => $chat_data['id'], 'author' => $member['id'], 'text' => $_POST['text']));
+$stmtMessage->execute(array('chat' => $chat_data['id'], 'author' => $member['pupil'], 'text' => $_POST['text']));
 ?>

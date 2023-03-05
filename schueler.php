@@ -96,11 +96,11 @@ $s_data = (array)$row;
 						  <button class="tablinks" onclick="openTab(event, 'chats_together')">Gemeinsame Chats</button>
 						  <button class="tablinks" onclick="openTab(event, 'contact')">Kontakt</button>
 						</div>
-						<div id="profile" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; ">
+						<div id="profile" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; ">
 						  <h3>Über mich:</h3>
 						  <p><? echo htmlspecialchars($s_data['about_me']); ?></p>
 						</div>
-						<div id="chats_together" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; ">
+						<div id="chats_together" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; ">
 						  <?
 						    if(!isset($_SESSION['pupil'])){
 								?>
@@ -153,7 +153,7 @@ $s_data = (array)$row;
 							?>
 						</div>
 						
-						<div id="contact" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; ">
+						<div id="contact" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; ">
 						  <h3>Tokyo</h3>
 						  <p>Tokyo is the capital of Japan.</p>
 						</div>

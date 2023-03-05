@@ -215,7 +215,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 						last_message_id = -1;
 					}
 				}
-				post_request("/load_new_messages.php", {chat: chat_id, last: last_message_id}, function(data){
+				post_request("/load_new_messages.php", {chat: chat_id, last: Number(last_message_id)}, function(data){
 					setTimeout(function(){
 						window.running_chat_reader = false;
 					    get_messages_data();
