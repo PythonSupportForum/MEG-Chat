@@ -138,13 +138,13 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 							?>
 							<div class="chatgruppe" onclick="page_navigate('/chat/<? echo htmlspecialchars($row['id']); ?>', '#chat_container');">
 							    <div style="width: 100%; min-height: 40px; height: auto; ">
-								    <div style="height: auto; width: 100%; min-height: 40px; ">
+								    <div style="height: auto; width: 100%; min-height: 40px; position: relative; ">
 										<div style="width: calc( 100% - 120px ); ">
 								            <h4 style="margin: 0; padding: 0; font-size: 18px; "><? echo htmlspecialchars($row['name']); ?></h4>
 								            <h6 style="margin: 0; padding: 0; font-size: 14px; font-weight: small; "><? echo htmlspecialchars($row['description']); ?></h6>
 								        </div>
 								        <? if($count > 0){ ?>
-									    <div style="position: absolute; float: right; min-height: 40px; height: auto; width: 100px; " class="centriert">
+									    <div style="position: absolute; float: right; left: 0px; top: 0px; min-height: 40px; height: auto; width: 100px; " class="centriert">
 									        <div style="height: 90%; width: 80%; background-color: red; color: white; border-radius: 10px; font-size: 24px; " class="centriert"><? echo htmlspecialchars($count); ?></div>
 									    </div>
 									    <? } ?>
