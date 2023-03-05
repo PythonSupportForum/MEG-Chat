@@ -24,7 +24,7 @@ if(isset($_SESSION['pupil'])){
 		    $count = ((array)$stmtCount->fetchObject())['count'];
 		}
 		?>
-		<div class="chatgruppe" onclick="page_navigate('/chat/<? echo htmlspecialchars($row['id']); ?>', '#chat_container');">
+		<div class="chatgruppe" onclick="page_navigate('/chat/<? echo htmlspecialchars($row['id']); ?>', '#chat_container'); window.last_message_id = -1;">
 		    <div style="width: 100%; min-height: 40px; height: auto; ">
 			    <div style="height: auto; width: 100%; min-height: 40px; position: relative; ">
 					<div style="width: calc( 100% - 120px ); ">
@@ -65,7 +65,7 @@ if(isset($_SESSION['pupil'])){
 		    $count = ((array)$stmtCount->fetchObject())['count'];
 		}
 		?>
-		<div class="chatgruppe" onclick="page_navigate('/chat/<? echo htmlspecialchars($row['id']); ?>', '#chat_container');">
+		<div class="chatgruppe" onclick="page_navigate('/chat/<? echo htmlspecialchars($row['id']); ?>', '#chat_container'); window.last_message_id = -1;">
 		    <div style="width: 100%; min-height: 40px; height: auto; ">
 			    <div style="height: auto; width: 100%; min-height: 40px; position: relative; ">
 					<div style="width: calc( 100% - 120px ); ">

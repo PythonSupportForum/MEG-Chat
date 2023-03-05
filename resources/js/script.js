@@ -197,6 +197,20 @@ window.vote = function(id){
 	});
 };
 
+window.openTab = function(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
 setInterval(function(){
 	if(document.getElementById("all_container")){
 		page_navigate(window.location.href, "#all_container", "#all_container", false);
