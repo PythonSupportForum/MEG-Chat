@@ -105,7 +105,7 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 	
 	setTimeout(function(){
 	    if(!fertig && loading_message) to.innerHTML = "<h2 style='text-align: center; margin-top: 80px; ' class='text'>Wird geladen..</h2>";
-	}, 100);
+	}, 500);
 	
     var XHRt = new XMLHttpRequest();
     XHRt.responseType='document';
