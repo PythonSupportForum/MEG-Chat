@@ -116,7 +116,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 				<div id="all_chats_container">
 					<div style="margin-top: 60px; width: 100%; height: auto; " class="public_chats_container" id="public_chats_container">
 						<h2>Öffentliche Chattgruppen:</h2>
-						<? 
+						<?
 						$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE public = 1; ");
 						$stmtData->execute();
 						while($row = $stmtData->fetchObject()){
@@ -135,7 +135,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 							    $count = ((array)$stmtCount->fetchObject())['count'];
 							}
 							?>
-							<div class="chatgruppe" onclick="page_navigate('/chat/<? echo htmlspecialchars($row['id']); ?>');">
+							<div class="chatgruppe" onclick="page_navigate('/chat/<? echo htmlspecialchars($row['id']); ?>', '#chat_container');">
 							    <div style="width: 100%; min-height: 40px; height: auto; ">
 								    <div style="height: auto; width: 100%; min-height: 40px; ">
 										<div style="width: calc( 100% - 120px ); ">
@@ -155,7 +155,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 	            </div>
 	        </div>
         </div>
-        <div style="float: left; width: calc( 100% - 542px ); min-width: 350px; max-width: 100%; text-align: center; height: 100%; ">
+        <div style="float: left; width: calc( 100% - 542px ); min-width: 350px; max-width: 100%; text-align: center; height: 100%; " id="chat_container">
 			<? if(!$chat_data){
 			    ?>
 			    <h1>Entweder dieser Chat exestiert nicht oder zu hast keinen Zugriff darauf. Sollte dieses problem weiterhin auftauchen melde dich bitte bei einem Administrator.!</h1>
@@ -264,65 +264,4 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
     <script>
         get_messages_data();
     </script>
-    <style>
-		html, body {
-			background-color: #303030;
-			color: #e0e0e0;
-			position: fixed;
-			top: 0px;
-			left: 0px;
-			right: 0px;
-			bottom: 0px;
-			overflow-x: hidden;
-			overflow-y: auto;
-		}
-		h1, h2, p, a, .text {
-			color: #e0e0e0;
-		}
-		.centriert {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			text-align: center;
-		}
-		.chatgruppe {
-			max-width: calc( 100% - 40px );
-			width: 500px;
-			
-			height: auto;
-			margin-top: 10px;
-			margin-left: 20px;
-			border-bottom: 1px solid black;
-			border-top: 1px solid black;
-			cursor: pointer;
-			background-color: darkslategray;
-			padding-left: 10px; 
-			border-radius: 5px;
-			padding-top: 5px;
-			padding-bottom: 5px;
-		}
-		.schueler_container {
-			margin: 20px;
-			height: auto;
-			width: 150px;
-			max-width: calc( 100% - 40px );
-			border: 1px solid black;
-			border-radius: 20px;
-			float: left;
-		}
-		.blog_entry {
-			margin: 20px;
-			min-height: 300px;
-			height: auto;
-			max-height: 800px;
-			width: 500px;
-			max-width: calc( 100% - 40px );
-			border: 1px solid black;
-			border-radius: 20px;
-			float: left;
-		}
-		button {
-		    cursor: pointer;	
-		}
-	</style>
 </html>

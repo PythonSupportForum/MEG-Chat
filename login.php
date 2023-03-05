@@ -78,6 +78,7 @@ if(isset($_POST['submit']) && !$total_error){
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <script src="/resources/js/script.js"></script>
+        <link rel="stylesheet" href="/resources/css/style.css">
     </head>
     <body>
         <div class ="all">
@@ -115,31 +116,4 @@ if(isset($_POST['submit']) && !$total_error){
 		<? } } ?>
         </div>
     </body>
-    <style>
-        #submit{
-            font-size: 300%;
-        }
-        .input{
-            height: 150%;
-            width: 180;
-        }
-        .bottom_login{
-            margin: 10px;
-            font-size: 200%;
-        }
-        .all {
-            text-align: center;
-        }
-        #login {
-            font-size:400%;
-        }
-        html, body {
-			background-color: #303030;
-			color: #e0e0e0;
-		}
-		h1, h2, p, a, .text {
-			color: #e0e0e0;
-            
-		}
-    </style>
 </html>

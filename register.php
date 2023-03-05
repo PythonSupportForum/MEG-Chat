@@ -108,6 +108,7 @@ if(isset($_POST['submit']) && !$total_error){
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <script src="/resources/js/script.js"></script>
+        <link rel="stylesheet" href="/resources/css/style.css">
     </head>
     <body>
 		<h2>Mich als Schüler eintragen</h2>
@@ -146,14 +147,5 @@ if(isset($_POST['submit']) && !$total_error){
 			<p>Durch das Absenden, wird der Eingetragene Name Öffentlich auf der Startseite sichtbar sein. Sie Können ab diesen Zeitpunkt von anderen besuchern per nachricht Kontaktiert werden und an den Chats teilnehmen.</p>
 		<? } } ?>
     </body>
-    <style>
-        html, body {
-			background-color: #303030;
-			color: #e0e0e0;
-		}
-		h1, h2, p, a, .text {
-			color: #e0e0e0;
-		}
-    </style>
 </html>
 
