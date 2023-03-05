@@ -77,8 +77,10 @@ if(isset($_SESSION['pupil'])){
 	        </div>
         </div>
         <div>
-	        <div id="all_container" style="width: 100%; margin-top: 20px; ">
-				<? require("public_chats.php"); ?>
+			<div style="width: 100%; margin-top: 20px; ">
+		        <div id="all_container">
+					<? require("public_chats.php"); ?>
+				</div>
 				<? require("beliebteste_schueler.php"); ?>
 				<? require("blog_news.php"); ?>
 			</div>
