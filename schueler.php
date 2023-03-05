@@ -98,13 +98,26 @@ $s_data = (array)$row;
 						</div>
 						<div id="profile" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; ">
 						  <h3>Über mich:</h3>
-						  <p><? echo htmlspecialchars($s_data['about_me']); ?></p>
+						  <p><? echo htmlspecialchars(empty($s_data['about_me']) ? "noch nichts" : $s_data['about_me']); ?></p>
+						  <?
+						  if(isset($_SESSION['pupil'])){
+							  if($pupil_data['id'] == $s_data['id']){
+								  ?>
+								  <button onclick="edit_about_me();">Bearbeiten</button>
+								  <?
+						      }
+						  }
+						  ?>
 						</div>
 						<div id="chats_together" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; ">
 						  <?
 						    if(!isset($_SESSION['pupil'])){
 								?>
 								<h3 style="text-align: center;">Bitte melde dich an um zu sehen, welche Chats du mit <? echo htmlspecialchars($s_data['fullname']); ?> gemeinsam hast.</h3>
+								<?
+							} else if($pupil_data['id'] == $s_data['id']){
+							    ?>
+								<h3 style="text-align: center;">Du hast ne Menge Chats mit dir selber xD</h3>
 								<?
 							} else {
 								$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE public = 0 AND id IN (SELECT chat FROM ".DBTBL.".chats_members WHERE pupil = :pupil) AND id IN (SELECT chat FROM ".DBTBL.".chats_members WHERE pupil = :pupil2); ");
@@ -154,12 +167,19 @@ $s_data = (array)$row;
 						</div>
 						
 						<div id="contact" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; ">
-						  <h3>Tokyo</h3>
-						  <p>Tokyo is the capital of Japan.</p>
+						  <p><strong>Email:</strong> <? echo htmlspecialchars($s_data['email']); ?></p>
 						</div>
 					</div>
 				</div>
             <? } ?>
         </div>
+        <script>
+	        window.edit_about_me = function(){
+				html_popup("Erzähl etwas über dich..", '<textarea id="about_me_editor"><? echo htmlspecialchars($s_data['about_me']); ?></textarea><button onclick="save_about_me();">Speichern</button>');
+			};
+			window.save_about_me = function(){
+				
+			}
+	    </script>
     </body>
 </html> 

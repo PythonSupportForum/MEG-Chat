@@ -142,7 +142,10 @@ window.page_navigate = function(url, from, to, loading_message = true) {
     return XHRt;
 }
 
-window.popup = function(header, text, can_close = true, bgcolor = "white", color = "black"){
+window.html_popup = function(header, html, can_close = true, bgcolor = "white", color = "black"){
+	popup(header, html, can_close, bgcolor, color, true);
+};
+window.popup = function(header, text, can_close = true, bgcolor = "white", color = "black", html = false){
 	var e = document.createElement("div");
 	e.style = "position: fixed; top: 0px; right: 0px; bottom: 0px; left: 0px; display: flex; justify-content: center; align-items: center; ";
 	var a = document.createElement("div");
@@ -178,7 +181,11 @@ window.popup = function(header, text, can_close = true, bgcolor = "white", color
 	c.appendChild(d);
 	var f = document.createElement("p");
 	f.style = "font-size: 14px; ";
-	f.innerText = text;
+	if(html){
+	    f.innerHTML = text;
+	} else {
+		f.innerText = text;
+	}
 	f.style.color = color;
 	c.appendChild(f);
 	a.appendChild(c);
