@@ -1,5 +1,5 @@
 <?
 $message=shell_exec("sudo -u root -S bash /var/www/html/MEG-Chat/update.sh < /home/tilo2/password.txt");
-print_r($message);
+echo $message;
 ?>
-<p>Erfolgreich gespeichert!</p>
+<p style="color: green; ">Erfolgreich gespeichert!</p>
