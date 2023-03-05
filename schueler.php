@@ -197,7 +197,7 @@ $s_data = (array)$row;
 				
 			}
 			window.edit_email = function(){
-				html_popup("Email Adresse bearbeiten", '<input type="email" id="about_me_editor" value="<? echo htmlspecialchars($s_data['email']); ?>" placeholder="mustermann.max@meg-bruehl.de"></input><button onclick="save_email();">Speichern</button>');
+				html_popup("Email Adresse bearbeiten", '<input type="email" id="email_editor" value="<? echo htmlspecialchars($s_data['email']); ?>" placeholder="mustermann.max@meg-bruehl.de"></input><button onclick="save_email();">Speichern</button>');
 			};
 			window.save_email = function(){
 				var value = document.getElementById("email_editor").value;
