@@ -121,7 +121,6 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 			newScriptEl.appendChild(scriptText);
 			oldScriptEl.parentNode.replaceChild(newScriptEl, oldScriptEl);
 		});
-		last_message_id = -1;
 		if(document.querySelector("title") && XHRt.response.querySelector("title")){
 		    document.querySelector("title").innerText = XHRt.response.querySelector("title").innerText;
 		}

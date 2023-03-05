@@ -155,6 +155,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
         <? if($chat_data){ ?>
         <script>
             window.last_message_id = -1;
+            window.chat_id = Number(window.location.href.split("/")[window.location.href.split("/").length-1]);
 
 			window.message_input_keydown = function(evt) {
 				if(document.getElementById("private_message_text").value.split("\n").length < document.getElementById("private_message_text").rows){
@@ -186,7 +187,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 						document.getElementById("private_message_text").style.height = "30px";
 						
 						function send_chess_message(){
-                            post_request("/send_message.php", {text: value, chat: <? echo htmlspecialchars($chat_data['id']); ?>});
+                            post_request("/send_message.php", {text: value, chat: chat_id});
 						}
 						send_chess_message();
 					}
@@ -199,17 +200,24 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 				}
 				if(running_chat_reader) return;
 				window.running_chat_reader = true;
-				post_request("/load_new_messages.php", {chat: <? echo htmlspecialchars($chat_data['id']); ?>, last: last_message_id}, function(data){
+				if(chat_id != Number(window.location.href.split("/")[window.location.href.split("/").length-1])){
+				    chat_id = Number(window.location.href.split("/")[window.location.href.split("/").length-1]);
+				    last_message_id = -1;
+				}
+				post_request("/load_new_messages.php", {chat: chat_id, last: last_message_id}, function(data){
 					setTimeout(function(){
 						window.running_chat_reader = false;
 					    get_messages_data();
 					}, 50);
 					data = JSON.parse(data);
 					data.forEach(function(z){
+						if(z.id >= last_message_id) return;
+						if(document.getElementById("message_"+z.id)) return;
+						
 						last_message_id = z.id;
-		
 						var ne = document.createElement("div");
 						ne.style = "width: 100%; margin-top: 10px; height: auto; word-warp: break-word; color: white; text-align: left; float: left; font-size: 14px;";
+						ne.id = "message_"+z.id;
 						var na = document.createElement("u");
 						na.innerText = z.author.username;
 						na.style = "font-weight: bold; cursor: pointer; ";
@@ -221,6 +229,8 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 						nt.style = "margin-left: 10px; ";
 						nt.innerText = "\n"+z.text;
 						ne.appendChild(nt);
+						
+						if(!document.getElementById("chat_inner_data")) return;
 						
 						document.getElementById("chat_inner_data").insertAdjacentHTML("beforeend", ne.outerHTML+"<br>");
 						document.getElementById("chat_inner_data").scrollTop = document.getElementById("chat_inner_data").scrollHeight;
