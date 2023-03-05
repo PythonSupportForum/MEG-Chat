@@ -56,6 +56,17 @@ h1, h2, p, a, .text {
 	border-radius: 20px;
 	float: left;
 }
+.project {
+	margin: 20px;
+	min-height: 100px;
+	height: auto;
+	max-height: 200px;
+	width: 500px;
+	max-width: calc( 100% - 40px );
+	border: 1px solid black;
+	border-radius: 20px;
+	float: left;
+}
 button {
     cursor: pointer;	
 }

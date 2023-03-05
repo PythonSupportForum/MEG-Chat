@@ -41,7 +41,7 @@ if(isset($_SESSION['pupil'])){
 		</div>
 	<? } ?>
 </div>
-<?	
+<?
 } }
 ?>
 <div style="margin-top: 20px; max-width: 100%; width: auto; height: auto; float: left; clear: none; " class="public_chats_container" id="public_chats_container">

@@ -83,6 +83,7 @@ if(isset($_SESSION['pupil'])){
 				</div>
 				<? require("beliebteste_schueler.php"); ?>
 				<? require("blog_news.php"); ?>
+				<? require("projects.php"); ?>
 			</div>
 		</div>
     </body>
