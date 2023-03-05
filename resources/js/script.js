@@ -96,10 +96,12 @@ window.post_request = function(url, data = {}, then = false){
 window.page_navigate = function(url, from, to, loading_message = true) {
 	window.history.pushState({}, "", url);
     if(!from) {
-		from="body";
+		from = "body";
 	}
+	console.log(to);
     if(to && to.split) to=document.querySelector(to);
     if(!to) to=document.querySelector(from);
+    console.log(to);
     
     var fertig = false;
 	
@@ -196,4 +198,4 @@ setInterval(function(){
 	if(document.getElementById("all_chats_container")){
 		page_navigate(window.location.href, "#all_chats_container", "#all_chats_container", false);
 	}
-}, 1000);
+}, 3000);
