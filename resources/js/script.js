@@ -112,7 +112,6 @@ window.page_navigate = function(url, from, to, loading_message = true) {
     XHRt.onload = function() {
 		fertig = true;
 		to.innerHTML = XHRt.response.querySelector(from).innerHTML;
-		last_message_id = -1;
 		Array.from(to.querySelectorAll("script")).forEach( oldScriptEl => {
 			const newScriptEl = document.createElement("script");
 			Array.from(oldScriptEl.attributes).forEach( attr => {
@@ -122,6 +121,7 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 			newScriptEl.appendChild(scriptText);
 			oldScriptEl.parentNode.replaceChild(newScriptEl, oldScriptEl);
 		});
+		last_message_id = -1;
 		if(document.querySelector("title") && XHRt.response.querySelector("title")){
 		    document.querySelector("title").innerText = XHRt.response.querySelector("title").innerText;
 		}
