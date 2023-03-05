@@ -5,7 +5,7 @@ if(isset($_SESSION['pupil'])){
 	$stmtData->execute(array('pupil' => $pupil_data['id']));
 	if($stmtData->rowCount() > 0){
 ?>
-<div style="margin-top: 20px; max-width: 100%; width: auto; height: auto; float: left;" class="private_chats_container" id="private_chats_container">
+<div style="margin-top: 20px; max-width: 100%; width: auto; height: auto; float: left; clear: none;" class="private_chats_container" id="private_chats_container">
 	<h2 style="margin-left: 20px; ">Meine Chatgruppen:</h2>
 	<?
 	while($row = $stmtData->fetchObject()){
@@ -44,7 +44,7 @@ if(isset($_SESSION['pupil'])){
 <?	
 } }
 ?>
-<div style="margin-top: 20px; max-width: 100%; width: auto; height: auto; float: left; " class="public_chats_container" id="public_chats_container">
+<div style="margin-top: 20px; max-width: 100%; width: auto; height: auto; float: left; clear: none; " class="public_chats_container" id="public_chats_container">
 	<h2 style="margin-left: 20px; ">Öffentliche Chattgruppen:</h2>
 	<?
 	$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE public = 1; ");

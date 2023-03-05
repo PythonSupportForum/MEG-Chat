@@ -1,4 +1,4 @@
-<div style="margin-top: 20px; width: max( calc( 100% - 550px ), 400px ); max-width: calc( 100% - 40px ); height: auto; min-height: 480px; float: left; ">
+<div style="margin-top: 20px; width: max( calc( 100% - 550px ), 400px ); max-width: calc( 100% - 40px ); height: auto; min-height: 480px; float: left; clear: none; ">
 	<h2 style="margin-left: 20px; ">Beliebstete Schüler:</h2>
 	<?
 	$stmtData = $db->prepare("SELECT ".DBTBL.".pupils.*, COUNT(".DBTBL.".pupils_votes.s_to) AS rating_count, COALESCE(SUM(points),0) as rating FROM ".DBTBL.".pupils LEFT JOIN ".DBTBL.".pupils_votes ON ".DBTBL.".pupils.id = ".DBTBL.".pupils_votes.s_to WHERE activated = 1 GROUP BY ".DBTBL.".pupils.id ORDER BY rating DESC;");

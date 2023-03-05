@@ -27,7 +27,7 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=9
+current_page=12
 FILE_NAME_0=13353;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cchat.php;0;4
 FILE_NAME_1=274;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cupdate.php;0;4
 FILE_NAME_2=491;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cdb.php;0;4
@@ -40,6 +40,6 @@ FILE_NAME_8=251;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CM
 FILE_NAME_9=4831;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cindex.php;0;4
 FILE_NAME_10=5351;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Clogin.php;0;4
 FILE_NAME_11=1918;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cregister.php;0;4
-FILE_NAME_12=2582;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cpublic_chats.php;0;4
-FILE_NAME_13=30;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cbeliebteste_schueler.php;0;4
-FILE_NAME_14=1090;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cblog_news.php;0;4
+FILE_NAME_12=2513;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cpublic_chats.php;0;4
+FILE_NAME_13=995;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cbeliebteste_schueler.php;0;4
+FILE_NAME_14=149;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cblog_news.php;0;4
