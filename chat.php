@@ -81,7 +81,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
         <link rel="stylesheet" href="/resources/css/style.css">
     </head>
     <body style="background-color: #303030; color: lightgray; ">
-        <div style="float: left; width: 540px; max-width: 100%; height: auto; max-height: 100%; overflow-x: hidden; overflow-y: auto; ">
+        <div style="float: left; width: 540px; max-width: 100%; height: auto; max-height: 100%; overflow-x: hidden; overflow-y: auto; " class="no_scrollbar">
 			<div style="width: 100%; height: 145px; margin-top: 20px; ">
 			    <div style="width: 50%; height: 100%; float: left; cursor: pointer; " class="centriert" onclick="page_navigate('/');">
 			        <div style="width: 100%; height: 100%; " class="centriert"><img style="height: 100%; width: auto; max-width: 100%; " src="/logo.png" alt="MEG Chat Logo"></div>

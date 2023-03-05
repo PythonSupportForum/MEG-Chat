@@ -87,3 +87,12 @@ button {
   border-top: none;
   text-align: left;
 }
+.no_scrollbar {
+    scrollbar-color: transparent transparent;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+}
+.no_scrollbar::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
+}
