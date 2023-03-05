@@ -1,4 +1,4 @@
-<div style="margin-top: 20px; width: max( calc( 100% - 540px ), 500px ); max-width: 100%; height: auto; min-height: 320px; float: left; ">
+<div style="margin-top: 20px; width: max( calc( 100% - 550px ), 500px ); max-width: 100%; height: auto; min-height: 480px; float: left; ">
 	<h2>Neuigkeiten aus unserem Blog:</h2>
 	<?
 	$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".blog ORDER BY time DESC;");
