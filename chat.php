@@ -211,7 +211,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 				    last_message_id = -1;
 				}
 				if(last_message_id > -1){
-					if(!document.getElementById("message_"+last_message_id)){
+					if(!document.getElementById("message_"+chat_id+"_"+last_message_id)){
 						last_message_id = -1;
 					}
 				}
@@ -222,14 +222,14 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 					}, 50);
 					data = JSON.parse(data);
 					data.forEach(function(z){
-						if(z.id <= last_message_id || document.getElementById("message_"+z.id)) {
+						if(z.id <= last_message_id || document.getElementById("message_"+chat_id+"_"+z.id)) {
 						    return;
 						}
 						
 						last_message_id = z.id;
 						var ne = document.createElement("div");
 						ne.style = "width: 100%; margin-top: 10px; height: auto; word-warp: break-word; color: white; text-align: left; float: left; font-size: 14px;";
-						ne.id = "message_"+z.id;
+						ne.id = "message_"+chat_id+"_"+z.id;
 						var na = document.createElement("u");
 						na.innerText = z.author.username;
 						na.style = "font-weight: bold; cursor: pointer; ";
