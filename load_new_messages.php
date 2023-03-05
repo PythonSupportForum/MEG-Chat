@@ -58,7 +58,7 @@ if($member) $last_id = $member['last_readed_message'];
 while($m = $stmtMessage->fetchObject()){
 	$m = (array)$m;
 	$stmtAuthor = $db->prepare("SELECT id, fullname as username, avatar FROM ".DBTBL.".pupils WHERE id = :pupilId;");
-	$stmtAuthor->execute(array('pupilId' => $member['pupil']));
+	$stmtAuthor->execute(array('pupilId' => $m['author']));
 	if($stmtAuthor->rowCount() == 0) continue;
 	$last_id = $m['id'];
 	
