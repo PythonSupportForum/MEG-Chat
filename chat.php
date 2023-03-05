@@ -144,7 +144,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 								            <h6 style="margin: 0; padding: 0; font-size: 14px; font-weight: small; "><? echo htmlspecialchars($row['description']); ?></h6>
 								        </div>
 								        <? if($count > 0){ ?>
-									    <div style="position: absolute; float: right; left: 0px; top: 0px; min-height: 40px; height: auto; width: 100px; " class="centriert">
+									    <div style="position: absolute; left: 0px; top: 0px; min-height: 40px; height: auto; width: 100px; " class="centriert">
 									        <div style="height: 90%; width: 80%; background-color: red; color: white; border-radius: 10px; font-size: 24px; " class="centriert"><? echo htmlspecialchars($count); ?></div>
 									    </div>
 									    <? } ?>
@@ -193,7 +193,6 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
         <? if($chat_data){ ?>
         <script>
             window.last_message_id = -1;
-            window.running_chat_reader = true;
 
 			window.message_input_keydown = function(evt) {
 				if(document.getElementById("private_message_text").value.split("\n").length < document.getElementById("private_message_text").rows){
@@ -233,11 +232,14 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 			};
 			
 			async function get_messages_data(){
+				if(typeof running_chat_reader === undefined) {
+					window.running_chat_reader = false;
+				}
 				if(running_chat_reader) return;
 				window.running_chat_reader = true;
 				post_request("/load_new_messages.php", {chat: <? echo htmlspecialchars($chat_data['id']); ?>, last: last_message_id}, function(data){
-					window.running_chat_reader = false;
 					setTimeout(function(){
+						window.running_chat_reader = false;
 					    get_messages_data();
 					}, 50);
 					data = JSON.parse(data);
