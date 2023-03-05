@@ -193,7 +193,6 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
         <? if($chat_data){ ?>
         <script>
             window.last_message_id = -1;
-            window.running_chat_loader_loop = true;
 
 			window.message_input_keydown = function(evt) {
 				if(document.getElementById("private_message_text").value.split("\n").length < document.getElementById("private_message_text").rows){
@@ -234,7 +233,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 			
 			async function get_messages_data(){
 				if(running_chat_reader) return;
-				if(!running_chat_loader_loop){
+				if(disable_chat_loading_loop){
 					setTimeout(function(){
 					    get_messages_data();
 					}, 100);
