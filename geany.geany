@@ -27,11 +27,11 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=17
+current_page=3
 FILE_NAME_0=10371;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cchat.php;0;4
 FILE_NAME_1=274;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cupdate.php;0;4
 FILE_NAME_2=491;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cdb.php;0;4
-FILE_NAME_3=6661;Javascript;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cresources%5Cjs%5Cscript.js;0;4
+FILE_NAME_3=2815;Javascript;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cresources%5Cjs%5Cscript.js;0;4
 FILE_NAME_4=490;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Csend_message.php;0;4
 FILE_NAME_5=321;PHP;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cload_new_messages.php;0;4
 FILE_NAME_6=1682;CSS;0;EUTF-8;1;1;0;C%3A%5CUsers%5CInfin%5CDocuments%5CGitHub%5CMEG-Chat%5Cresources%5Ccss%5Cstyle.css;0;4

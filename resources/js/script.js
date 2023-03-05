@@ -96,7 +96,7 @@ window.post_request = function(url, data = {}, then = false){
 window.page_navigate = function(url, from, to, loading_message = true) {
 	if(url) {
 		window.history.pushState({}, "", url);
-	] else {
+	} else {
 	    url = window.location.href;
 	}
     if(!from) from = "body";
