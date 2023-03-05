@@ -28,6 +28,6 @@ if($key == "about_me"){
 	}
 }
 
-$stmtEdit = $db->prepare("UPDATE ".DBTBL.".pupils SET fullname = :fullname, about_me = :about_me WHERE id = :id;");
-$stmtEdit->execute($pupil_data);
+$stmtEdit = $db->prepare("UPDATE ".DBTBL.".pupils SET fullname = :fullname, about_me = :about_me, email = :email WHERE id = :id;");
+$stmtEdit->execute(array('id' => $pupil_data['id'], 'fullname' => $pupil_data['fullname'], 'email' => $pupil_data['email'], 'about_me' => $pupil_data['about_me']));
 ?>
