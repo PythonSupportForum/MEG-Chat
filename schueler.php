@@ -19,10 +19,10 @@ $s_data = (array)$row;
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MEG Chat | Schüler | <? echo htmlspecialchars($s['fullname']); ?></title>
-        <meta name="description" content="<? echo htmlspecialchars($s['about_me']); ?>">
-        <meta name="keywords" lang="de" content="max ernst gymnasium, meg, schüler, schueler, klasse, informtionen, profil, <? echo htmlspecialchars($s['fullname']); ?>">
-        <meta name="author" content="<? echo htmlspecialchars($s['fullname']); ?>">
+        <title>MEG Chat | Schüler | <? echo htmlspecialchars($s_data['fullname']); ?></title>
+        <meta name="description" content="<? echo htmlspecialchars($s_data['about_me']); ?>">
+        <meta name="keywords" lang="de" content="max ernst gymnasium, meg, schüler, schueler, klasse, informtionen, profil, <? echo htmlspecialchars($s_data['fullname']); ?>">
+        <meta name="author" content="<? echo htmlspecialchars($s_data['fullname']); ?>">
         <meta name="robots" content="index,follow">
         <meta http-equiv="Cache-control" content="public">
         <meta name="format-detection" content="telephone=yes">
