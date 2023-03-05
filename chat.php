@@ -118,7 +118,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 						<h2>Öffentliche Chattgruppen:</h2>
 						<?
 						$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE public = 1; ");
-						$stmtData->execute(array('id' => $_SESSION['pupil']));
+						$stmtData->execute();
 						while($row = $stmtData->fetchObject()){
 							$row = (array)$row;
 							$count = 0;
