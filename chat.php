@@ -20,33 +20,27 @@ if($row){
 }
 
 if($chat_data){
-    if($chat_data['public'] != 1){
-		$has_access = false;
-	    if(isset($_SESSION['pupil'])){
-			$stmtMember = $db->prepare("SELECT * FROM ".DBTBL.".chats_members WHERE pupil = :pupil AND chat = :chat;");
+	if(isset($_SESSION['pupil'])){
+		$stmtMember = $db->prepare("SELECT * FROM ".DBTBL.".chats_members WHERE pupil = :pupil AND chat = :chat;");
+	    $stmtMember->execute(array('pupil' => $_SESSION['pupil'], 'chat' => $chat_data['id']));
+	    if($member = $stmtMember->fetchObject()){
+			$member = (array)$member;
+		} else {
+			$stmtInsertMember = $db->prepare("INSERT INTO ".DBTBL.".chats_members (pupil, chat) VALUES (:pupil, :chat);");
+		    $stmtInsertMember->execute(array('pupil' => $_SESSION['pupil'], 'chat' => $chat_data['id']));
+		    
+		    $stmtMember = $db->prepare("SELECT * FROM ".DBTBL.".chats_members WHERE pupil = :pupil AND chat = :chat;");
 		    $stmtMember->execute(array('pupil' => $_SESSION['pupil'], 'chat' => $chat_data['id']));
 		    if($member = $stmtMember->fetchObject()){
 				$member = (array)$member;
-				$has_access = true;	
 			}
 		}
-		if(!$has_access){
-			$chat_data = false;
-		}
 	}
-}
-
-if($chat_data && isset($_SESSION['pupil']) && !$member){
-	$stmtInsertMember = $db->prepare("INSERT INTO ".DBTBL.".chats_members (pupil, chat) VALUES (:pupil, :chat);");
-    $stmtInsertMember->execute(array('pupil' => $_SESSION['pupil'], 'chat' => $chat_data['id']));
-    
-    $stmtMember = $db->prepare("SELECT * FROM ".DBTBL.".chats_members WHERE pupil = :pupil AND chat = :chat;");
-    $stmtMember->execute(array('pupil' => $_SESSION['pupil'], 'chat' => $chat_data['id']));
-    if($member = $stmtMember->fetchObject()){
-		$member = (array)$member;
+	if($chat_data['public'] != 1){
+		if(!$member) $chat_data = false;
 	}
+	
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -131,7 +125,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
                 </div>
                 <div style="width: 100%; height: calc( 100% - 180px ); min-height: 200px; max-height: 100%; margin-top: 20px; " class="centriert">
                     <div style="height: 100%; min-width: 320px; width: 80%; max-width: 95%; position: relative;">
-                        <div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 52px; overflow-x: hidden; overflow-y: auto; " id="chat_inner_data_container">
+                        <div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 52px; overflow-x: hidden; overflow-y: auto; " id="chat_inner_data_container" class="no_scrollbar">
                             <div style="width: 100%; height: auto; overflow: hidden; " id="chat_inner_data"></div>
                             <div style="width: 100%; height: 25px; "></div>
                         </div>

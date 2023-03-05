@@ -16,25 +16,13 @@ $row = $stmtData->fetchObject();
 if($row){
 	$chat_data = (array)$row;
 }
+if(!$chat_data) return;
 
-if($chat_data){
-    if($chat_data['public'] != 1){
-		$has_access = false;
-	    if(isset($_SESSION['pupil'])){
-			$stmtMember = $db->prepare("SELECT * FROM ".DBTBL.".chats_members WHERE pupil = :pupil AND chat = :chat;");
-		    $stmtMember->execute(array('pupil' => $_SESSION['pupil'], 'chat' => $chat_data['id']));
-		    if($member = $stmtMember->fetchObject()){
-				$member = (array)$member;
-				$has_access = true;	
-			}
-		}
-		if(!$has_access){
-			$chat_data = false;
-		}
-	}
-}
-
-if($chat_data && isset($_SESSION['pupil']) && !$member){
+$stmtMember = $db->prepare("SELECT * FROM ".DBTBL.".chats_members WHERE pupil = :pupil AND chat = :chat;");
+$stmtMember->execute(array('pupil' => $_SESSION['pupil'], 'chat' => $chat_data['id']));
+if($member = $stmtMember->fetchObject()){
+	$member = (array)$member;
+} else {
 	$stmtInsertMember = $db->prepare("INSERT INTO ".DBTBL.".chats_members (pupil, chat) VALUES (:pupil, :chat);");
     $stmtInsertMember->execute(array('pupil' => $_SESSION['pupil'], 'chat' => $chat_data['id']));
     
@@ -44,8 +32,6 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 		$member = (array)$member;
 	}
 }
-
-if(!$chat_data) return;
 
 $stmtMessage = $db->prepare("INSERT INTO ".DBTBL.".chats_messages (chat, author, text) VALUES (:chat, :author, :text); ");
 $stmtMessage->execute(array('chat' => $chat_data['id'], 'author' => $member['pupil'], 'text' => $_POST['text']));
