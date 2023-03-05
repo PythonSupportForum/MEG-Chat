@@ -108,7 +108,7 @@ if($chat_data){
 			    </div>
 			</div>
             <div style="width: 100%; height: auto; margin-top: 20px; ">
-				<div id="all_chats_container">
+				<div id="all_container">
 					<? require("public_chats.php"); ?>
 	            </div>
 	        </div>
