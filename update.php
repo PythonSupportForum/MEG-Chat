@@ -1,6 +1,6 @@
 <?
 $message=exec("sudo -u root -S bash /var/www/html/MEG-Chat/update.sh < /home/tilo2/password.txt", $output, $return_var);
-echo $output;
+echo implode(", ", $output);
 echo "<br>";
 echo $return_var;
 echo "<br>";
