@@ -9,8 +9,8 @@ $stmtCheck = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE id = :id;");
 $stmtCheck->execute(array('id' => $_SESSION['pupil']));
 $pupil_data = (array)$stmtCheck->fetchObject();
 
-$key = $_POST['key'];
-$value = $_POST['value'];
+$key = trim($_POST['key']);
+$value = trim($_POST['value']);
 
 if($key == "about_me"){
     $pupil_data['about_me'] = $value;
@@ -24,7 +24,13 @@ if($key == "about_me"){
 		}
         $pupil_data['email'] = $value;
     } else {
-	    echo "Die eingegebene Email Adresse ist ungültig! Bitte überprüfen Sie Ihre EIngaben und versuchen Sie es erneut.";	
+	    echo "Die eingegebene Email Adresse ist ungültig! Bitte überprüfe Deine Eingabe und versuche es erneut.";	
+	}
+} else if($key == "avatar"){
+	if(!getimagesize($value)){
+        echo "Die eingegebene URL verweist auf kein gültiges Bild. Bitte überprüfe Deine Eingabe und versuche es erneut.";
+	} else {
+        $pupil_data['avatar'] = $value;
 	}
 }
 

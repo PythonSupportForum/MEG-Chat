@@ -87,7 +87,7 @@ $s_data = (array)$row;
 			} else { ?>
                 <h1><? echo htmlspecialchars($s_data['fullname']); ?></h1>
                 <div style="width: 100%; height: auto; " class="centriert">
-                    <img style="width: 300px; max-height: 300px; height: auto; max-width: 100%; border-radius: 50%; " src="<? echo htmlspecialchars(empty($s_data['avatar']) ? "/resources/images/avatar.png" : $s_data['avatar']); ?>">
+                    <img id="avatar" style="width: 300px; max-height: 300px; height: auto; max-width: 100%; border-radius: 50%; " src="<? echo htmlspecialchars(empty($s_data['avatar']) ? "/resources/images/avatar.png" : $s_data['avatar']); ?>">
                 </div>
                 <div style="width: 100%; height: auto; margin-top: 25px; " class="centriert">
 					<div style="width: 500px; max-width: 100%;">
@@ -104,6 +104,16 @@ $s_data = (array)$row;
 							  if($pupil_data['id'] == $s_data['id']){
 								  ?>
 								  <button onclick="edit_about_me();">Bearbeiten</button>
+								  <?
+						      }
+						  }
+						  ?>
+						  <h3>Mein Profilbild:</h3>
+						  <?
+						  if(isset($_SESSION['pupil'])){
+							  if($pupil_data['id'] == $s_data['id']){
+								  ?>
+								  <button onclick="edit_avatar();">Ändern</button>
 								  <?
 						      }
 						  }
@@ -191,6 +201,7 @@ $s_data = (array)$row;
 					if(data.length > 2){
 					    popup("Fehler!", data);
 					} else {
+						close_all_popups();
 					    page_navigate(window.location.href, "#about_me_text");
 					}
 				});
@@ -205,10 +216,24 @@ $s_data = (array)$row;
 					if(data.length > 2){
 					    popup("Fehler!", data);
 					} else {
+						close_all_popups();
 					    page_navigate(window.location.href, "#email_text");
 					}
 				});
-				
+			}
+			window.edit_avatar = function(){
+				html_popup("Profilbild ändern", '<input type="text" id="avatar_editor" value="<? echo htmlspecialchars($s_data['avatar']); ?>" placeholder="https://example.com/bild.png"></input><button onclick="save_avatar();">Speichern</button>');
+			};
+			window.save_avatar = function(){
+				var value = document.getElementById("avatar_editor").value;
+				post_request("/profile_edit.php", {key: "avatar", value: value}, function(data){
+					if(data.length > 2){
+					    popup("Fehler!", data);
+					} else {
+						close_all_popups();
+					    document.getElementById("avatar").src = value;
+					}
+				});
 			}
 	    </script>
     </body>
