@@ -7,7 +7,7 @@ if(isset($_SESSION['pupil'])){
 	$pupil_data = (array)$stmtCheck->fetchObject();
 }
 
-$chat = $_GET['chat'];
+$chat = $_POST['chat'];
 
 $chat_data = false;
 $member = false;
