@@ -249,7 +249,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 						na.innerText = z.author.username;
 						na.style = "font-weight: bold; cursor: pointer; ";
 						na.onclick = function(){
-							
+							page_navigate("/schueler/"+z.author.id);
 						};
 						ne.appendChild(na);
 						var nt = document.createElement("span");
