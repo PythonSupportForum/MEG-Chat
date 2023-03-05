@@ -35,6 +35,11 @@ if($key == "about_me"){
 		}
 		$path = "uploads/".$pupil_data['id']."_".rand(100000,100000000);
 		file_put_contents($path, file_get_contents($value));
+		list($width, $height) = getimagesize($path);
+		$thumb = imagecreatetruecolor(255, 255);
+		$source = imagecreatefromjpeg($path);
+		imagecopyresized($thumb, $source, 0, 0, 0, 0, 255, 255, $width, $height);
+		imagepng($thumb,$path,3);
         $pupil_data['avatar'] = "/".$path;
 	}
 } 
