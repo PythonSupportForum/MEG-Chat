@@ -32,7 +32,7 @@ if($key == "about_me"){
 	} else {
 		file_put_contents($pupil_data['id'], file_get_contents($value));
 		
-        $pupil_data['avatar'] = "/uploads/".$pupil_data['id'];
+        $pupil_data['avatar'] = "/".$pupil_data['id'];
 	}
 }
 
