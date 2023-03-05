@@ -95,7 +95,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 							<?
 							if($pupil_data['activated'] == 0){
 								?>
-								<p style="color: red; font-size: 10px; ">Dein Account ist noch nicht freigeschaltet worden. Bitte gedulte dich einige Zeit oder Kontaktiere einen Administrator. Wir werden deine Identität Prüfen und den Account anschließend freischalten.</p>
+								<p style="color: red; font-size: 10px; ">Dein Account ist noch nicht freigeschaltet worden. Bitte gedulte dich einige Zeit oder Kontaktiere einen Administrator. Wir werden deine Identität Prüfen und den Account anschließend freischalten. Wenn nicht Pech gehabt su Opfer!</p>
 								<?
 						    }
 							?>

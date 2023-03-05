@@ -57,7 +57,7 @@ if(isset($_POST['submit']) && !$total_error){
         <title>MEG Chat | Anmelden</title>
         <meta name="description" content="Melde Dich mit deinem MEG Chat Konto an. ">
         <meta name="keywords" lang="de" content="meg, max, ernst, gymnasium, chat, online, schueler, chatten, austauschen, hausaufgaben, fragen, anmeldung">
-        <meta name="author" content="Lars Ashauer und Tilo Behnke">
+        <meta name="author" content="Lars Ashauer, Tilo Behnke und Frittenfresse">
         <meta name="robots" content="index,follow">
         <meta http-equiv="Cache-control" content="public">
         <meta name="format-detection" content="telephone=yes">
