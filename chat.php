@@ -164,12 +164,11 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 			} else { ?>
                 <h1><? echo htmlspecialchars($chat_data['name']); ?></h1>
                 <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
-                     <h2><? echo htmlspecialchars($chat_data['description']); ?></h2>
+                     <h2 style="margin: 0; padding: 0;"><? echo htmlspecialchars($chat_data['description']); ?></h2>
                 </div>
-                <div style="width: 100%; height: calc( 100% - 180px ); min-height: 200px; max-height: 100%; " class="centriert">
+                <div style="width: 100%; height: calc( 100% - 180px ); min-height: 200px; max-height: 100%; margin-top: 20px; " class="centriert">
                     <div style="height: 100%; min-width: 320px; width: 80%; max-width: 95%; position: relative;">
                         <div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 50px; overflow-x: hidden; overflow-y: auto; ">
-                            <div style="width: 100%; height: 100px; "></div>
                             <div style="width: 100%; height: auto; " id="chat_inner_data"></div>
                             <div style="width: 100%; height: 100px; "></div>
                         </div>
@@ -232,7 +231,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 			};
 			
 			async function get_messages_data(){
-				if(typeof running_chat_reader === undefined) {
+				if(!("running_chat_reader" in window)) {
 					window.running_chat_reader = false;
 				}
 				if(running_chat_reader) return;
@@ -265,10 +264,8 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 					});
 				});
 			}
+			get_messages_data();
         </script>
         <? } ?>
     </body>
-    <script>
-        get_messages_data();
-    </script>
 </html>
