@@ -89,8 +89,8 @@ $s_data = (array)$row;
                 <div style="width: 100%; height: auto; " class="centriert">
                     <img style="width: 300px; max-height: 300px; height: auto; max-width: 100%; border-radius: 50%; " src="<? echo htmlspecialchars(empty($s_data['avatar']) ? "/resources/images/avatar.png" : $s_data['avatar']); ?>">
                 </div>
-                <div style="width: 100%; height: auto; margin-top: 10px; ">
-					<div style="width: 500px; max-width: 100%;">
+                <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
+					<div style="width: 500px; max-width: 100%;" class="centriert">
 						<div class="tab">
 						  <button class="tablinks" onclick="openTab(event, 'profile')">Profil</button>
 						  <button class="tablinks" onclick="openTab(event, 'chats_together')">Gemeinsame Chats</button>
