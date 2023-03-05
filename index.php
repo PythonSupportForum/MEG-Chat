@@ -84,7 +84,7 @@ if(isset($_SESSION['pupil'])){
 				<h2>Beliebstete Schüler:</h2>
 				<?
 				$stmtData = $db->prepare("SELECT ".DBTBL.".pupils.*, COUNT(".DBTBL.".pupils_votes.s_to) AS rating_count, COALESCE(SUM(points),0) as rating FROM ".DBTBL.".pupils LEFT JOIN ".DBTBL.".pupils_votes ON ".DBTBL.".pupils.id = ".DBTBL.".pupils_votes.s_to WHERE activated = 1 GROUP BY ".DBTBL.".pupils.id ORDER BY rating DESC;");
-				$stmtData->execute(array('id' => $_SESSION['pupil']));
+				$stmtData->execute();
 				while($row = $stmtData->fetchObject()){ $row = (array)$row; ?>
 					<a href="javascript:page_navigate('/schueler/<? echo htmlspecialchars($row['id']); ?>');" style="color: black; text-decoration: none; "><div class="schueler_container">
 					    <div style="height: calc( 100% - 60px ); width: 100%; margin-top: 10px; " class="centriert">
@@ -116,7 +116,7 @@ if(isset($_SESSION['pupil'])){
 				<h2>Neuigkeiten aus unserem Blog:</h2>
 				<?
 				$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".blog ORDER BY time DESC;");
-				$stmtData->execute(array('id' => $_SESSION['pupil']));
+				$stmtData->execute();
 				while($row = $stmtData->fetchObject()){ $row = (array)$row; ?>
 					<a href="javascript:page_navigate('/blog/<? echo htmlspecialchars($row['id']); ?>');" style="color: black; "><div class="blog_entry">
 					    <div style="width: 100%; height: 100px; margin-top: 20px; " class="centriert">
