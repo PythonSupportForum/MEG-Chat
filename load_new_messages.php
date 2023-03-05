@@ -53,8 +53,9 @@ $stmtMessage = $db->prepare("SELECT * FROM ".DBTBL.".chats_messages WHERE chat =
 $stmtMessage->execute(array('chat' => $chat_data['id'], 'last' => $_POST['last']));
 
 $messages = array();
-$last_id = -1;
-if($member) $last_id = $member['last_readed_message'];
+$old_last_id = -1;
+if($member) $old_last_id = $member['last_readed_message'];
+$last_id = $old_last_id;
 while($m = $stmtMessage->fetchObject()){
 	$m = (array)$m;
 	$stmtAuthor = $db->prepare("SELECT id, fullname as username, avatar FROM ".DBTBL.".pupils WHERE id = :pupilId;");
@@ -62,7 +63,7 @@ while($m = $stmtMessage->fetchObject()){
 	if($stmtAuthor->rowCount() == 0) continue;
 	$last_id = $m['id'];
 	
-	$messages[] = array('text' => $m['text'], 'time' => $m['time'], 'id' => $m['id'], 'author' => (array)$stmtAuthor->fetchObject(), 'new' => ($m['id'] > $member['last_readed_message']));
+	$messages[] = array('text' => $m['text'], 'time' => $m['time'], 'id' => $m['id'], 'author' => (array)$stmtAuthor->fetchObject(), 'new' => ($m['id'] > $old_last_id));
 }
 $stmtMember = $db->prepare("UPDATE ".DBTBL.".chats_members SET last_readed_message = :last WHERE id = :id;");
 $stmtMember->execute(array('id' => $member['id'], 'last' => $last_id));
