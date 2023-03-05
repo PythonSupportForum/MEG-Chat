@@ -223,6 +223,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 					data = JSON.parse(data);
 					data.forEach(function(z){
 						if(z.id <= last_message_id || document.getElementById("message_"+chat_id+"_"+z.id)) {
+							console.log("hmm");
 						    return;
 						}
 						
