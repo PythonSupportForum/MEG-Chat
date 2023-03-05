@@ -218,8 +218,11 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 					}, 50);
 					data = JSON.parse(data);
 					data.forEach(function(z){
-						if(z.id <= last_message_id) return;
-						if(document.getElementById("message_"+z.id)) return;
+						if(z.id <= last_message_id || document.getElementById("message_"+z.id)) {
+						    console.log("Alte Nachricht erneut geladen!");
+						    console.log("Nachricht ID: "+z.id);
+						    console.log("Aktuelle nachricht ID: "+last_message_id);	
+						}
 						
 						last_message_id = z.id;
 						var ne = document.createElement("div");
