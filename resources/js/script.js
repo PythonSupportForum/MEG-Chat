@@ -94,10 +94,12 @@ window.post_request = function(url, data = {}, then = false){
 };
 
 window.page_navigate = function(url, from, to, loading_message = true) {
-	window.history.pushState({}, "", url);
-    if(!from) {
-		from = "body";
+	if(url) {
+		window.history.pushState({}, "", url);
+	] else {
+	    url = window.location.href;
 	}
+    if(!from) from = "body";
     if(to && to.split) to=document.querySelector(to);
     if(!to) to=document.querySelector(from);
     
@@ -196,7 +198,6 @@ window.popup = function(header, text, can_close = true, bgcolor = "white", color
 window.vote = function(id){
 	post_request("vote.php", {vote: id}, function(data){
 		if(data.length > 2){
-		    console.log(data);
 		    popup("Fehler!", data);
 		} else {
 		    page_navigate(window.location.href, ".schueler_vote_count_"+id);	

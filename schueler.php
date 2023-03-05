@@ -175,9 +175,17 @@ $s_data = (array)$row;
         </div>
         <script>
 	        window.edit_about_me = function(){
-				html_popup("Erzähl etwas über dich..", '<textarea id="about_me_editor"><? echo htmlspecialchars($s_data['about_me']); ?></textarea><button onclick="save_about_me();">Speichern</button>');
+				html_popup("Erzähl etwas über dich..", '<textarea style="width: 100%; height: 200px; resize: none; " id="about_me_editor"><? echo htmlspecialchars($s_data['about_me']); ?></textarea><button onclick="save_about_me();">Speichern</button>');
 			};
 			window.save_about_me = function(){
+				var value = document.getElementById("about_me_editor").value;
+				post_request("/profile_edit.php", {key: "about_me", value: value}, function(data){
+					if(data.length > 2){
+					    popup("Fehler!", data);
+					} else {
+					    page_navigate();
+					}
+				});
 				
 			}
 	    </script>
