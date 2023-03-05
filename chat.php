@@ -144,7 +144,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 								            <h6 style="margin: 0; padding: 0; font-size: 14px; font-weight: small; "><? echo htmlspecialchars($row['description']); ?></h6>
 								        </div>
 								        <? if($count > 0){ ?>
-									    <div style="position: absolute; left: 0px; top: 0px; min-height: 40px; height: auto; width: 100px; " class="centriert">
+									    <div style="position: absolute; right: 0px; top: 0px; min-height: 40px; height: auto; width: 100px; " class="centriert">
 									        <div style="height: 90%; width: 80%; background-color: red; color: white; border-radius: 10px; font-size: 24px; " class="centriert"><? echo htmlspecialchars($count); ?></div>
 									    </div>
 									    <? } ?>
