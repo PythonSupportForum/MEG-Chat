@@ -94,9 +94,9 @@ window.post_request = function(url, data = {}, then = false){
 };
 
 window.page_navigate = function(url, from, to, loading_message = true) {
+	window.history.pushState({}, "", url);
     if(!from) {
 		from="body";
-		window.history.pushState({}, "", url);
 	}
     if(to && to.split) to=document.querySelector(to);
     if(!to) to=document.querySelector(from);
@@ -105,13 +105,14 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 	
 	setTimeout(function(){
 	    if(!fertig && loading_message) to.innerHTML = "<h2 style='text-align: center; margin-top: 80px; ' class='text'>Wird geladen..</h2>";
-	}, 500);
+	}, 50);
 	
     var XHRt = new XMLHttpRequest();
     XHRt.responseType='document';
     XHRt.onload = function() {
 		fertig = true;
 		to.innerHTML = XHRt.response.querySelector(from).innerHTML;
+		last_message_id = -1;
 		Array.from(to.querySelectorAll("script")).forEach( oldScriptEl => {
 			const newScriptEl = document.createElement("script");
 			Array.from(oldScriptEl.attributes).forEach( attr => {
