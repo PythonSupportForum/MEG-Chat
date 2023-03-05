@@ -4,7 +4,7 @@
 	$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".projects;");
 	$stmtData->execute();
 	while($row = $stmtData->fetchObject()){ $row = (array)$row; ?>
-		<a href="<? echo htmlspecialchars($row['url']); ?>" style="color: black; "><div style="margin: 20px; max-width: calc( 100% - 20px ); width: auto; ">
+		<a href="<? echo htmlspecialchars($row['url']); ?>" style="color: black; "><div style="margin: 20px; margin-top: 30px; max-width: calc( 100% - 20px ); width: auto; ">
 		    <div style="width: 100%; margin-top: 10px; ">
 		        <h3 style="color: lightblue; "><? echo htmlspecialchars($row['name']); ?></h3>
 		    </div>

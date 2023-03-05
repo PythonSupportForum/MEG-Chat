@@ -1,11 +1,13 @@
 <?
 require_once("db.php");
 
-if(!isset($_SESSION['pupil'])){
-	return;
+if(isset($_SESSION['pupil'])){
+	$stmtCheck = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE id = :id;");
+	$stmtCheck->execute(array('id' => $_SESSION['pupil']));
+	$pupil_data = (array)$stmtCheck->fetchObject();
 }
 
-$chat = $_POST['chat'];
+$chat = $_GET['chat'];
 
 $chat_data = false;
 $member = false;
