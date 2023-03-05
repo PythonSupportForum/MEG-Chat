@@ -89,28 +89,68 @@ $s_data = (array)$row;
                 <div style="width: 100%; height: auto; " class="centriert">
                     <img style="width: 300px; max-height: 300px; height: auto; max-width: 100%; border-radius: 50%; " src="<? echo htmlspecialchars(empty($s_data['avatar']) ? "/resources/images/avatar.png" : $s_data['avatar']); ?>">
                 </div>
-                <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
-                    <div style="width: 500px; max-width: 100%; font-size: 16px;"><? echo htmlspecialchars($s_data['about_me']); ?></div>
-                </div>
                 <div style="width: 100%; height: auto; margin-top: 10px; ">
-					<div class="tab">
-					  <button class="tablinks" onclick="openTab(event, 'profile')">Profil</button>
-					  <button class="tablinks" onclick="openTab(event, 'chats_together')">Gemeinsame Chats</button>
-					  <button class="tablinks" onclick="openTab(event, 'contact')">Kontakt</button>
+					<div style="width: 500px; max-width: 100%;">
+						<div class="tab">
+						  <button class="tablinks" onclick="openTab(event, 'profile')">Profil</button>
+						  <button class="tablinks" onclick="openTab(event, 'chats_together')">Gemeinsame Chats</button>
+						  <button class="tablinks" onclick="openTab(event, 'contact')">Kontakt</button>
+						</div>
+						<div id="profile" class="tabcontent">
+						  <h3>Über mich:</h3>
+						  <p><? echo htmlspecialchars($s_data['about_me']); ?></p>
+						</div>
+						<div id="chats_together" class="tabcontent">
+						  <?
+						    if(!isset($_SESSION['pupil'])){
+								?>
+								<h3 style="text-align: center;">Bitte melde dich an um zu sehen, welche Chats du mit <? echo htmlspecialchars($s_data['fullname']); ?> gemeinsam hast.</h3>
+								<?
+							} else {
+								$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE public = 0 AND id IN (SELECT chat FROM ".DBTBL.".chats_members WHERE pupil = :pupil) AND id IN (SELECT chat FROM ".DBTBL.".chats_members WHERE pupil = :pupil2); ");
+								$stmtData->execute(array('pupil' => $s_data['id'], 'pupil2' => $pupil_data['id']));
+								while($row = $stmtData->fetchObject()){
+									$row = (array)$row;
+									$count = 0;
+									if(isset($_SESSION['pupil'])){
+										$stmtChat = $db->prepare("SELECT * FROM ".DBTBL.".chats_members WHERE pupil = :pupil AND chat = :chat;");
+									    $stmtChat->execute(array('pupil' => $_SESSION['pupil'], 'chat' => $row['id']));
+									    $last_readed_message = -1;
+									    if($member = $stmtChat->fetchObject()){
+											$member = (array)$member;
+											$last_readed_message = $member['last_readed_message'];
+										}
+										$stmtCount = $db->prepare("SELECT COUNT(id) as count FROM ".DBTBL.".chats_messages WHERE chat = :chat AND id > :last AND time > :time;");
+									    $stmtCount->execute(array('chat' => $row['id'], 'last' => $last_readed_message, 'time' => $pupil_data['registartion_time']));
+									    $count = ((array)$stmtCount->fetchObject())['count'];
+									}
+									?>
+									<div class="chatgruppe" onclick="page_navigate('/chat/<? echo htmlspecialchars($row['id']); ?>', '#chat_container'); window.last_message_id = -1;">
+									    <div style="width: 100%; min-height: 40px; height: auto; ">
+										    <div style="height: auto; width: 100%; min-height: 40px; position: relative; ">
+												<div style="width: calc( 100% - 120px ); ">
+										            <h4 style="margin: 0; padding: 0; font-size: 18px; "><? echo htmlspecialchars($row['name']); ?></h4>
+										            <h6 style="margin: 0; padding: 0; font-size: 14px; font-weight: small; "><? echo htmlspecialchars($row['description']); ?></h6>
+										        </div>
+										        <? if($count > 0){ ?>
+											    <div style="position: absolute; right: 0px; top: 0px; min-height: 40px; height: auto; width: 100px; " class="centriert">
+											        <div style="height: 90%; width: 80%; background-color: red; color: white; border-radius: 10px; font-size: 24px; " class="centriert"><? echo htmlspecialchars($count); ?></div>
+											    </div>
+											    <? } ?>
+										    </div>
+									    </div>
+									</div>
+								<?
+								} 
+							}
+							?>
+						</div>
+						
+						<div id="contact" class="tabcontent">
+						  <h3>Tokyo</h3>
+						  <p>Tokyo is the capital of Japan.</p>
+						</div>
 					</div>
-				</div>
-                <div id="profile" class="tabcontent">
-				  <h3>London</h3>
-				  <p>London is the capital city of England.</p>
-				</div>
-				<div id="chats_together" class="tabcontent">
-				  <h3>Paris</h3>
-				  <p>Paris is the capital of France.</p> 
-				</div>
-				
-				<div id="contact" class="tabcontent">
-				  <h3>Tokyo</h3>
-				  <p>Tokyo is the capital of Japan.</p>
 				</div>
             <? } ?>
         </div>
