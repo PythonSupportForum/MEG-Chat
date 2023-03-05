@@ -90,17 +90,17 @@ $s_data = (array)$row;
                     <img style="width: 300px; max-height: 300px; height: auto; max-width: 100%; border-radius: 50%; " src="<? echo htmlspecialchars(empty($s_data['avatar']) ? "/resources/images/avatar.png" : $s_data['avatar']); ?>">
                 </div>
                 <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
-					<div style="width: 500px; max-width: 100%;" class="centriert">
+					<div style="width: 500px; max-width: 100%;">
 						<div class="tab">
 						  <button class="tablinks" onclick="openTab(event, 'profile')">Profil</button>
 						  <button class="tablinks" onclick="openTab(event, 'chats_together')">Gemeinsame Chats</button>
 						  <button class="tablinks" onclick="openTab(event, 'contact')">Kontakt</button>
 						</div>
-						<div id="profile" class="tabcontent">
+						<div id="profile" class="tabcontent" style="text-align: left; padding-left: 10px; ">
 						  <h3>Über mich:</h3>
 						  <p><? echo htmlspecialchars($s_data['about_me']); ?></p>
 						</div>
-						<div id="chats_together" class="tabcontent">
+						<div id="chats_together" class="tabcontent" style="text-align: left; padding-left: 10px; ">
 						  <?
 						    if(!isset($_SESSION['pupil'])){
 								?>
@@ -109,8 +109,10 @@ $s_data = (array)$row;
 							} else {
 								$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE public = 0 AND id IN (SELECT chat FROM ".DBTBL.".chats_members WHERE pupil = :pupil) AND id IN (SELECT chat FROM ".DBTBL.".chats_members WHERE pupil = :pupil2); ");
 								$stmtData->execute(array('pupil' => $s_data['id'], 'pupil2' => $pupil_data['id']));
+								$no_chats = true;
 								while($row = $stmtData->fetchObject()){
 									$row = (array)$row;
+									$no_chats = false;
 									$count = 0;
 									if(isset($_SESSION['pupil'])){
 										$stmtChat = $db->prepare("SELECT * FROM ".DBTBL.".chats_members WHERE pupil = :pupil AND chat = :chat;");
@@ -141,12 +143,17 @@ $s_data = (array)$row;
 									    </div>
 									</div>
 								<?
-								} 
+								}
+								if($no_chats){
+									?>
+									<h3 style="text-align: center;">DU hast noch keine gemeinsamen Chats mit <? echo htmlspecialchars($s_data['fullname']); ?>.</h3>
+									<?
+								}
 							}
 							?>
 						</div>
 						
-						<div id="contact" class="tabcontent">
+						<div id="contact" class="tabcontent" style="text-align: left; padding-left: 10px; ">
 						  <h3>Tokyo</h3>
 						  <p>Tokyo is the capital of Japan.</p>
 						</div>
