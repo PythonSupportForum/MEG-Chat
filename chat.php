@@ -221,9 +221,24 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 					    get_messages_data();
 					}, 50);
 					data = JSON.parse(data);
+					var is_first = (last_message_id == -1);
+					var first_new = true;
 					data.forEach(function(z){
 						if(Number(z.id) <= Number(last_message_id) || document.getElementById("message_"+chat_id+"_"+z.id)) {
 						    return;
+						}
+						if(!document.getElementById("redline")){
+						    if(z.new && first_new){
+								first_new = false;
+								if(is_first || document.hidden){
+									var r = document.createElement("div");
+									r.style = "width: 100%; height: 1px; background-color: red; margin-top: 10px; ";
+									r.id = "redline";
+									document.getElementById("chat_inner_data").insertAdjacentHTML("beforeend", r.outerHTML+"<br>");
+								}
+							}
+						} else if(!is_first && !document.hidden){
+							document.getElementById("redline").remove();
 						}
 						
 						last_message_id = Number(z.id);

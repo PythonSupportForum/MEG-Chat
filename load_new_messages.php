@@ -59,7 +59,7 @@ while($m = $stmtMessage->fetchObject()){
 	if($stmtAuthor->rowCount() == 0) continue;
 	$last_id = $m['id'];
 	
-	$messages[] = array('text' => $m['text'], 'time' => $m['time'], 'id' => $m['id'], 'author' => (array)$stmtAuthor->fetchObject());
+	$messages[] = array('text' => $m['text'], 'time' => $m['time'], 'id' => $m['id'], 'author' => (array)$stmtAuthor->fetchObject(), 'new' => ($m['id'] > $member['last_readed_message']));
 }
 $stmtMember = $db->prepare("UPDATE ".DBTBL.".chats_members SET last_readed_message = :last WHERE id = :id;");
 $stmtMember->execute(array('id' => $member['id'], 'last' => $last_id));
