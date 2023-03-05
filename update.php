@@ -1,7 +1,7 @@
 <?
 $output = array();
 $return_var = -1;
-$message=exec("bash /var/www/html/MEG-Chat/update.sh", $output, $return_var);
+$message=exec("/var/www/html/MEG-Chat/update.sh 2>&1", $output, $return_var);
 echo implode(", ", $output);
 echo "<br>";
 echo "<strong>Status Code: </strong>".$return_var;
