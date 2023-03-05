@@ -131,8 +131,8 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
                 </div>
                 <div style="width: 100%; height: calc( 100% - 180px ); min-height: 200px; max-height: 100%; margin-top: 20px; " class="centriert">
                     <div style="height: 100%; min-width: 320px; width: 80%; max-width: 95%; position: relative;">
-                        <div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 50px; overflow-x: hidden; overflow-y: auto; " id="chat_inner_data_container">
-                            <div style="width: 100%; height: auto; " id="chat_inner_data"></div>
+                        <div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 52px; overflow-x: hidden; overflow-y: auto; " id="chat_inner_data_container">
+                            <div style="width: 100%; height: auto; overflow: hidden; " id="chat_inner_data"></div>
                             <div style="width: 100%; height: 100px; "></div>
                         </div>
                         <?
@@ -243,7 +243,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 						
 						last_message_id = Number(z.id);
 						var ne = document.createElement("div");
-						ne.style = "width: 100%; margin-top: 10px; height: auto; word-warp: break-word; color: white; text-align: left; float: left; font-size: 14px;";
+						ne.style = "width: 100%; margin-top: 10px; height: auto; word-warp: break-word; color: white; text-align: left; font-size: 14px;";
 						ne.id = "message_"+chat_id+"_"+z.id;
 						var na = document.createElement("u");
 						na.innerText = z.author.username;
