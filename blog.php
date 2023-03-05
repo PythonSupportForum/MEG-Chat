@@ -9,8 +9,8 @@ if(isset($_SESSION['pupil'])){
 
 $blog = $_GET['blog'];
 
-$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".blog ORDER BY time DESC;");
-$stmtData->execute(array('id' => $_SESSION['pupil']));
+$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".blog WHERE id = :id;");
+$stmtData->execute(array('id' => $blog));
 $row = $stmtData->fetchObject();
 $blog_data = (array)$row;
 ?>
