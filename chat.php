@@ -222,13 +222,11 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 					}, 50);
 					data = JSON.parse(data);
 					data.forEach(function(z){
-						if(z.id <= last_message_id || document.getElementById("message_"+chat_id+"_"+z.id)) {
-							console.log("hmm: "+z.id+" "+last_message_id);
-							console.log(document.getElementById("message_"+chat_id+"_"+z.id));
+						if(Number(z.id) <= Number(last_message_id) || document.getElementById("message_"+chat_id+"_"+z.id)) {
 						    return;
 						}
 						
-						last_message_id = z.id;
+						last_message_id = Number(z.id);
 						var ne = document.createElement("div");
 						ne.style = "width: 100%; margin-top: 10px; height: auto; word-warp: break-word; color: white; text-align: left; float: left; font-size: 14px;";
 						ne.id = "message_"+chat_id+"_"+z.id;
