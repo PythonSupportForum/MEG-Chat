@@ -198,7 +198,7 @@ window.vote = function(id){
 };
 
 setInterval(function(){
-	if(document.getElementById("all_chats_container")){
-		page_navigate(window.location.href, "#all_chats_container", "#all_chats_container", false);
+	if(document.getElementById("all_container")){
+		page_navigate(window.location.href, "#all_container", "#all_container", false);
 	}
 }, 3000);
