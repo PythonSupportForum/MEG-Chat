@@ -78,6 +78,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <script src="/resources/js/script.js"></script>
+        <link rel="stylesheet" href="/resources/css/style.css">
     </head>
     <body style="background-color: #303030; color: lightgray; ">
         <div style="float: left; width: 540px; max-width: 100%; height: auto; max-height: 100%; overflow-x: hidden; overflow-y: auto; ">
