@@ -232,8 +232,11 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 			};
 			
 			async function get_messages_data(){
+				if(running_chat_reader) return;
+				window.running_chat_reader = true;
 				post_request("/load_new_messages.php", {chat: <? echo htmlspecialchars($chat_data['id']); ?>, last: last_message_id}, function(data){
 					setTimeout(function(){
+						window.running_chat_reader = false;
 					    get_messages_data();
 					}, 50);
 					data = JSON.parse(data);
@@ -241,7 +244,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 						last_message_id = z.id;
 		
 						var ne = document.createElement("div");
-						ne.style = "width: 100%; margin-top: 10px; height: auto; word-warp: break-word; color: white; text-align: left; float: left; font-size: 12px;";
+						ne.style = "width: 100%; margin-top: 10px; height: auto; word-warp: break-word; color: white; text-align: left; float: left; font-size: 14px;";
 						var na = document.createElement("u");
 						na.innerText = z.author.username;
 						na.style = "font-weight: bold; cursor: pointer; ";

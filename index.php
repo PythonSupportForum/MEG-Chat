@@ -81,7 +81,7 @@ if(isset($_SESSION['pupil'])){
 				<div style="margin-top: 60px; width: 100%; height: auto; " class="public_chats_container" id="public_chats_container">
 					<h2>Öffentliche Chattgruppen:</h2>
 					<?
-					$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE public = 1; ");
+					$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE public = 1 AND location = 0; ");
 					$stmtData->execute(array('id' => $_SESSION['pupil']));
 					while($row = $stmtData->fetchObject()){
 						$row = (array)$row;
