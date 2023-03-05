@@ -4,16 +4,16 @@
 	$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".projects;");
 	$stmtData->execute();
 	while($row = $stmtData->fetchObject()){ $row = (array)$row; ?>
-		<a href="<? echo htmlspecialchars($row['url']); ?>" style="color: black; "><div class="project">
+		<a href="<? echo htmlspecialchars($row['url']); ?>" style="color: black; "><div style="margin: 20px; max-width: calc( 100% - 20px ); width: auto; ">
 		    <div style="width: 100%; margin-top: 10px; ">
-		        <h3><? echo htmlspecialchars($row['name']); ?></h3>
+		        <h3 style="color: lightblue; "><? echo htmlspecialchars($row['name']); ?></h3>
 		    </div>
 		    <div style="width: calc( 100% - 10px ); margin-top: 10px; margin-left: 5px; ">
-		        <p style="font-size: 16px; "><? echo htmlspecialchars($row['description']); ?></p>
+		        <p style="font-size: 14px; "><? echo htmlspecialchars($row['description']); ?></p>
 		    </div>
 		    <div style="width: calc( 100% - 10px ); margin-top: 10px; margin-left: 5px; ">
-		        <p style="font-size: 16px; "><strong>Gemacht von:</strong> <? echo htmlspecialchars($row['authors']); ?></p>
-		        <p style="font-size: 16px; "><strong>Im Kurs:</strong> <? echo htmlspecialchars($row['kurs']); ?></p>
+		        <p style="font-size: 14px; "><strong>Gemacht von:</strong> <? echo htmlspecialchars($row['authors']); ?></p>
+		        <p style="font-size: 14px; "><strong>Im Kurs:</strong> <? echo htmlspecialchars($row['kurs']); ?></p>
 		    </div>
 		</div></a>
 	<? } ?>
