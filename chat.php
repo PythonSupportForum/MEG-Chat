@@ -195,6 +195,12 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 			};
 			
 			window.get_messages_data = async function(){
+				if(!document.getElementById("chat_container")){
+					setTimeout(function(){
+					    get_messages_data();
+					}, 100);
+				    return;	
+				}
 				if(!("running_chat_reader" in window)) {
 					window.running_chat_reader = false;
 				}
