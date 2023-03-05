@@ -133,7 +133,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
                     <div style="height: 100%; min-width: 320px; width: 80%; max-width: 95%; position: relative;">
                         <div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 52px; overflow-x: hidden; overflow-y: auto; " id="chat_inner_data_container">
                             <div style="width: 100%; height: auto; overflow: hidden; " id="chat_inner_data"></div>
-                            <div style="width: 100%; height: 100px; "></div>
+                            <div style="width: 100%; height: 25px; "></div>
                         </div>
                         <?
                         if(!$member){
