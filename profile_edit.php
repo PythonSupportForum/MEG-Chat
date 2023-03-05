@@ -34,7 +34,7 @@ if($key == "about_me"){
 		
         $pupil_data['avatar'] = "/".$pupil_data['id'];
 	}
-}
+} 
 
 $stmtEdit = $db->prepare("UPDATE ".DBTBL.".pupils SET fullname = :fullname, about_me = :about_me, email = :email, avatar = :avatar WHERE id = :id;");
 $stmtEdit->execute(array('id' => $pupil_data['id'], 'fullname' => $pupil_data['fullname'], 'email' => $pupil_data['email'], 'about_me' => $pupil_data['about_me'], 'avatar' => $pupil_data['avatar']));
