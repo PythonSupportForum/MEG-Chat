@@ -65,8 +65,9 @@ while($m = $stmtMessage->fetchObject()){
 	
 	$messages[] = array('text' => $m['text'], 'time' => $m['time'], 'id' => $m['id'], 'author' => (array)$stmtAuthor->fetchObject(), 'new' => ($m['id'] > $old_last_id));
 }
-$stmtMember = $db->prepare("UPDATE ".DBTBL.".chats_members SET last_readed_message = :last WHERE id = :id;");
-$stmtMember->execute(array('id' => $member['id'], 'last' => $last_id));
-
+if($member){
+    $stmtMember = $db->prepare("UPDATE ".DBTBL.".chats_members SET last_readed_message = :last WHERE id = :id;");
+    $stmtMember->execute(array('id' => $member['id'], 'last' => $last_id));
+}
 echo json_encode($messages);
 ?>
