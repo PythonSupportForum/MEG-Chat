@@ -109,7 +109,7 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 	
     var XHRt = new XMLHttpRequest();
     XHRt.responseType='document';
-    XHRt.onload= function() {
+    XHRt.onload = function() {
 		fertig = true;
 		to.innerHTML = XHRt.response.querySelector(from).innerHTML;
 		Array.from(to.querySelectorAll("script")).forEach( oldScriptEl => {
@@ -121,6 +121,7 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 			newScriptEl.appendChild(scriptText);
 			oldScriptEl.parentNode.replaceChild(newScriptEl, oldScriptEl);
 		});
+		document.querySelector("title").innerText = XHRt.response.querySelector("title").innerText;
 	};
 	XHRt.onerror = function() {
 		fertig = true;

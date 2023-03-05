@@ -6,6 +6,3 @@ RewriteRule ^schueler/([0-9]+)$ schueler.php?schueler=$1 [QSA]
 RewriteRule ^blog/([0-9]+)$ blog.php?blog=$1 [QSA]
 
 ErrorDocument 404 /error/404.html
-
-RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://meg-chat.de/$1 [R,L]
