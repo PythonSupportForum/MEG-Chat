@@ -3,7 +3,7 @@ $output = array();
 $return_var = -1;
 $message=exec("/var/www/html/MEG-Chat/update.sh 2>&1", $output, $return_var);
 echo implode(", ", $output);
-echo "<br>";
+echo "<br><br>";
 echo "<strong>Status Code: </strong>".$return_var;
 echo "<br>";
 echo "<strong>Rückgabe: </strong><br>".$message;
