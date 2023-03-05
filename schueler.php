@@ -222,7 +222,7 @@ $s_data = (array)$row;
 				});
 			}
 			window.edit_avatar = function(){
-				html_popup("Profilbild ändern", '<input type="text" id="avatar_editor" value="<? echo htmlspecialchars($s_data['avatar']); ?>" placeholder="https://example.com/bild.png"></input><button onclick="save_avatar();">Speichern</button>');
+				html_popup("Profilbild ändern", '<input type="text" id="avatar_editor" placeholder="https://example.com/bild.png"></input><button onclick="save_avatar();">Speichern</button>');
 			};
 			window.save_avatar = function(){
 				var value = document.getElementById("avatar_editor").value;
