@@ -30,7 +30,9 @@ if($key == "about_me"){
 	if(!getimagesize($value)){
         echo "Die eingegebene URL verweist auf kein gültiges Bild. Bitte überprüfe Deine Eingabe und versuche es erneut.";
 	} else {
-        $pupil_data['avatar'] = $value;
+		file_put_contents("uploads/".$pupil_data['id'], file_get_contents($value));
+		
+        $pupil_data['avatar'] = "/uploads/".$pupil_data['id'];
 	}
 }
 
