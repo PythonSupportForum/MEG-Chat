@@ -131,7 +131,7 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
                 </div>
                 <div style="width: 100%; height: calc( 100% - 180px ); min-height: 200px; max-height: 100%; margin-top: 20px; " class="centriert">
                     <div style="height: 100%; min-width: 320px; width: 80%; max-width: 95%; position: relative;">
-                        <div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 50px; overflow-x: hidden; overflow-y: auto; ">
+                        <div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 50px; overflow-x: hidden; overflow-y: auto; " id="chat_inner_data_container">
                             <div style="width: 100%; height: auto; " id="chat_inner_data"></div>
                             <div style="width: 100%; height: 100px; "></div>
                         </div>
@@ -242,10 +242,10 @@ if($chat_data && isset($_SESSION['pupil']) && !$member){
 						nt.innerText = "\n"+z.text;
 						ne.appendChild(nt);
 						
-						if(!document.getElementById("chat_inner_data")) return;
+						if(!document.getElementById("chat_inner_data") || !document.getElementById("chat_inner_data_container")) return;
 						
 						document.getElementById("chat_inner_data").insertAdjacentHTML("beforeend", ne.outerHTML+"<br>");
-						document.getElementById("chat_inner_data").scrollTop = document.getElementById("chat_inner_data").scrollHeight;
+						document.getElementById("chat_inner_data_container").scrollTop = document.getElementById("chat_inner_data_container").scrollHeight;
 					});
 				});
 			}
