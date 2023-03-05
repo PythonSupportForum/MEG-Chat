@@ -130,7 +130,7 @@ if($chat_data){
                             <div style="width: 100%; height: 25px; "></div>
                         </div>
                         <?
-                        if(!$member){
+                        if(!isset($_SESSION['pupil'])){
 							?>
 							<div style="position: absolute; bottom: 0px; right: 0px; left: 0px; min-height: 50px; height: auto; " class="centriert">
 							    <p style="color: red; ">Um selber Nachrichten in diesen Chat schreiben zu können, melde dich bitte an oder regestriere dich. Der Zugang ist nur für Schüler des MEGs erlaubt!</p>
