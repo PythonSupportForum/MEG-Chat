@@ -53,7 +53,8 @@ $stmtMessage = $db->prepare("SELECT * FROM ".DBTBL.".chats_messages WHERE chat =
 $stmtMessage->execute(array('chat' => $chat_data['id'], 'last' => $_POST['last']));
 
 $messages = array();
-$last_id = $member['last_readed_message'];
+$last_id = -1;
+if($member) $last_id = $member['last_readed_message'];
 while($m = $stmtMessage->fetchObject()){
 	$m = (array)$m;
 	$stmtAuthor = $db->prepare("SELECT id, fullname as username, avatar FROM ".DBTBL.".pupils WHERE id = :pupilId;");
