@@ -66,7 +66,7 @@ $blog_data = (array)$row;
 					    }
 						?>
 						<div style="width: 100%; height: auto; margin-top: 10px; ">
-						    <button onclick="page_navigate('/settings.php');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
+						    <button onclick="page_navigate('/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
 						    <button onclick="window.location.href='/logout.php';" style="background-color: red; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Abmelden</button>
 						</div>
 						<?

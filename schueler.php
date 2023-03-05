@@ -66,7 +66,7 @@ $s_data = (array)$row;
 					    }
 						?>
 						<div style="width: 100%; height: auto; margin-top: 10px; ">
-						    <button onclick="page_navigate('/settings.php');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
+						    <button onclick="page_navigate('/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
 						    <button onclick="window.location.href='/logout.php';" style="background-color: red; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Abmelden</button>
 						</div>
 						<?
@@ -89,18 +89,18 @@ $s_data = (array)$row;
                 <div style="width: 100%; height: auto; " class="centriert">
                     <img style="width: 300px; max-height: 300px; height: auto; max-width: 100%; border-radius: 50%; " src="<? echo htmlspecialchars(empty($s_data['avatar']) ? "/resources/images/avatar.png" : $s_data['avatar']); ?>">
                 </div>
-                <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
+                <div style="width: 100%; height: auto; margin-top: 25px; " class="centriert">
 					<div style="width: 500px; max-width: 100%;">
 						<div class="tab">
 						  <button class="tablinks" onclick="openTab(event, 'profile')">Profil</button>
 						  <button class="tablinks" onclick="openTab(event, 'chats_together')">Gemeinsame Chats</button>
 						  <button class="tablinks" onclick="openTab(event, 'contact')">Kontakt</button>
 						</div>
-						<div id="profile" class="tabcontent" style="text-align: left; padding-left: 10px; ">
+						<div id="profile" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; ">
 						  <h3>Über mich:</h3>
 						  <p><? echo htmlspecialchars($s_data['about_me']); ?></p>
 						</div>
-						<div id="chats_together" class="tabcontent" style="text-align: left; padding-left: 10px; ">
+						<div id="chats_together" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; ">
 						  <?
 						    if(!isset($_SESSION['pupil'])){
 								?>
@@ -146,14 +146,14 @@ $s_data = (array)$row;
 								}
 								if($no_chats){
 									?>
-									<h3 style="text-align: center;">DU hast noch keine gemeinsamen Chats mit <? echo htmlspecialchars($s_data['fullname']); ?>.</h3>
+									<h3 style="text-align: center;">Du hast noch keine gemeinsamen Chats mit <? echo htmlspecialchars($s_data['fullname']); ?>.</h3>
 									<?
 								}
 							}
 							?>
 						</div>
 						
-						<div id="contact" class="tabcontent" style="text-align: left; padding-left: 10px; ">
+						<div id="contact" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; ">
 						  <h3>Tokyo</h3>
 						  <p>Tokyo is the capital of Japan.</p>
 						</div>

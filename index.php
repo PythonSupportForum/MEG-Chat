@@ -64,7 +64,7 @@ if(isset($_SESSION['pupil'])){
 									<?
 							    }
 								?>
-								<button onclick="page_navigate('/settings.php');" style="background-color: blue; color: white; font-size: 16px; ">Einstellungen</button>
+								<button onclick="page_navigate('/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; ">Einstellungen</button>
 								<button onclick="window.location.href='/logout.php';" style="background-color: red; color: white; font-size: 16px; ">Abmelden</button>
 								<?
 			                } else { ?>
