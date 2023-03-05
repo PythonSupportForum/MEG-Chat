@@ -87,7 +87,7 @@ $s_data = (array)$row;
 			} else { ?>
                 <h1><? echo htmlspecialchars($s_data['fullname']); ?></h1>
                 <div style="width: 100%; height: auto; " class="centriert">
-                    <img id="avatar" style="width: 300px; max-height: 300px; height: auto; max-width: 100%; border-radius: 50%; " src="<? echo htmlspecialchars(empty($s_data['avatar']) ? "/resources/images/avatar.png" : $s_data['avatar']); ?>">
+                    <img id="avatar" style="width: 300px; height: 300px; max-width: 100%; max-height: 100%; border-radius: 50%; " src="<? echo htmlspecialchars(empty($s_data['avatar']) ? "/resources/images/avatar.png" : $s_data['avatar']); ?>">
                 </div>
                 <div style="width: 100%; height: auto; margin-top: 25px; " class="centriert">
 					<div style="width: 500px; max-width: 100%;">
