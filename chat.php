@@ -261,10 +261,10 @@ if($chat_data){
 						
 						last_message_id = Number(z.id);
 						var ne = document.createElement("div");
-						ne.style = "width: 100%; margin-top: 10px; height: auto; min-height: 50px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
+						ne.style = "width: 100%; margin-top: 10px; height: auto; min-height: 40px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
 						ne.id = "message_"+chat_id+"_"+z.id;
 						var nei = document.createElement("div");
-						nei.style = "position: absolute; top: 0px; left: 50px; right: 0px; ";
+						nei.style = "position: absolute; top: 0px; left: 40px; right: 0px; ";
 						var na = document.createElement("u");
 						na.innerText = z.author.username;
 						na.style = "font-weight: bold; cursor: pointer; ";
@@ -279,9 +279,9 @@ if($chat_data){
 						nei.appendChild(nt);
 						ne.appendChild(nei);
 						var neb = document.createElement("div");
-						neb.style = "position: absolute; top: 0px; left: 0px; height: 50px; width: 50px; display: flex; justify-content: center; align-items: center; ";
+						neb.style = "position: absolute; top: 0px; left: 0px; height: 40px; width: 40px; display: flex; justify-content: center; align-items: center; ";
 						var neba = document.createElement("img");
-						neba.style = "width: 40px; height: 40px; border-radius: 50%; ";
+						neba.style = "width: 34px; height: 34px; border-radius: 50%; ";
 						neba.src = z.author.avatar || "/resources/images/avatar.png";
 						neb.appendChild(neba);
 						ne.appendChild(neb);
