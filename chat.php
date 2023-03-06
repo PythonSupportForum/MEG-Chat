@@ -272,7 +272,7 @@ if($chat_data){
 							console.log("hi");
 							page_navigate("/schueler/"+z.author.id);
 						});
-						ne.appendChild(na);
+						nei.appendChild(na);
 						var nt = document.createElement("span");
 						nt.style = "margin-left: 10px; ";
 						nt.innerText = "\n"+z.text;
