@@ -273,6 +273,10 @@ if($chat_data){
 							page_navigate("/schueler/"+z.author.id);
 						});
 						nei.appendChild(na);
+						var na2 = document.createElement("span");
+						na2.innerText = z.time;
+						na2.style = "font-size: 8px; font-weight: small; ";
+						nei.appendChild(na2);
 						var nt = document.createElement("span");
 						nt.style = "margin-left: 10px; ";
 						nt.innerText = "\n"+z.text;
