@@ -275,7 +275,7 @@ if($chat_data){
 						nei.appendChild(na);
 						var na2 = document.createElement("span");
 						na2.innerText = z.time;
-						na2.style = "font-size: 8px; font-weight: small; ";
+						na2.style = "font-size: 8px; font-weight: small; margin-left: 10px; ";
 						nei.appendChild(na2);
 						var nt = document.createElement("span");
 						nt.style = "margin-left: 10px; ";
