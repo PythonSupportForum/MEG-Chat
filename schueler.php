@@ -107,13 +107,12 @@ $s_data = (array)$row;
 								  <?
 						      }
 						  }
-						  ?>
-						  <h3>Mein Profilbild:</h3>
-						  <?
 						  if(isset($_SESSION['pupil'])){
 							  if($pupil_data['id'] == $s_data['id']){
 								  ?>
-								  <button onclick="edit_avatar();">Ändern</button>
+								  <h3>Mein Profilbild ändern:</h3>
+								  <button onclick="upload_avatar();">Bild hochladen</button>
+								  <button onclick="edit_avatar();">URL auswählen</button>
 								  <?
 						      }
 						  }
@@ -235,6 +234,28 @@ $s_data = (array)$row;
 					}
 				});
 			}
+			window.upload_avatar = function(){
+				var e = document.createElement("input");
+				e.type = "file";
+				e.accept = "image/*";
+				e.onchange = function(){
+					var file = e.files[0];
+				    var dataUrl = await new Promise(resolve => {
+				      let reader = new FileReader();
+				      reader.onload = () => resolve(reader.result);
+				      reader.readAsDataURL(file);
+				    });
+				    post_request("/profile_edit.php", {key: "avatar", value: dataUrl}, function(data){
+					if(data.length > 2){
+					    popup("Fehler!", data);
+					} else {
+						close_all_popups();
+					    document.getElementById("avatar").src = dataUrl;
+					}
+				});
+				};
+				e.click();
+			};
 	    </script>
     </body>
 </html> 
