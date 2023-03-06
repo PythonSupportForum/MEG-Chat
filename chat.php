@@ -261,19 +261,30 @@ if($chat_data){
 						
 						last_message_id = Number(z.id);
 						var ne = document.createElement("div");
-						ne.style = "width: 100%; margin-top: 10px; height: auto; word-warp: break-word; color: white; text-align: left; font-size: 14px;";
+						ne.style = "width: 100%; margin-top: 10px; height: auto; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
 						ne.id = "message_"+chat_id+"_"+z.id;
+						var nei = document.createElement("div");
+						nei.style = "position: absolute; top: 0px; left: 50px; right: 0px; ";
 						var na = document.createElement("u");
 						na.innerText = z.author.username;
 						na.style = "font-weight: bold; cursor: pointer; ";
-						na.onclick = function(){
+						na.addEventListener("click", function(){
+							console.log("hi");
 							page_navigate("/schueler/"+z.author.id);
-						};
+						});
 						ne.appendChild(na);
 						var nt = document.createElement("span");
 						nt.style = "margin-left: 10px; ";
 						nt.innerText = "\n"+z.text;
-						ne.appendChild(nt);
+						nei.appendChild(nt);
+						ne.appendChild(nei);
+						var neb = document.createElement("div");
+						neb.style = "position: absolute; top: 0px; left: 0px; height: 50px; width: 50px; display: flex; justify-content: center; align-items: center; ";
+						var neba = document.createElement("img");
+						neba.style = "width: 40px; height: 40px; border-radius: 50%; ";
+						neba.src = z.author.avatar || "/resources/images/avatar.png";
+						neb.appendChild(neba);
+						ne.appendChild(neb);
 						
 						if(!document.getElementById("chat_inner_data") || !document.getElementById("chat_inner_data_container")) return;
 						

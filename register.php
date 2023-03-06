@@ -72,7 +72,7 @@ if(isset($_POST['submit']) && !$total_error){
 	            
 		$stmtAdd = $db->prepare("INSERT INTO ".DBTBL.".pupils (fullname, password_hash, password_salt, email) VALUES (:name, :password_hash, :password_salt, :email);");
 		if($stmtAdd->execute(array('name' => $name, 'password_hash' => $passwordHash, 'password_salt' => $passwordSalt, 'email' => $email))){
-			$success = "Dein Account wurde erfolgreich eingetragen und wartet Jetzt auf die Freischaltung durch einen Administrator. Das kann maximal einen Tag dauern.";
+			$success = "Dein Account wurde erfolgreich eingetragen und wartet Jetzt auf die Freischaltung durch einen Administrator. Das dauert in der Regel maximal einen Tag.";
 			$_SESSION['pupil'] = $db->lastInsertId();
 		}
 	}
