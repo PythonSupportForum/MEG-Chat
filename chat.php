@@ -263,7 +263,7 @@ if($chat_data){
 						
 						last_message_id = Number(z.id);
 						
-						if(last_message_author_id == z.author.id){
+						if(last_message_author_id == z.author.id && !is_first){
 							var ne = document.createElement("div");
 							ne.style = "width: 100%; height: auto; min-height: 20px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
 							ne.id = "message_"+chat_id+"_"+z.id;
@@ -280,7 +280,7 @@ if($chat_data){
 							document.getElementById("chat_inner_data_container").scrollTop = document.getElementById("chat_inner_data_container").scrollHeight;
 						} else {
 							var ne = document.createElement("div");
-							ne.style = "width: 100%; height: auto; margin-top: 10px; min-height: 40px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
+							ne.style = "width: 100%; height: auto; margin-top: 10px; min-height: 40px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; transition: all 0.4s; ";
 							ne.id = "message_"+chat_id+"_"+z.id;
 							var nei = document.createElement("div");
 							nei.style = "margin-left: 44px; margin-top: 4px; ";
@@ -327,6 +327,14 @@ if($chat_data){
 				});
 			}
 			get_messages_data();
+			window.jump_to_message = function(message_id){
+				if(!document.getElementById("message_"+chat_id+"_"+message_id)) return;
+				document.getElementById("message_"+chat_id+"_"+message_id).scrollIntoView();
+				document.getElementById("message_"+chat_id+"_"+message_id).style.backgroundColor = "lightgray";
+				setTimeout(function(){
+					document.getElementById("message_"+chat_id+"_"+message_id).style.backgroundColor = "transparent";
+				}, 400);
+			};
         </script>
         <? } ?>
     </body>
