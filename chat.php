@@ -282,13 +282,15 @@ if($chat_data){
 							var ne = document.createElement("div");
 							ne.style = "width: 100%; height: auto; margin-top: 10px; min-height: 40px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; transition: all 0.4s; border-radius: 12px; ";
 							ne.id = "message_"+chat_id+"_"+z.id;
-							var nei = document.createElement("a");
-							nei.style = "margin-left: 44px; margin-top: 4px; text-decoration: none; ";
-							nei.classList.add("text");
-							nei.href = 'javascript:page_navigate("/schueler/'+z.author.id+'");';
+							var nei = document.createElement("div");
+							nei.style = "margin-left: 44px; margin-top: 4px; ";
 							var na = document.createElement("u");
 							na.innerText = z.author.username;
 							na.style = "font-weight: bold; cursor: pointer; ";
+							na.addEventListener("click", function(){
+								console.log("hi");
+								page_navigate("/schueler/"+z.author.id);
+							});
 							nei.appendChild(na);
 							var na2 = document.createElement("span");
 							na2.innerText = z.time;
