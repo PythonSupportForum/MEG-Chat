@@ -45,6 +45,10 @@ if($chat_data){
 	$stmtMemberCount = $db->prepare("SELECT COUNT(id) as count FROM ".DBTBL.".chats_members WHERE chat = :chat; ");
 	$stmtMemberCount->execute(array('chat' => $chat_data['id']));
 	$member_count = ((array)$stmtMemberCount->fetchObject())['count'];
+	
+	$stmtMessagesCount = $db->prepare("SELECT COUNT(id) as count FROM ".DBTBL.".chats_messages WHERE chat = :chat; ");
+	$stmtMessagesCount->execute(array('chat' => $chat_data['id']));
+	$messages_count = ((array)$stmtMessagesCount->fetchObject())['count'];
 }
 ?>
 <!DOCTYPE html>
@@ -125,7 +129,7 @@ if($chat_data){
 			} else { ?>
 				<div style="height: auto; min-height: 60px; " class="centriert">
 					<div style="width: auto; height: 100%; " class="centriert">
-						<div style="height: 100%; width: auto; float: left; " class="centriert">
+						<div style="height: 60px; width: auto; float: left; " class="centriert">
 							<div>
 				                <h1><? echo htmlspecialchars($chat_data['name']); ?></h1>
 				                <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
@@ -133,9 +137,10 @@ if($chat_data){
 				                </div>
 				            </div>
 			            </div>
-			            <div style="height: 100%; width: auto; float: left; border-left: 1px solid white; margin-left: 10px; " class="centriert">
-			                <div style="margin-left: 10px; text-align: left; ">
+			            <div style="height: 60px; width: auto; float: left; border-left: 1px solid white; margin-left: 20px; " class="centriert">
+			                <div style="margin-left: 20px; text-align: left; ">
 			                    <h4><? echo htmlspecialchars($member_count); ?> Mitglieder</h4>
+			                    <h4 style="margin-top: 10px; "><span id="chat_messages_count"><? echo htmlspecialchars($messages_count); ?></span> Nachrichten</h4>
 			                </div>
 			            </div>
 		            </div>
@@ -166,8 +171,9 @@ if($chat_data){
         <? if($chat_data){ ?>
         <script>
             window.last_message_id = -1;
+            window.loaded_messages_count = 0;
             window.chat_id = Number(window.location.href.split("/")[window.location.href.split("/").length-1]);
-
+            
 			window.message_input_keydown = function(evt) {
 				if(document.getElementById("private_message_text").value.split("\n").length < document.getElementById("private_message_text").rows){
 					document.getElementById("private_message_text").rows = document.getElementById("private_message_text").value.split("\n").length;
@@ -220,6 +226,7 @@ if($chat_data){
 				if(chat_id != Number(window.location.href.split("/")[window.location.href.split("/").length-1])){
 				    chat_id = Number(window.location.href.split("/")[window.location.href.split("/").length-1]);
 				    last_message_id = -1;
+				    loaded_messages_count = 0;
 				}
 				if(last_message_id > -1){
 					if(!document.getElementById("message_"+chat_id+"_"+last_message_id)){
@@ -272,6 +279,14 @@ if($chat_data){
 						
 						document.getElementById("chat_inner_data").insertAdjacentHTML("beforeend", ne.outerHTML+"<br>");
 						document.getElementById("chat_inner_data_container").scrollTop = document.getElementById("chat_inner_data_container").scrollHeight;
+						
+						loaded_messages_count++;
+						
+						var messages_count = Number(document.getElementById("chat_messages_count").innerText);
+						if(loaded_messages_count > messages_count){
+						    messages_count++;
+						    document.getElementById("chat_messages_count").innerText = messages_count;
+						}
 					});
 				});
 			}
