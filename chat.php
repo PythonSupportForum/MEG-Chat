@@ -127,7 +127,7 @@ if($chat_data){
 			    <h1>Entweder dieser Chat exestiert nicht oder zu hast keinen Zugriff darauf. Sollte dieses problem weiterhin auftauchen melde dich bitte bei einem Administrator.!</h1>
 			    <?
 			} else { ?>
-				<div style="height: auto; min-height: 110px; " class="centriert">
+				<div style="height: auto; min-height: 110px; margin-top: 6px; " class="centriert">
 					<div style="width: auto; height: 100%; " class="centriert">
 						<div style="height: 110px; width: auto; float: left; " class="centriert">
 							<div>
