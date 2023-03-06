@@ -124,7 +124,7 @@ if($chat_data){
         <div style="float: left; width: calc( 100% - 542px ); min-width: 350px; max-width: 100%; text-align: center; height: 100%; " id="chat_container">
 			<? if(!$chat_data){
 			    ?>
-			    <h1>Entweder dieser Chat exestiert nicht oder zu hast keinen Zugriff darauf. Sollte dieses problem weiterhin auftauchen melde dich bitte bei einem Administrator.!</h1>
+			    <h1>Entweder dieser Chat exestiert nicht oder zu hast keinen Zugriff darauf. Sollte dieses Problem weiterhin auftauchen melde dich bitte bei einem Administrator.!</h1>
 			    <?
 			} else { ?>
 				<div style="height: auto; min-height: 110px; margin-top: 6px; " class="centriert">
