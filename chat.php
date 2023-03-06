@@ -261,7 +261,7 @@ if($chat_data){
 						
 						last_message_id = Number(z.id);
 						var ne = document.createElement("div");
-						ne.style = "width: 100%; height: auto; min-height: 40px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
+						ne.style = "width: 100%; height: auto; margin-top: 10px; min-height: 40px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
 						ne.id = "message_"+chat_id+"_"+z.id;
 						var nei = document.createElement("div");
 						nei.style = "margin-left: 44px; margin-top: 4px; ";
@@ -292,7 +292,7 @@ if($chat_data){
 						
 						if(!document.getElementById("chat_inner_data") || !document.getElementById("chat_inner_data_container")) return;
 						
-						document.getElementById("chat_inner_data").insertAdjacentHTML("beforeend", ne.outerHTML+"<br>");
+						document.getElementById("chat_inner_data").insertAdjacentHTML("beforeend", ne.outerHTML);
 						document.getElementById("chat_inner_data_container").scrollTop = document.getElementById("chat_inner_data_container").scrollHeight;
 						
 						loaded_messages_count++;
