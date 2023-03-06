@@ -271,7 +271,7 @@ if($chat_data){
 							nei.style = "margin-left: 44px; margin-top: 4px; ";
 							var nt = document.createElement("span");
 							nt.style = "margin-left: 10px; ";
-							nt.innerText = "\n"+z.text;
+							nt.innerText = z.text;
 							nei.appendChild(nt);
 							ne.appendChild(nei);
 
