@@ -238,7 +238,7 @@ $s_data = (array)$row;
 				var e = document.createElement("input");
 				e.type = "file";
 				e.accept = "image/*";
-				e.onchange = function(){
+				e.onchange = async function(){
 					var file = e.files[0];
 				    var dataUrl = await new Promise(resolve => {
 				      let reader = new FileReader();
