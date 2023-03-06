@@ -173,6 +173,7 @@ if($chat_data){
             window.last_message_id = -1;
             window.loaded_messages_count = 0;
             window.chat_id = Number(window.location.href.split("/")[window.location.href.split("/").length-1]);
+            window.last_message_author_id = false;
             
 			window.message_input_keydown = function(evt) {
 				if(document.getElementById("private_message_text").value.split("\n").length < document.getElementById("private_message_text").rows){
@@ -227,6 +228,7 @@ if($chat_data){
 				    chat_id = Number(window.location.href.split("/")[window.location.href.split("/").length-1]);
 				    last_message_id = -1;
 				    loaded_messages_count = 0;
+				    last_message_author_id = false;
 				}
 				if(last_message_id > -1){
 					if(!document.getElementById("message_"+chat_id+"_"+last_message_id)){
@@ -260,41 +262,68 @@ if($chat_data){
 						}
 						
 						last_message_id = Number(z.id);
-						var ne = document.createElement("div");
-						ne.style = "width: 100%; height: auto; margin-top: 10px; min-height: 40px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
-						ne.id = "message_"+chat_id+"_"+z.id;
-						var nei = document.createElement("div");
-						nei.style = "margin-left: 44px; margin-top: 4px; ";
-						var na = document.createElement("u");
-						na.innerText = z.author.username;
-						na.style = "font-weight: bold; cursor: pointer; ";
-						na.addEventListener("click", function(){
-							console.log("hi");
-							page_navigate("/schueler/"+z.author.id);
-						});
-						nei.appendChild(na);
-						var na2 = document.createElement("span");
-						na2.innerText = z.time;
-						na2.style = "font-size: 8px; font-weight: small; margin-left: 10px; ";
-						nei.appendChild(na2);
-						var nt = document.createElement("span");
-						nt.style = "margin-left: 10px; ";
-						nt.innerText = "\n"+z.text;
-						nei.appendChild(nt);
-						ne.appendChild(nei);
-						var neb = document.createElement("div");
-						neb.style = "position: absolute; top: 0px; left: 0px; height: 40px; width: 40px; display: flex; justify-content: center; align-items: center; ";
-						var neba = document.createElement("img");
-						neba.style = "width: 34px; height: 34px; border-radius: 50%; ";
-						neba.src = z.author.avatar || "/resources/images/avatar.png";
-						neb.appendChild(neba);
-						ne.appendChild(neb);
 						
-						if(!document.getElementById("chat_inner_data") || !document.getElementById("chat_inner_data_container")) return;
+						if(last_message_author_id == z.author.id){
+							var ne = document.createElement("div");
+							ne.style = "width: 100%; height: auto; min-height: 40px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
+							ne.id = "message_"+chat_id+"_"+z.id;
+							var nei = document.createElement("div");
+							nei.style = "margin-left: 44px; margin-top: 4px; ";
+							var nt = document.createElement("span");
+							nt.style = "margin-left: 10px; ";
+							nt.innerText = "\n"+z.text;
+							nei.appendChild(nt);
+							ne.appendChild(nei);
+							var neb = document.createElement("div");
+							neb.style = "position: absolute; top: 0px; left: 0px; height: 40px; width: 40px; display: flex; justify-content: center; align-items: center; ";
+							var neba = document.createElement("img");
+							neba.style = "width: 34px; height: 34px; border-radius: 50%; ";
+							neba.src = z.author.avatar || "/resources/images/avatar.png";
+							neb.appendChild(neba);
+							ne.appendChild(neb);
+							
+							if(!document.getElementById("chat_inner_data") || !document.getElementById("chat_inner_data_container")) return;
+							
+							document.getElementById("chat_inner_data").insertAdjacentHTML("beforeend", ne.outerHTML);
+							document.getElementById("chat_inner_data_container").scrollTop = document.getElementById("chat_inner_data_container").scrollHeight;
+						} else {
+							var ne = document.createElement("div");
+							ne.style = "width: 100%; height: auto; margin-top: 10px; min-height: 40px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
+							ne.id = "message_"+chat_id+"_"+z.id;
+							var nei = document.createElement("div");
+							nei.style = "margin-left: 44px; margin-top: 4px; ";
+							var na = document.createElement("u");
+							na.innerText = z.author.username;
+							na.style = "font-weight: bold; cursor: pointer; ";
+							na.addEventListener("click", function(){
+								console.log("hi");
+								page_navigate("/schueler/"+z.author.id);
+							});
+							nei.appendChild(na);
+							var na2 = document.createElement("span");
+							na2.innerText = z.time;
+							na2.style = "font-size: 8px; font-weight: small; margin-left: 10px; ";
+							nei.appendChild(na2);
+							var nt = document.createElement("span");
+							nt.style = "margin-left: 10px; ";
+							nt.innerText = "\n"+z.text;
+							nei.appendChild(nt);
+							ne.appendChild(nei);
+							var neb = document.createElement("div");
+							neb.style = "position: absolute; top: 0px; left: 0px; height: 40px; width: 40px; display: flex; justify-content: center; align-items: center; ";
+							var neba = document.createElement("img");
+							neba.style = "width: 34px; height: 34px; border-radius: 50%; ";
+							neba.src = z.author.avatar || "/resources/images/avatar.png";
+							neb.appendChild(neba);
+							ne.appendChild(neb);
+							
+							if(!document.getElementById("chat_inner_data") || !document.getElementById("chat_inner_data_container")) return;
+							
+							document.getElementById("chat_inner_data").insertAdjacentHTML("beforeend", ne.outerHTML);
+							document.getElementById("chat_inner_data_container").scrollTop = document.getElementById("chat_inner_data_container").scrollHeight;
+						}
 						
-						document.getElementById("chat_inner_data").insertAdjacentHTML("beforeend", ne.outerHTML);
-						document.getElementById("chat_inner_data_container").scrollTop = document.getElementById("chat_inner_data_container").scrollHeight;
-						
+						last_message_author_id = z.author.id;
 						loaded_messages_count++;
 						
 						var messages_count = Number(document.getElementById("chat_messages_count").innerText);
