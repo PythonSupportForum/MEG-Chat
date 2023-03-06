@@ -95,4 +95,5 @@ $blog_data = (array)$row;
             <? } ?>
         </div>
     </body>
+    <style><? require("resources/css/style.css"); ?></style>
 </html>

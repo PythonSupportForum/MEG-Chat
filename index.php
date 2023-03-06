@@ -87,4 +87,5 @@ if(isset($_SESSION['pupil'])){
 			</div>
 		</div>
     </body>
+    <style><? require("resources/css/style.css"); ?></style>
 </html>

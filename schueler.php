@@ -258,4 +258,5 @@ $s_data = (array)$row;
 			};
 	    </script>
     </body>
+    <style><? require("resources/css/style.css"); ?></style>
 </html> 

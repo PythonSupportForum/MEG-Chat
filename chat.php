@@ -338,4 +338,5 @@ if($chat_data){
         </script>
         <? } ?>
     </body>
+    <style><? require("resources/css/style.css"); ?></style>
 </html>

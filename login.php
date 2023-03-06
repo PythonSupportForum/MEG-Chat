@@ -135,4 +135,5 @@ if(isset($_POST['submit']) && !$total_error){
             font-size:400%;
         }
     </style>
+    <style><? require("resources/css/style.css"); ?></style>
 </html>
