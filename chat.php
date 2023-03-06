@@ -274,14 +274,7 @@ if($chat_data){
 							nt.innerText = "\n"+z.text;
 							nei.appendChild(nt);
 							ne.appendChild(nei);
-							var neb = document.createElement("div");
-							neb.style = "position: absolute; top: 0px; left: 0px; height: 40px; width: 40px; display: flex; justify-content: center; align-items: center; ";
-							var neba = document.createElement("img");
-							neba.style = "width: 34px; height: 34px; border-radius: 50%; ";
-							neba.src = z.author.avatar || "/resources/images/avatar.png";
-							neb.appendChild(neba);
-							ne.appendChild(neb);
-							
+
 							if(!document.getElementById("chat_inner_data") || !document.getElementById("chat_inner_data_container")) return;
 							
 							document.getElementById("chat_inner_data").insertAdjacentHTML("beforeend", ne.outerHTML);
