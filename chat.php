@@ -268,9 +268,8 @@ if($chat_data){
 							ne.style = "width: 100%; height: auto; min-height: 20px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
 							ne.id = "message_"+chat_id+"_"+z.id;
 							var nei = document.createElement("div");
-							nei.style = "margin-left: 44px; margin-top: 4px; ";
+							nei.style = "margin-left: 44px; ";
 							var nt = document.createElement("span");
-							nt.style = "margin-left: 10px; ";
 							nt.innerText = z.text;
 							nei.appendChild(nt);
 							ne.appendChild(nei);
