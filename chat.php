@@ -39,9 +39,13 @@ if($chat_data){
 	if($chat_data['public'] != 1){
 		if(!$member) $chat_data = false;
 	}
-	
 }
 
+if($chat_data){
+	$stmtMemberCount = $db->prepare("SELECT COUNT(id) as count FROM ".DBTBL.".chats_members WHERE chat = :chat; ");
+	$stmtMemberCount->execute(array('chat' => $chat_data['id']));
+	$member_count = ((array)$stmtMemberCount->fetchObject())['count'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -119,9 +123,22 @@ if($chat_data){
 			    <h1>Entweder dieser Chat exestiert nicht oder zu hast keinen Zugriff darauf. Sollte dieses problem weiterhin auftauchen melde dich bitte bei einem Administrator.!</h1>
 			    <?
 			} else { ?>
-                <h1><? echo htmlspecialchars($chat_data['name']); ?></h1>
-                <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
-                     <h2 style="margin: 0; padding: 0;"><? echo htmlspecialchars($chat_data['description']); ?></h2>
+				<div style="height: auto; min-height: 60px; " class="centriert">
+					<div style="width: auto; height: 100%; " class="centriert">
+						<div style="height: 100%; width: auto; float: left; " class="centriert">
+							<div>
+				                <h1><? echo htmlspecialchars($chat_data['name']); ?></h1>
+				                <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
+				                     <h2 style="margin: 0; padding: 0;"><? echo htmlspecialchars($chat_data['description']); ?></h2>
+				                </div>
+				            </div>
+			            </div>
+			            <div style="height: 100%; width: auto; float: left; border-left: 1px solid white; margin-left: 10px; " class="centriert">
+			                <div style="margin-left: 10px; text-align: left; ">
+			                    <h4><? echo htmlspecialchars($member_count); ?> Mitglieder</h4>
+			                </div>
+			            </div>
+		            </div>
                 </div>
                 <div style="width: 100%; height: calc( 100% - 180px ); min-height: 200px; max-height: 100%; margin-top: 20px; " class="centriert">
                     <div style="height: 100%; min-width: 320px; width: 80%; max-width: 95%; position: relative;">
