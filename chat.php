@@ -261,7 +261,7 @@ if($chat_data){
 						
 						last_message_id = Number(z.id);
 						var ne = document.createElement("div");
-						ne.style = "width: 100%; margin-top: 10px; height: auto; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
+						ne.style = "width: 100%; margin-top: 10px; height: auto; min-height: 50px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
 						ne.id = "message_"+chat_id+"_"+z.id;
 						var nei = document.createElement("div");
 						nei.style = "position: absolute; top: 0px; left: 50px; right: 0px; ";
