@@ -174,7 +174,7 @@ window.popup = function(header, text, can_close = true, bgcolor = "white", color
 		b.innerHTML = "&#10006;";
 		b.onclick = onclose;
 	    a.appendChild(b);
-	    e.onmouseup = onclose;
+	    e.onclick = onclose;
 	}
 	var c = document.createElement("div");
 	c.style = "width: calc( 100% - 70px ); margin-left: 20px; margin-top: 10px; ";
