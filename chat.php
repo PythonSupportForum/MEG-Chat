@@ -139,8 +139,8 @@ if($chat_data){
 			            </div>
 			            <div style="height: 110px; width: auto; float: left; border-left: 1px solid white; margin-left: 20px; " class="centriert">
 			                <div style="margin-left: 20px; text-align: left; ">
-			                    <h4><? echo htmlspecialchars($member_count); ?> Mitglieder</h4>
-			                    <h4 style="margin-top: 10px; "><span id="chat_messages_count"><? echo htmlspecialchars($messages_count); ?></span> Nachrichten</h4>
+			                    <h4 style="text-align: center; "><? echo htmlspecialchars($member_count); ?> Mitglieder</h4>
+			                    <h4 style="margin-top: 10px; text-align: center; "><span id="chat_messages_count"><? echo htmlspecialchars($messages_count); ?></span> Nachrichten</h4>
 			                </div>
 			            </div>
 		            </div>
@@ -271,6 +271,9 @@ if($chat_data){
 							nei.style = "margin-left: 44px; ";
 							var nt = document.createElement("span");
 							nt.innerText = z.text;
+							nt.onclick = function(){
+							    
+							};
 							nei.appendChild(nt);
 							ne.appendChild(nei);
 
@@ -287,10 +290,10 @@ if($chat_data){
 							var na = document.createElement("u");
 							na.innerText = z.author.username;
 							na.style = "font-weight: bold; cursor: pointer; ";
-							na.addEventListener("click", function(){
+							na.onclick = function(){
 								console.log("hi");
 								page_navigate("/schueler/"+z.author.id);
-							});
+							};
 							nei.appendChild(na);
 							var na2 = document.createElement("span");
 							na2.innerText = z.time;
