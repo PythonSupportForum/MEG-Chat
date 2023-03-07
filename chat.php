@@ -263,7 +263,7 @@ if($chat_data){
 						
 						last_message_id = Number(z.id);
 						
-						if(last_message_author_id == z.author.id && !is_first){
+						if(last_message_author_id == z.author.id){
 							var ne = document.createElement("div");
 							ne.style = "width: 100%; height: auto; min-height: 20px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
 							ne.id = "message_"+chat_id+"_"+z.id;
