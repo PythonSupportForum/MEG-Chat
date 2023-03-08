@@ -91,19 +91,19 @@ if(isset($_POST['submit']) && !$total_error){
         <meta name="robots" content="index,follow">
         <meta http-equiv="Cache-control" content="public">
         <meta name="format-detection" content="telephone=yes">
-        <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
 		<link rel="manifest" href="/manifest.json">
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
@@ -111,41 +111,59 @@ if(isset($_POST['submit']) && !$total_error){
         <link rel="stylesheet" href="/resources/css/style.css">
     </head>
     <body>
-		<h2>Mich als Schüler eintragen</h2>
-        <?
-        if($total_error){
-			?>
-			<h2 style="color: red; "><? echo $total_error; ?></h2>
-			<h2><a href="/">Zur Startseite</a></h2>
-			<?
-		} else {
-	        if($error){
-			    ?>
-			    <p style="color: red; font-size: 18px; "><? echo htmlspecialchars($error); ?></p>
-			    <h2><a href="/">Zur Startseite</a></h2>
-			    <?	
-			}
-	        ?>
-	        <?
-	        if($success){
-			    ?>
-			    <p style="color: green; font-size: 18px; "><? echo htmlspecialchars($success); ?></p>
-			    <h2><a href="/">Zur Startseite</a></h2>
-			    <?	
-			} else {
-	        ?>
+    <div class="login-wrapper">
+        <div class="login-container">
 			<form action="/register.php" method="POST">
-			  <label for="name">Ganzer Name:</label><br>
+                <h2>Mich als Schüler anmelden</h2>
+			  <label for="name">Vor und Nachname:</label><br>
 			  <input type="text" id="name" name="name" placeholder="Max Mustermann" autocomplete="on"><br>
-			  <label for="email">Email Adresse:</label><br>
+			  <label for="email" id="email">E-mail:</label><br>
 			  <input type="email" id="email" name="email" placeholder="muster.max@meg-bruehl.de" autocomplete="on"><br>
 			  <label for="password">Passwort:</label><br>
-			  <input type="password" id="password" name="password" placeholder="123456789" autocomplete="on"><br><br>
+			  <input type="password" id="password" name="password"  autocomplete="on"><br><br>
+                Ihr Account muss anschließend erst von einem Administrator aktiviert werden.
 			  <input id="submit" name="submit" type="submit" value="Eintragen">
-			</form> 
-			<p style="color: red; ">Ihr Account muss anschließend erst von einem Administrator aktiviert werden. Diese Maßname haben wir getroffen um Spam und böswilligen Angreifern vorzubeugen. </p>
-			<p>Durch das Absenden, wird der Eingetragene Name Öffentlich auf der Startseite sichtbar sein. Sie Können ab diesen Zeitpunkt von anderen besuchern per nachricht Kontaktiert werden und an den Chats teilnehmen.</p>
-		<? } } ?>
+			</form>
+        </div>
+    </div>
+
     </body>
+    <style>
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 50%;
+        }
+        .login-container {
+            background:#525252;
+            width: 17%;
+            display: flex;
+            flex-direction: row;
+            border-radius: 15px;
+        }
+        #submit {
+            border-radius: 15px;
+            border: none;
+            width: 30%;
+            height: 10%;
+            padding: 2%;
+        }
+        #name {
+            border-radius: 15px;
+            padding: 2px;
+            margin-bottom: 2px;
+        }
+        #password {
+            border-radius: 15px;
+            padding: 2px;
+        }
+        #email {
+            border-radius: 15px;
+            margin-bottom: 2px;
+        }
+    </style>
+    <style><? require("resources/css/style.css"); ?></style>
 </html>
 
