@@ -171,7 +171,7 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 		fertig = true;
 		to.innerHTML = "<h2 style='text-align: center; margin-top: 80px; color: red; '>Ladefehler!</h2>";
 		setTimeout(function(){
-			getPage(url, from, to);
+			page_navigate(url, from, to);
 		}, 1000);
 	};
     XHRt.open("GET", url, true);
@@ -218,13 +218,13 @@ window.popup = function(header, text, can_close = true, bgcolor = "white", color
 	d.style.color = color;
 	c.appendChild(d);
 	var f = document.createElement("p");
-	f.style = "font-size: 14px; ";
 	if(html){
 	    f.innerHTML = text;
 	} else {
 		f.innerText = text;
 	}
 	f.style.color = color;
+	f.style.fontSize = "14px";
 	c.appendChild(f);
 	a.appendChild(c);
 	e.appendChild(a);
@@ -287,4 +287,3 @@ window.ask_for_notification_permissions = function(){
 		html_popup("Benachrichtigungen für dieses Gerät aktivieren", '<p style="font-size: 16px; ">Der MEG-Chat braucht die Berechtigung Ihnen neue Nachrichten direkt anzuzeigen. Bitte aktivieren Sie diese Funktion wenn Sie immmer auf dem neuesten Stand bleiben wollen.</p><button onclick="never_ask_for_notifications();">Auf diesem Gerät nicht mehr Fragen</button><button onclick="get_notification_permission();">Benachrichtige mich</button>');
     }
 };
-
