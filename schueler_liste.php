@@ -78,9 +78,10 @@ if(isset($_SESSION['pupil'])){
 			<div style="width: 100%; height: 100px; " class="centriert"><input type="text" placeholder="Suchen.." id="search" style="width: 500px; max-width: 90%; height: 50px; font-size: 24px; "></div>
 			<div style="width: 100%; ">
 			    <?
+			    $found = false;
 				$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE activated = 1 AND LOWER(fullname) LIKE LOWER(:query) ORDER BY LOWER(fullname) ASC LIMIT 10000;");
 				$stmtData->execute(array('query' => '%'.(isset($_GET['q']) ? $_GET['q'] : "").'%'));
-				while($row = $stmtData->fetchObject()){ $row = (array)$row; ?>
+				while($row = $stmtData->fetchObject()){ $row = (array)$row; $found = true; ?>
 					<a href="javascript:page_navigate('/schueler/<? echo htmlspecialchars($row['id']); ?>');" style="color: black; text-decoration: none; "><div class="schueler_container">
 					    <div style="height: calc( 100% - 60px ); width: 100%; margin-top: 10px; " class="centriert">
 					        <img loading="lazy" style="width: 130px; height: 130px; border-radius: 50%; " src="<? echo htmlspecialchars(empty($row['avatar']) ? "/resources/images/avatar.png" : $row['avatar']); ?>">
@@ -97,7 +98,13 @@ if(isset($_SESSION['pupil'])){
 					    </div>
 						<div style="width: 100%; height: 10px; "></div>
 					</div></a>
-				<? } ?>
+				<? } 
+				if(!$found){
+					?>
+					<h2 style="text-align: center; margin-top: 50px; ">Keine Ergebnisse zu deiner Suche.</h2>
+					<?
+				}
+				?>
 			</div>
         </div>
     </body>
