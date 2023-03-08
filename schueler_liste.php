@@ -78,8 +78,8 @@ if(isset($_SESSION['pupil'])){
 			<div style="width: 100%; height: 100px; " class="centriert"><input type="text" placeholder="Suchen.." id="search" style="width: 500px; max-width: 90%; height: 50px; font-size: 24px; "></div>
 			<div style="width: 100%; ">
 			    <?
-				$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE activated = 1 ORDER BY fullname ASC LIMIT 10000;");
-				$stmtData->execute();
+				$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE activated = 1 AND fullname LIKE :query ORDER BY fullname ASC LIMIT 10000;");
+				$stmtData->execute(array('query' => '%'.(isset($_GET['q']) ? $_GET['q'] : "").'%'));
 				while($row = $stmtData->fetchObject()){ $row = (array)$row; ?>
 					<a href="javascript:page_navigate('/schueler/<? echo htmlspecialchars($row['id']); ?>');" style="color: black; text-decoration: none; "><div class="schueler_container">
 					    <div style="height: calc( 100% - 60px ); width: 100%; margin-top: 10px; " class="centriert">
@@ -88,7 +88,7 @@ if(isset($_SESSION['pupil'])){
 					    <div style="width: 100%; height: 40px; word-wrap: break-word; " class="centriert">
 					        <h3 style="word-wrap: break-word;"><? echo htmlspecialchars($row['fullname']); ?></h3>
 					    </div>
-					    <div style="width: 100%; height: 40px; font-size: 14px; " class="centriert">
+					    <div style="width: 100%; height: 50px; font-size: 14px; overflow-x: hidden; overflow-y: scroll; " class="centriert no_scrollbar">
 					        <div style="width: 100%; text-align: center; word-wrap: break-word; " class="centriert">
 								<div style="text-align: center; width: auto; height: auto; ">
 									<div style="margin-left: 8px; color: black; "><? echo htmlspecialchars($row['about_me']); ?></div>
