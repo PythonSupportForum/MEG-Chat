@@ -76,7 +76,7 @@ if(isset($_SESSION['pupil'])){
         <div style="float: left; width: calc( 100% - 162px ); min-width: 600px; max-width: 100%; text-align: center;">
             <h1>Suchen Sie nach Schülern auf dem MEG-Chat</h1>
 			<div style="width: 100%; height: 100px; " class="centriert"><input type="text" placeholder="Suchen.." id="search" style="width: 500px; max-width: 90%; height: 50px; font-size: 24px; "></div>
-			<div style="width: 100%; ">
+			<div style="width: 100%; " id="searchresults_container">
 			    <?
 			    $found = false;
 				$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE activated = 1 AND LOWER(fullname) LIKE LOWER(:query) ORDER BY LOWER(fullname) ASC LIMIT 10000;");
