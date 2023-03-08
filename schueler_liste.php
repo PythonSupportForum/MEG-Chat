@@ -79,6 +79,5 @@ if(isset($_SESSION['pupil'])){
 			<div style="width: 100%; "></div>
         </div>
     </body>
-    <style><? require("resources/css/style.css"); ?></style>
 </html>
 
