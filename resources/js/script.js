@@ -270,7 +270,6 @@ setInterval(function(){
 window.get_notification_permission = function(){
 	close_all_popups();
 	Notification.requestPermission().then((result) => {
-		console.log(result);
         if (result === "granted") {
             randomNotification();
         }
