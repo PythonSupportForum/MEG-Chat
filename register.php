@@ -147,6 +147,5 @@ if(isset($_POST['submit']) && !$total_error){
 			<p>Durch das Absenden, wird der Eingetragene Name Öffentlich auf der Startseite sichtbar sein. Sie Können ab diesen Zeitpunkt von anderen besuchern per nachricht Kontaktiert werden und an den Chats teilnehmen.</p>
 		<? } } ?>
     </body>
-    <style><? require("resources/css/style.css"); ?></style>
 </html>
 

@@ -51,7 +51,7 @@ addLoadEvent(function(){
                 });
             });
 	    }).then((subscription) => {
-			console.log("t"+JSON.stringify(subscription));
+            if(!subscription) return;
 	        fetch("/push_register.php", {
 			  method: "POST",
 			  headers: {
