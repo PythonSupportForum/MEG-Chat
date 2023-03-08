@@ -22,15 +22,35 @@ window.addLoadEvent = function(func) {
 addLoadEvent(function(){
 	runned_onload = true;
     if ("serviceWorker" in navigator) {
-	  navigator.serviceWorker.register("/sw.js").then(() => {
-	    console.log("[ServiceWorker**] - Registered");
-	  });
+	    navigator.serviceWorker.register("/sw.js").then((registration) => {
+	        console.log("[ServiceWorker**] - Registered");
+	        return registration.pushManager.getSubscription().then(async (subscription) => {
+                console.log("[ServiceWorker**] - Push Manager Aktivated");
+                if (subscription) return subscription;
+			    const response = await fetch("./vapidPublicKey");
+				const vapidPublicKey = await response.text();
+				const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
+				
+				registration.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: convertedVapidKey
+                });
+            });
+	    }).then((subscription) => {
+	        fetch("/push_register.php", {
+			  method: "POST",
+			  headers: {
+			    "Content-type": "application/json",
+			  },
+			  body: JSON.stringify({ subscription }),
+			});
+	    });
 	}
 	window.addEventListener("popstate", function(){
 		page_navigate(window.location.href);
 	}, false);
-	
 });
+
 window.playCustumSound = function(url){
 	var audio = new Audio(url);
 	audio.volume = 0.35;
@@ -230,4 +250,26 @@ setInterval(function(){
 	if(document.getElementById("all_container")){
 		page_navigate(window.location.href, "#all_container", "#all_container", false);
 	}
-}, 3000);
+}, 1000);
+
+window.get_notification_permission = function(){
+	close_all_popups();
+	Notification.requestPermission().then((result) => {
+        if (result === "granted") {
+            randomNotification();
+        }
+    });
+};
+
+window.never_ask_for_notifications = function(){
+	close_all_popups();
+	localStorage.setItem('noNotifications', true);
+};
+
+window.ask_for_notification_permissions = function(){
+	if(!Notification) return;
+	if (Notification.permission !== "granted" && !localStorage.getItem('noNotifications')) {
+		html_popup("Benachrichtigungen für dieses Gerät aktivieren", '<p style="font-size: 16px; ">Der MEG-Chat braucht die Berechtigung Ihnen neue Nachrichten direkt anzuzeigen. Bitte aktivieren Sie diese Funktion wenn Sie immmer auf dem neuesten Stand bleiben wollen.</p><button onclick="never_ask_for_notifications();">Auf diesem Gerät nicht mehr Fragen</button><button onclick="get_notification_permission();">Benachrichtige mich</button>');
+    }
+};
+
