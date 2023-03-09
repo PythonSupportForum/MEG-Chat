@@ -9,7 +9,7 @@ if(isset($_SESSION['pupil'])){
 
 $s = $_GET['schueler'];
 
-$stmtData = $db->prepare("SELECT ".DBTBL.".pupils.*, COUNT(".DBTBL.".pupils_votes.s_to) AS rating_count, COALESCE(SUM(points),0) as rating FROM ".DBTBL.".pupils LEFT JOIN ".DBTBL.".pupils_votes ON ".DBTBL.".pupils.id = ".DBTBL.".pupils_votes.s_to WHERE id = :id GROUP BY ".DBTBL.".pupils.id;");
+$stmtData = $db->prepare("SELECT ".DBTBL.".pupils.*, COUNT(".DBTBL.".pupils_votes.s_to) AS rating_count, COALESCE(SUM(points),0) as rating FROM ".DBTBL.".pupils LEFT JOIN ".DBTBL.".pupils_votes ON ".DBTBL.".pupils.id = ".DBTBL.".pupils_votes.s_to WHERE pupils.id = :id GROUP BY ".DBTBL.".pupils.id;");
 $stmtData->execute(array('id' => $s));
 $row = $stmtData->fetchObject();
 $s_data = (array)$row;
