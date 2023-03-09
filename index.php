@@ -56,7 +56,7 @@ if(isset($_SESSION['pupil'])){
 	        </div>
         </div>
         <div>
-			<div style="width: 100%; margin-top: 20px; ">
+			<div style="width: 100%; margin-top: 20px; " class="centriert">
 		        <div id="all_container">
                     <?php require("internal/information/public_chats.php"); ?>
 				</div>
