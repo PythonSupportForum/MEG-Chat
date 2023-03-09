@@ -1,5 +1,5 @@
 <?
-require_once("db.php");
+require_once("../internal/logic/db.php");
 
 if(!isset($_SESSION['pupil'])){
 	return;

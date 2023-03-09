@@ -1,5 +1,5 @@
 <?
-require_once("db.php");
+require_once("../internal/logic/db.php");
 
 echo json_encode($_POST);
 

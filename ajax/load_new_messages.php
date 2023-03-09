@@ -1,5 +1,5 @@
 <?
-require_once("db.php");
+require_once("../internal/logic/db.php");
 
 if(isset($_SESSION['pupil'])){
 	$stmtCheck = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE id = :id;");
