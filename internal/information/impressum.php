@@ -20,8 +20,8 @@
     <div style="text-align: left;">
         <li>Artur Darius Herrmann</li>
         <li>Florian Reschke</li>
-        <a style="margin-top: 20px; " href="/">Zurück zur Startseite</a>
     </div>
 </div>
+<a style="margin-top: 20px; text-align: center; " href="/">Zurück zur Startseite</a>
 </body>
 </html>
