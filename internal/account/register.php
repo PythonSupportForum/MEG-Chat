@@ -8,7 +8,7 @@ if(isset($_SESSION['pupil'])){
     return exit();
 }
 
-if(isset($_POST['submit']) && !$total_error){
+if(isset($_POST['submit'])){
 	$name = trim($_POST['name']);
 	$password = $_POST['password'];
 	$email = $_POST['email'];
@@ -131,6 +131,7 @@ if(isset($_POST['submit']) && !$total_error){
             width: 30%;
             height: 40px;
             padding: 2%;
+            margin-top: 15px;
         }
         #name {
             border-radius: 15px;
