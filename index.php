@@ -56,15 +56,13 @@ if(isset($_SESSION['pupil'])){
 	        </div>
         </div>
         <div>
-			<div style="width: 100%; margin-top: 20px; " class="centriert">
-				<div>
-			        <div id="all_container">
-	                    <?php require("internal/information/public_chats.php"); ?>
-					</div>
-	                <?php require("internal/information/beliebteste_schueler.php"); ?>
-	                <?php require("internal/information/blog_news.php"); ?>
-	                <?php require("internal/information/projects.php"); ?>
-                </div>
+			<div style="width: 100%; margin-top: 20px; ">
+		        <div id="all_container">
+                    <?php require("internal/information/public_chats.php"); ?>
+				</div>
+                <?php require("internal/information/beliebteste_schueler.php"); ?>
+                <?php require("internal/information/blog_news.php"); ?>
+                <?php require("internal/information/projects.php"); ?>
 			</div>
 		</div>
     </body>
