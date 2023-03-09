@@ -29,4 +29,5 @@
 			<div style="width: 100%; height: 10px; "></div>
 		</div></a>
 	<? } ?>
+	<button style="margin-top: 50px; width: 350px; height: 40px; background-color: darkslategray; color: white; " onclick="page_navigate('/schueler_liste.php');">Alle Schüler anzeigen</button>
 </div>

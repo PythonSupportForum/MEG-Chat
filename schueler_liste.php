@@ -75,7 +75,7 @@ if(isset($_SESSION['pupil'])){
         </div>
         <div style="float: left; width: calc( 100% - 162px ); min-width: 600px; max-width: 100%; text-align: center;">
             <h1>Suchen Sie nach Schülern auf dem MEG-Chat</h1>
-			<div style="width: 100%; height: 100px; " class="centriert"><input type="text" placeholder="Suchen.." id="search" style="width: 500px; max-width: 90%; height: 50px; font-size: 24px; "></div>
+			<div style="width: 100%; height: 100px; " class="centriert"><input type="text" onchange="page_navigate(window.location.href.split('?')[0]+'?q='+this.value, '#searchresults_container');" placeholder="Suchen.." id="search" value="<? htmlspecialchars(isset($_GET['q']) ? $_GET['q'] : ""); ?>" style="width: 500px; max-width: 90%; height: 50px; font-size: 24px; "></div>
 			<div style="width: 100%; " id="searchresults_container">
 			    <?
 			    $found = false;
@@ -96,12 +96,27 @@ if(isset($_SESSION['pupil'])){
 								</div>
 							</div>
 					    </div>
+					    <div style="width: 100%; height: 20px; font-size: 14px; " class="centriert">
+		                    <div style="width: 100%; text-align: center; " class="centriert">
+								<div style="text-align: center; width: auto; height: auto; ">
+									<? if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $row['id'] != $pupil_data['id']){ ?><a style="color: black; " href="javascript:void(0); " onclick="event.stopPropagation(); vote('<? echo htmlspecialchars($row['id']); ?>');"><? } ?>
+									<div class="schueler_vote_count_<? echo htmlspecialchars($row['id']); ?>" style="float: left; color: black; "><? echo $row['rating']; ?></div>
+									<div style="float: left; margin-left: 8px; color: black; ">Stimmen</div>
+									<? if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $row['id'] != $pupil_data['id']){ ?></a><? } ?>
+								</div>
+							</div>
+					    </div>
+					    <? if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $row['id'] != $pupil_data['id']){ ?>
+						<div style="width: 100%; height: 25px; font-size: 14px; " class="centriert">
+						    <button onclick="event.stopPropagation(); vote('<? echo htmlspecialchars($row['id']); ?>');">Gefällt Mir</button>
+						</div>
+						<? }?>
 						<div style="width: 100%; height: 10px; "></div>
 					</div></a>
-				<? } 
+				<? }
 				if(!$found){
 					?>
-					<h2 style="text-align: center; margin-top: 50px; ">Keine Ergebnisse zu deiner Suche.</h2>
+					<h2 style="text-align: center; margin-top: 50px; ">Es wurden keine Ergebnisse zu deiner Suche gefunden.</h2>
 					<?
 				}
 				?>

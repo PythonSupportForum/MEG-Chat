@@ -117,6 +117,22 @@ $s_data = (array)$row;
 						      }
 						  }
 						  ?>
+						  <h3>Beliebtheit:</h3>
+						  <div style="width: 100%; height: 20px; font-size: 14px; ">
+			                  <div style="width: 100%; text-align: left ">
+							      <div style="text-align: left; width: auto; height: auto; ">
+									  <? if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $s_data['id'] != $pupil_data['id']){ ?><a style="color: black; " href="javascript:void(0); " onclick="event.stopPropagation(); vote('<? echo htmlspecialchars($s_data['id']); ?>');"><? } ?>
+									  <div class="schueler_vote_count_<? echo htmlspecialchars($s_data['id']); ?>" style="float: left; color: black; "><? echo $s_data['rating']; ?></div>
+									  <div style="float: left; margin-left: 8px; color: black; ">Stimmen</div>
+									  <? if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $s_data['id'] != $pupil_data['id']){ ?></a><? } ?>
+								  </div>
+							  </div>
+						  </div>
+						  <? if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $s_data['id'] != $pupil_data['id']){ ?>
+					      <div style="width: 100%; height: 25px; font-size: 14px; ">
+							  <button onclick="event.stopPropagation(); vote('<? echo htmlspecialchars($s_data['id']); ?>');">Gefällt Mir</button>
+						  </div>
+						  <? }?>
 						</div>
 						<div id="chats_together" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; ">
 						  <?

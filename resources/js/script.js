@@ -128,12 +128,20 @@ window.post_request = function(url, data = {}, then = false){
 	xhr.send(postdata);
 };
 
+window.page_navigate_loading = false;
+window.page_navigate_reload = false;
 window.page_navigate = function(url, from, to, loading_message = true) {
+	if(page_navigate_loading == url){
+		page_navigate_reload = true;
+	    return;	
+	}
+	var to_text = to;
 	if(url) {
 		window.history.pushState({}, "", url);
 	} else {
 	    url = window.location.href;
 	}
+	page_navigate_loading = url;
     if(!from) from = "body";
     if(to && to.split) to=document.querySelector(to);
     if(!to) to=document.querySelector(from);
@@ -153,6 +161,7 @@ window.page_navigate = function(url, from, to, loading_message = true) {
     XHRt.responseType='document';
     XHRt.onload = function() {
 		fertig = true;
+		page_navigate_loading = false;
 		to.innerHTML = XHRt.response.querySelector(from).innerHTML;
 		Array.from(to.querySelectorAll("script")).forEach( oldScriptEl => {
 			const newScriptEl = document.createElement("script");
@@ -166,12 +175,16 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 		if(document.querySelector("title") && XHRt.response.querySelector("title")){
 		    document.querySelector("title").innerText = XHRt.response.querySelector("title").innerText;
 		}
+		if(page_navigate_reload){
+		    page_navigate_reload = false;
+		    page_navigate (url, from, 
+		}
 	};
 	XHRt.onerror = function() {
 		fertig = true;
 		to.innerHTML = "<h2 style='text-align: center; margin-top: 80px; color: red; '>Ladefehler!</h2>";
 		setTimeout(function(){
-			page_navigate(url, from, to);
+			page_navigate(url, from, to_text, loading_message);
 		}, 1000);
 	};
     XHRt.open("GET", url, true);
