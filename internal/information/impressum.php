@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MEG Chat | Impressum</title>
+	<meta name="description" content="Der Chat für Schüler des Max Ernst Gymnasiums Brühl! Schüler und Schülern. veräntwortliche Schüler und unser Impressum">
+	<meta name="keywords" lang="de" content="meg, max, ernst, gymnasium, max ernst gymnasium, brühl, chat, online, schueler, chatten, austauschen, hausaufgaben, fragen, blog, artikel, austausch, kontakt, impressum, verantwortliche">
+	<? require('../middleware/head.php'); ?>
     <link rel="stylesheet" href="/resources/css/tailwind.css">
 </head>
 <body class="bg-slate-600 text-center text-white">
