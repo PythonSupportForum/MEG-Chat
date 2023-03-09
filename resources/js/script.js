@@ -188,7 +188,7 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 		}, 1000);
 	};
     XHRt.open("GET", url, true);
-    XHRt.send();
+    XHRt.send(); 
     return XHRt;
 }
 
