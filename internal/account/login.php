@@ -1,5 +1,5 @@
 <?
-require_once("./internal/logic/db.php");
+require_once("../logic/db.php");
 
 $error = false;
 $success = false;
