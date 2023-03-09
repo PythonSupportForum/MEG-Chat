@@ -116,7 +116,7 @@ if(isset($_SESSION['pupil'])){
 				<? }
 				if(!$found){
 					?>
-					<h2 style="text-align: center; margin-top: 50px; ">Es wurden keine Ergebnisse zu deiner Suche gefunden.</h2>
+					<h2 style="text-align: center; margin-top: 50px; ">Es wurden keine Ergebnisse zu Deiner Suche gefunden.</h2>
 					<?
 				}
 				?>
