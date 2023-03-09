@@ -79,7 +79,7 @@ if(isset($_SESSION['pupil'])){
 			<div style="width: 100%; " id="searchresults_container">
 			    <?
 			    $found = false;
-				$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE activated = 1 AND LOWER(fullname) LIKE LOWER(:query) ORDER BY LOWER(fullname) ASC LIMIT 10000;");
+				$stmtData = $db->prepare("SELECT ".DBTBL.".pupils.*, COUNT(".DBTBL.".pupils_votes.s_to) AS rating_count, COALESCE(SUM(points),0) as rating FROM ".DBTBL.".pupils LEFT JOIN ".DBTBL.".pupils_votes ON ".DBTBL.".pupils.id = ".DBTBL.".pupils_votes.s_to WHERE activated = 1 AND LOWER(fullname) LIKE LOWER(:query) GROUP BY ".DBTBL.".pupils.id ORDER BY LOWER(fullname) ASC LIMIT 10000;");
 				$stmtData->execute(array('query' => '%'.(isset($_GET['q']) ? $_GET['q'] : "").'%'));
 				while($row = $stmtData->fetchObject()){ $row = (array)$row; $found = true; ?>
 					<a href="javascript:page_navigate('/internal/information/schueler/<? echo htmlspecialchars($row['id']); ?>');" style="color: black; text-decoration: none; "><div class="schueler_container">
