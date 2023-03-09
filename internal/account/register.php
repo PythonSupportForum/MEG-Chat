@@ -114,6 +114,7 @@ if(isset($_POST['submit'])){
             align-items: center;
             text-align: center;
             height: 50%;
+            min-height: 500px;
         }
         .login-container {
             background:#525252;
