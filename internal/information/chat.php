@@ -301,22 +301,27 @@ if($chat_data){
 						    document.getElementById("chat_messages_count").innerText = messages_count;
 						}
 						
-						z.new = false;
-						localStorage.setItem(chat_id+"_"+z.id, JSON.stringify(z));
+						try {
+							z.new = false;
+							var o = JSON.parse(localStorage.getItem("chat_"+chat_id) || "[]");
+							o.push(z);
+							localStorage.setItem("chat_"+chat_id, JSON.stringify(o));
+						} catch(e){
+						    console.log(e);	
+						}
 					});
 				}
-				var has = [];
-				var i = 1;
-				while(localStorage.getItem(chat_id+"_"+(Number(last_message_id)+i))) {
-					try {
-					    has.push(JSON.parse(localStorage.getItem(chat_id+"_"+(Number(last_message_id)+i))));
-					} catch(e){
-					    console.log(e);	
+				try {
+					var has = [];
+					var o = JSON.parse(localStorage.getItem("chat_"+chat_id) || "[]");
+					o.forEach(function(z){
+					    if(z.id > last_message_id) has.push(z);	
+					});
+					if(has.length > 0){
+						add_to_chat(has);
 					}
-				    i++;
-				}
-				if(has.length > 0){
-					add_to_chat(has);
+				} catch(e){
+				    console.log(e);	
 				}
 				post_request("/ajax/load_new_messages.php", {chat: chat_id, last: Number(last_message_id)}, function(data){
 					setTimeout(function(){
