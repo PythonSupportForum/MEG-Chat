@@ -6,7 +6,8 @@ const filesToCache = [
     "/resources/icons/android-icon-96x96.png",
     "/resources/icons/android-icon-144x144.png",
     "/resources/icons/android-icon-192x192.png",
-    "/resources/icons/resources/images/avatar.png"
+    "/resources/images/avatar.png",
+    "/resources/images/logo.png"
 ];
 
 self.addEventListener("install", e => {
@@ -34,9 +35,14 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener("fetch", event => {
-  event.respondWith(
-    caches.match(event.request, { ignoreSearch: true }).then(response => {
-      return fetch(event.request) || response;
-    })
-  );
+  event.respondWith(caches.match(event.request, { ignoreSearch: true }).then(response => {
+	  if(response) return response;
+	  
+	  fetch(event.request).then((fetchedResponse) => {
+		  if (event.request.destination === 'image') {
+              cache.put(event.request, fetchedResponse.clone());
+          }
+          return fetchedResponse;
+      });
+  }));
 });

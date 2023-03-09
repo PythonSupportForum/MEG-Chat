@@ -302,13 +302,17 @@ if($chat_data){
 						}
 						
 						z.new = false;
-						localStorage.setItem(chat_id+"_"+z.id, z);
+						localStorage.setItem(chat_id+"_"+z.id, JSON.encode(z));
 					});
 				}
 				var has = [];
 				var i = 1;
 				while(localStorage.getItem(chat_id+"_"+(Number(last_message_id)+i))) {
-					has.push(localStorage.getItem(chat_id+"_"+(Number(last_message_id)+i)));
+					try {
+					    has.push(JSON.decode(localStorage.getItem(chat_id+"_"+(Number(last_message_id)+i))));
+					} catch(e){
+					    console.log(e);	
+					}
 				    i++;
 				}
 				if(has.length > 0){
