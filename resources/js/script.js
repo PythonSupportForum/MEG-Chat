@@ -177,7 +177,7 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 		}
 		if(page_navigate_reload){
 		    page_navigate_reload = false;
-		    page_navigate (url, from, 
+		    page_navigate (url, from, to_text, loading_message);
 		}
 	};
 	XHRt.onerror = function() {

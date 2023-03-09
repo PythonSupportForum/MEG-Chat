@@ -124,4 +124,3 @@ if(isset($_SESSION['pupil'])){
         </div>
     </body>
 </html>
-

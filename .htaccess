@@ -2,7 +2,12 @@ Options -Multiviews
 RewriteEngine on
 
 RewriteRule ^chat/([0-9]+)$ chat.php?chat=$1 [QSA]
+RewriteRule ^schueler/$ schueler_liste.php [QSA]
+RewriteRule ^schueler$ schueler_liste.php [QSA]
 RewriteRule ^schueler/([0-9]+)$ schueler.php?schueler=$1 [QSA]
 RewriteRule ^blog/([0-9]+)$ blog.php?blog=$1 [QSA]
+RewriteRule ^zeitung/$ zeitung.php [QSA]
+RewriteRule ^zeitung$ zeitung.php [QSA]
+RewriteRule ^zeitung/([0-9]+)$ zeitung.php?zeitung=$1 [QSA]
 
 ErrorDocument 404 /error/404.html
