@@ -2,24 +2,14 @@
 require_once("../logic/db.php");
 
 $error = false;
-$success = false;
-$total_error = false;
 if(isset($_SESSION['pupil'])){
-	$total_error = "Du bist bereits Angemeldet. ";
-	
-	$stmtCheck = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE id = :id;");
-	$stmtCheck->execute(array('id' => $_SESSION['pupil']));
-	$check = (array)$stmtCheck->fetchObject();
-	
-	if($check['activated'] == 0){
-		$total_error .= "Bitte habe einen Moment Gedult bis Dein Account freigeschaltet wird. Das kann einige Zeit dauern bis wir Deine Identität überprüft haben. Bitte kontaktiere einen Administrator um den Vorgang zu beschleunigen.";
-	}
+	header("Location: /");
+    return exit();
 }
 
 if(isset($_POST['submit']) && !$total_error){
 	$name = trim($_POST['name']);
 	$password = $_POST['password'];
-	
 
     $stmtCheck = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE LOWER(fullname) = LOWER(:name) OR LOWER(email) = LOWER(:name);");
 	$stmtCheck->execute(array('name' => $name));
@@ -43,8 +33,9 @@ if(isset($_POST['submit']) && !$total_error){
 	}
 	
 	if(!$error){
-		$success = "Du hast dich erfolgreich angemeldet. Du bist jetzt als ".htmlspecialchars($check['fullname'])." angemeldet.";
 		$_SESSION['pupil'] = $check['id'];
+		header("Location: /");
+        return exit();
     }
 }
 ?>
@@ -64,6 +55,13 @@ if(isset($_POST['submit']) && !$total_error){
         <div class="login-container">
                 <form class="bottom_login" action="/account/login" method="POST">
                     <h2>Anmelden</h2>
+                    <? 
+	              if($error) {
+					  ?>
+					  <p style="color: red; text-align: center; font-size: 16px; "><? echo htmlspecialchars($error); ?></p>
+					  <?
+			      }
+				  ?>
                  <div>
                       <label for="name">Name oder Email Adresse:</label>
                       <input class = "input" type="text" id="name" name="name" placeholder="Benutzername" autocomplete="on">
@@ -95,12 +93,15 @@ if(isset($_POST['submit']) && !$total_error){
             display: flex;
             flex-direction: row;
             border-radius: 15px;
+            height: auto;
+            min-height: 100px;
+            padding: 20px;
         }
         #submit {
             border-radius: 15px;
             border: none;
             width: 30%;
-            height: 15%;
+            height: 40px;
             padding: 2%;
         }
         #name {

@@ -2,18 +2,10 @@
 require_once("../logic/db.php");
 
 $error = false;
-$success = false;
-$total_error = false;
+
 if(isset($_SESSION['pupil'])){
-	$total_error = "Du bist bereits Angemeldet. ";
-	
-	$stmtCheck = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE id = :id;");
-	$stmtCheck->execute(array('id' => $_SESSION['pupil']));
-	$check = (array)$stmtCheck->fetchObject();
-	
-	if($check['activated'] == 0){
-		$total_error .= "Bitte habe einen Moment Gedult bis Dein Account freigeschaltet wird. Das kann einige Zeit dauern bis wir Deine Identität überprüft haben. Bitte kontaktiere einen Administrator um den Vorgang zu beschleunigen.";
-	}
+	header("Location: /");
+    return exit();
 }
 
 if(isset($_POST['submit']) && !$total_error){
@@ -72,8 +64,9 @@ if(isset($_POST['submit']) && !$total_error){
 	            
 		$stmtAdd = $db->prepare("INSERT INTO ".DBTBL.".pupils (fullname, password_hash, password_salt, email) VALUES (:name, :password_hash, :password_salt, :email);");
 		if($stmtAdd->execute(array('name' => $name, 'password_hash' => $passwordHash, 'password_salt' => $passwordSalt, 'email' => $email))){
-			$success = "Dein Account wurde erfolgreich eingetragen und wartet Jetzt auf die Freischaltung durch einen Administrator. Das dauert in der Regel maximal einen Tag.";
 			$_SESSION['pupil'] = $db->lastInsertId();
+			header("Location: /");
+            return exit();
 		}
 	}
 }
@@ -93,7 +86,14 @@ if(isset($_POST['submit']) && !$total_error){
     <div class="login-wrapper">
         <div class="login-container">
 			<form action="/account/register" method="POST">
-                <h2>Mich als Schüler anmelden</h2>
+              <h2>Mich als Schüler anmelden</h2>
+              <? 
+              if($error) {
+				  ?>
+				  <p style="color: red; text-align: center; font-size: 16px; "><? echo htmlspecialchars($error); ?></p>
+				  <?
+		      }
+			  ?>
 			  <label for="name">Vor und Nachname:</label><br>
 			  <input type="text" id="name" name="name" placeholder="Max Mustermann" autocomplete="on"><br>
 			  <label for="email" id="email">E-mail:</label><br>
@@ -121,12 +121,15 @@ if(isset($_POST['submit']) && !$total_error){
             display: flex;
             flex-direction: row;
             border-radius: 15px;
+            height: auto;
+            min-height: 100px;
+            padding: 20px;
         }
         #submit {
             border-radius: 15px;
             border: none;
             width: 30%;
-            height: 10%;
+            height: 40px;
             padding: 2%;
         }
         #name {
