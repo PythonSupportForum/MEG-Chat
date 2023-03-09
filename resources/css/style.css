@@ -33,6 +33,7 @@ h1, h2, p, a, .text {
 	border-radius: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	overflow: hidden;
 }
 .schueler_container {
 	margin: 20px;
@@ -44,6 +45,7 @@ h1, h2, p, a, .text {
 	float: left;
 	background-color:#e0e0e0; 
 	color: black;
+	overflow: hidden;
 }
 .blog_entry {
 	margin: 20px;
@@ -55,6 +57,7 @@ h1, h2, p, a, .text {
 	border: 1px solid black;
 	border-radius: 20px;
 	float: left;
+	overflow: hidden;
 }
 button {
     cursor: pointer;	
