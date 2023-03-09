@@ -162,7 +162,7 @@ window.page_navigate = function(url, from, to, loading_message = true) {
     XHRt.onload = function() {
 		fertig = true;
 		page_navigate_loading = false;
-		to.innerHTML = XHRt.response.querySelector(from).innerHTML;
+		to.innerHTML = XHRt.responseText.querySelector(from).innerHTML;
 		Array.from(to.querySelectorAll("script")).forEach( oldScriptEl => {
 			const newScriptEl = document.createElement("script");
 			Array.from(oldScriptEl.attributes).forEach( attr => {
