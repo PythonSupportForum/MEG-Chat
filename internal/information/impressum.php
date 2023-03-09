@@ -16,11 +16,13 @@
 <p>Tilo Ulf Behnke<br>Berliner Ring 51<br>50321, Brühl<br><br><b>Tel: </b>+49 015752250315<br><b>Email: </b>behnke.tilo@meg-bruehl.de
 </p>
 <h2>Mitwirkende</h2>
-<div class="centriert" style="height: 100px; ">
-    <div style="text-align: left;">
-        <li>Artur Darius Herrmann</li>
-        <li>Florian Reschke</li>
-    </div>
+<div style="height: 100px; ">
+	<div class="centriert">
+	    <div style="text-align: left;">
+	        <li>Artur Darius Herrmann</li>
+	        <li>Florian Reschke</li>
+	    </div>
+	</div>
 </div>
 <a style="margin-top: 20px; text-align: center; " href="/">Zurück zur Startseite</a>
 </body>
