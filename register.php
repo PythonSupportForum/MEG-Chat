@@ -164,5 +164,6 @@ if(isset($_POST['submit']) && !$total_error){
             margin-bottom: 2px;
         }
     </style>
+    <style><? require("resources/css/style.css"); ?></style>
 </html>
 
