@@ -1,4 +1,4 @@
-<?
+<?php
     ob_start();
     session_start();
 	error_reporting();
@@ -17,4 +17,4 @@
 	    echo $e->getMessage();
 	    exit;
 	}
-?>
+
