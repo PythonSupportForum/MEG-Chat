@@ -1,5 +1,5 @@
 <?
-require_once("db.php");
+require_once("./internal/logic/db.php");
 
 $error = false;
 $success = false;
@@ -83,7 +83,7 @@ if(isset($_POST['submit']) && !$total_error){
     <body>
     <div class="login-wrapper">
         <div class="login-container">
-                <form class = "bottom_login" action="/login.php" method="POST">
+                <form class = "bottom_login" action="/internal/account/login.php" method="POST">
                     <h2>Anmelden</h2>
                  <div>
                       <label for="name">Name oder Email Adresse:</label>
@@ -94,7 +94,7 @@ if(isset($_POST['submit']) && !$total_error){
                       <input class = "input" type="password" id="password" name="password" placeholder="Passwort">
                   </div>
                    <div class="login-register">
-                        <a href="/register.php">Register</a>
+                        <a href="/internal/account/register.php">Register</a>
                         <a href="/">Passwort vergessen</a>
                    </div>
                   <input id="submit" name="submit" type="submit" value="Anmelden">

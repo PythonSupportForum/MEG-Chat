@@ -1,5 +1,5 @@
 <?
-require_once("db.php");
+require_once("../logic/db.php");
 
 $error = false;
 $success = false;
@@ -113,7 +113,7 @@ if(isset($_POST['submit']) && !$total_error){
     <body>
     <div class="login-wrapper">
         <div class="login-container">
-			<form action="/register.php" method="POST">
+			<form action="/internal/account/register.php" method="POST">
                 <h2>Mich als Schüler anmelden</h2>
 			  <label for="name">Vor und Nachname:</label><br>
 			  <input type="text" id="name" name="name" placeholder="Max Mustermann" autocomplete="on"><br>

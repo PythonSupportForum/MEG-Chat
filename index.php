@@ -1,5 +1,5 @@
-<?
-require_once("db.php");
+<?php
+require_once("./internal/logic/db.php");
 
 if(isset($_SESSION['pupil'])){
 	$stmtCheck = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE id = :id;");
@@ -53,24 +53,24 @@ if(isset($_SESSION['pupil'])){
 		        <div style="height: 100%; min-height: 150px; margin-left: 20px; float: left; min-width: 200px; width: auto; max-width: calc( 100% - 40px ); " class="centriert">
 					<div style="max-width: 400px; width: auto; text-align: center; border: 1px solid black; border-radius: 10px; padding: 10px; margin-top: 10px; ">
 						<div>
-							<?
+                            <?php
 							if(isset($_SESSION['pupil'])){
 								?>
-								<h2 style="margin-top: 5px; ">Du bist angemeldet als <? echo htmlspecialchars($pupil_data['fullname']); ?>!</h2>
-								<?
+								<h2 style="margin-top: 5px; ">Du bist angemeldet als <?php echo htmlspecialchars($pupil_data['fullname']); ?>!</h2>
+                                <?php
 								if($pupil_data['activated'] == 0){
 									?>
 									<p style="color: red; font-size: 10px; ">Dein Account ist noch nicht freigeschaltet worden. Bitte gedulte dich einige Zeit oder Kontaktiere einen Administrator. Wir werden deine Identität Prüfen und den Account anschließend freischalten.</p>
-									<?
+                                    <?php
 							    }
 								?>
-								<button onclick="page_navigate('/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; ">Einstellungen</button>
+								<button onclick="page_navigate('/internal/information/schueler/<?php echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; ">Einstellungen</button>
 								<button onclick="window.location.href='/logout.php';" style="background-color: red; color: white; font-size: 16px; ">Abmelden</button>
-								<?
+                                <?php
 			                } else { ?>
-			                    <button onclick="page_navigate('/login.php');">Anmelden</button>
-			                    <button onclick="page_navigate('/register.php');">Mich als Schüler hinzufügen</button>
-			                <? } ?>
+			                    <button onclick="page_navigate('/internal/account/login.php');">Anmelden</button>
+			                    <button onclick="page_navigate('/internal/account/register.php');">Mich als Schüler hinzufügen</button>
+                            <?php } ?>
 		                </div>
 		            </div>
 		        </div>
@@ -79,11 +79,11 @@ if(isset($_SESSION['pupil'])){
         <div>
 			<div style="width: 100%; margin-top: 20px; ">
 		        <div id="all_container">
-					<? require("public_chats.php"); ?>
+                    <?php require("./internal/information/public_chats.php"); ?>
 				</div>
-				<? require("beliebteste_schueler.php"); ?>
-				<? require("blog_news.php"); ?>
-				<? require("projects.php"); ?>
+                <?php require("./internal/information/beliebteste_schueler.php"); ?>
+                <?php require("./internal/information/blog_news.php"); ?>
+                <?php require("./internal/information/projects.php"); ?>
 			</div>
 		</div>
     </body>

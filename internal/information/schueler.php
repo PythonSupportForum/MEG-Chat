@@ -1,5 +1,5 @@
 <?
-require_once("db.php");
+require_once("../logic/db.php");
 
 if(isset($_SESSION['pupil'])){
 	$stmtCheck = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE id = :id;");
@@ -66,14 +66,14 @@ $s_data = (array)$row;
 					    }
 						?>
 						<div style="width: 100%; height: auto; margin-top: 10px; ">
-						    <button onclick="page_navigate('/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
+						    <button onclick="page_navigate('/internal/information/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
 						    <button onclick="window.location.href='/logout.php';" style="background-color: red; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Abmelden</button>
 						</div>
 						<?
 	                } else { ?>
 						<div style="width: 100%; height: auto; margin-top: 10px; ">
-	                        <button onclick="page_navigate('/login.php');" style="width: 100%; height: 25px; margin-top: 10px; ">Anmelden</button>
-	                        <button onclick="page_navigate('/register.php');" style="width: 100%; height: 50px; margin-top: 10px; ">Mich als Schüler hinzufügen</button>
+	                        <button onclick="page_navigate('/internal/account/login.php');" style="width: 100%; height: 25px; margin-top: 10px; ">Anmelden</button>
+	                        <button onclick="page_navigate('/internal/account/register.php');" style="width: 100%; height: 50px; margin-top: 10px; ">Mich als Schüler hinzufügen</button>
 	                    </div>
 	                <? } ?>
                 </div>
@@ -165,7 +165,7 @@ $s_data = (array)$row;
 									    $count = ((array)$stmtCount->fetchObject())['count'];
 									}
 									?>
-									<div class="chatgruppe" onclick="page_navigate('/chat/<? echo htmlspecialchars($row['id']); ?>', '#chat_container'); window.last_message_id = -1;">
+									<div class="chatgruppe" onclick="page_navigate('/internal/information/chat/<? echo htmlspecialchars($row['id']); ?>', '#chat_container'); window.last_message_id = -1;">
 									    <div style="width: 100%; min-height: 40px; height: auto; ">
 										    <div style="height: auto; width: 100%; min-height: 40px; position: relative; ">
 												<div style="width: calc( 100% - 120px ); ">
@@ -227,7 +227,7 @@ $s_data = (array)$row;
 			};
 			window.save_email = function(){
 				var value = document.getElementById("email_editor").value;
-				post_request("/profile_edit.php", {key: "email", value: value}, function(data){
+				post_request("/internal/logic/profile_edit.php", {key: "email", value: value}, function(data){
 					if(data.length > 2){
 					    popup("Fehler!", data);
 					} else {
@@ -241,7 +241,7 @@ $s_data = (array)$row;
 			};
 			window.save_avatar = function(){
 				var value = document.getElementById("avatar_editor").value;
-				post_request("/profile_edit.php", {key: "avatar", value: value}, function(data){
+				post_request("/internal/logic/profile_edit.php", {key: "avatar", value: value}, function(data){
 					if(data.length > 2){
 					    popup("Fehler!", data);
 					} else {
