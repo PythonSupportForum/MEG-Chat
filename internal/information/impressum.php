@@ -20,7 +20,7 @@
     <div style="text-align: left;">
         <li>Artur Darius Herrmann</li>
         <li>Florian Reschke</li>
-        <a href="/">Zurück zur Startseite</a>
+        <a style="margin-top: 20px; " href="/">Zurück zur Startseite</a>
     </div>
 </div>
 </body>
