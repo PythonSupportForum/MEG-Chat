@@ -59,34 +59,13 @@ if($chat_data){
         <title>MEG Chat | Chat | <? echo htmlspecialchars($chat_data ? $chat_data['name'] : "Nicht Gefunden"); ?></title>
         <meta name="description" content="<? echo htmlspecialchars($chat_data ? $chat_data['description'] : "Dieser Chat exestiert nicht, oder Sie haben keinen Zugriff darauf!"); ?>">
         <meta name="keywords" lang="de" content="meg, max, ernst, gymnasium, max ernst gymnasium, brühl, chat, online, schueler, chatten, austauschen, hausaufgaben, fragen, blog, artikel, austausch, kontakt, neues">
-        <meta name="author" content="Lars Ashauer und Tilo Behnke">
-        <meta name="robots" content="index,follow">
-        <meta http-equiv="Cache-control" content="public">
-        <meta name="format-detection" content="telephone=yes">
-        <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-		<link rel="manifest" href="/manifest.json">
-		<meta name="msapplication-TileColor" content="#ffffff">
-		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-        <script src="/resources/js/script.js"></script>
-        <link rel="stylesheet" href="/resources/css/style.css">
+        <? require('../middleware/head.php'); ?>
     </head>
     <body style="background-color: #303030; color: lightgray; ">
         <div style="float: left; width: 540px; max-width: 100%; height: auto; max-height: 100%; overflow-x: hidden; overflow-y: auto; " class="no_scrollbar">
 			<div style="width: 100%; height: 145px; margin-top: 20px; ">
 			    <div style="width: 50%; height: 100%; float: left; cursor: pointer; " class="centriert" onclick="page_navigate('/');">
-			        <div style="width: 100%; height: 100%; " class="centriert"><img style="height: 100%; width: auto; max-width: 100%; " src="/logo.png" alt="MEG Chat Logo"></div>
+			        <div style="width: 100%; height: 100%; " class="centriert"><img style="height: 100%; width: auto; max-width: 100%; " src="/resources/images/logo.png" alt="MEG Chat Logo"></div>
 			    </div>
 			    <div style="width: 50%; height: 100%; float: right; " class="centriert">
 				    <div style="width: calc( 100% - 20px ); text-align: center; height: auto; ">
@@ -102,14 +81,14 @@ if($chat_data){
 						    }
 							?>
 							<div style="width: 100%; height: auto; margin-top: 10px; ">
-							    <button onclick="page_navigate('/internal/information/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
-							    <button onclick="window.location.href='/logout.php';" style="background-color: red; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Abmelden</button>
+							    <button onclick="page_navigate('/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
+							    <button onclick="window.location.href='/account/logout';" style="background-color: red; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Abmelden</button>
 							</div>
 							<?
 		                } else { ?>
 							<div style="width: 100%; height: auto; ">
-		                        <button onclick="page_navigate('/internal/account/login.php');" style="width: 100%; height: 25px; ">Anmelden</button>
-		                        <button onclick="page_navigate('/internal/account/register.php');" style="width: 100%; height: 50px; margin-top: 10px; ">Mich als Schüler hinzufügen</button>
+		                        <button onclick="page_navigate('/account/login');" style="width: 100%; height: 25px; ">Anmelden</button>
+		                        <button onclick="page_navigate('/account/register');" style="width: 100%; height: 50px; margin-top: 10px; ">Mich als Schüler hinzufügen</button>
 		                    </div>
 		                <? } ?>
 	                </div>
@@ -205,7 +184,7 @@ if($chat_data){
 						document.getElementById("private_message_text").style.height = "30px";
 						
 						function send_chess_message(){
-                            post_request("/send_message.php", {text: value, chat: chat_id});
+                            post_request("/ajax/send_message.php", {text: value, chat: chat_id});
 						}
 						send_chess_message();
 					}
@@ -235,7 +214,7 @@ if($chat_data){
 						last_message_id = -1;
 					}
 				}
-				post_request("/internal/logic/load_new_messages.php", {chat: chat_id, last: Number(last_message_id)}, function(data){
+				post_request("/ajax/load_new_messages.php", {chat: chat_id, last: Number(last_message_id)}, function(data){
 					setTimeout(function(){
 						window.running_chat_reader = false;
 					    get_messages_data();

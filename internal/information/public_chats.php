@@ -1,4 +1,3 @@
-
 <?
 if(isset($_SESSION['pupil'])){
 	$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE public = 0 AND id IN (SELECT chat FROM ".DBTBL.".chats_members WHERE pupil = :pupil);");

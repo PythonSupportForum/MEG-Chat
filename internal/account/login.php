@@ -1,5 +1,5 @@
 <?
-require_once("./internal/logic/db.php");
+require_once("../logic/db.php");
 
 $error = false;
 $success = false;
@@ -57,33 +57,12 @@ if(isset($_POST['submit']) && !$total_error){
         <title>MEG Chat | Anmelden</title>
         <meta name="description" content="Melde Dich mit deinem MEG Chat Konto an. ">
         <meta name="keywords" lang="de" content="meg, max, ernst, gymnasium, chat, online, schueler, chatten, austauschen, hausaufgaben, fragen, anmeldung">
-        <meta name="author" content="Lars Ashauer, Tilo Behnke und Frittenfresse">
-        <meta name="robots" content="index,follow">
-        <meta http-equiv="Cache-control" content="public">
-        <meta name="format-detection" content="telephone=yes">
-        <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-		<link rel="manifest" href="/manifest.json">
-		<meta name="msapplication-TileColor" content="#ffffff">
-		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-        <script src="/resources/js/script.js"></script>
-        <link rel="stylesheet" href="/resources/css/style.css">
+        <? require('../middleware/head.php'); ?>
     </head>
     <body>
     <div class="login-wrapper">
         <div class="login-container">
-                <form class = "bottom_login" action="/internal/account/login.php" method="POST">
+                <form class="bottom_login" action="/account/login" method="POST">
                     <h2>Anmelden</h2>
                  <div>
                       <label for="name">Name oder Email Adresse:</label>
@@ -94,7 +73,7 @@ if(isset($_POST['submit']) && !$total_error){
                       <input class = "input" type="password" id="password" name="password" placeholder="Passwort">
                   </div>
                    <div class="login-register">
-                        <a href="/internal/account/register.php">Register</a>
+                        <a href="/account/register">Register</a>
                         <a href="/">Passwort vergessen</a>
                    </div>
                   <input id="submit" name="submit" type="submit" value="Anmelden">

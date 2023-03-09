@@ -251,7 +251,7 @@ window.close_all_popups = function(){
 };
 
 window.vote = function(id){
-	post_request("vote.php", {vote: id}, function(data){
+	post_request("/ajax/vote.php", {vote: id}, function(data){
 		if(data.length > 2){
 		    popup("Fehler!", data);
 		} else {

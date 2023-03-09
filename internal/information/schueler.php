@@ -22,32 +22,11 @@ $s_data = (array)$row;
         <title>MEG Chat | Schüler | <? echo htmlspecialchars($s_data['fullname']); ?></title>
         <meta name="description" content="<? echo htmlspecialchars($s_data['about_me']); ?>">
         <meta name="keywords" lang="de" content="max ernst gymnasium, meg, schüler, schueler, klasse, informtionen, profil, <? echo htmlspecialchars($s_data['fullname']); ?>">
-        <meta name="author" content="<? echo htmlspecialchars($s_data['fullname']); ?>">
-        <meta name="robots" content="index,follow">
-        <meta http-equiv="Cache-control" content="public">
-        <meta name="format-detection" content="telephone=yes">
-        <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-		<link rel="manifest" href="/manifest.json">
-		<meta name="msapplication-TileColor" content="#ffffff">
-		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-        <script src="/resources/js/script.js"></script>
-        <link rel="stylesheet" href="/resources/css/style.css">
+        <? require('../middleware/head.php'); ?>
     </head>
     <body>
         <div style="float: left; width: 160px; max-width: 100%; ">
-            <div style="width: 100%; height: auto;" class="centriert"><img style="width: 100%;" src="/logo.png" alt="MEG Chat Logo"></div>
+            <div style="width: 100%; height: auto;" class="centriert"><img style="width: 100%;" src="/resources/images/logo.png" alt="MEG Chat Logo"></div>
             <div style="width: 100%; height: auto; " class="centriert"><h2>MEG Chat</h2></div>
             <div style="width: 100%; height: auto; border-top: 1px solid black; " class="centriert">
                 <h2 style="font-size: 16px; " class="text"><a href="javascript:page_navigate('/');" class="text">Zur Startseite</a></h2>
@@ -66,14 +45,14 @@ $s_data = (array)$row;
 					    }
 						?>
 						<div style="width: 100%; height: auto; margin-top: 10px; ">
-						    <button onclick="page_navigate('/internal/information/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
-						    <button onclick="window.location.href='/logout.php';" style="background-color: red; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Abmelden</button>
+						    <button onclick="page_navigate('/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
+						    <button onclick="window.location.href='/account/logout';" style="background-color: red; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Abmelden</button>
 						</div>
 						<?
 	                } else { ?>
 						<div style="width: 100%; height: auto; margin-top: 10px; ">
-	                        <button onclick="page_navigate('/internal/account/login.php');" style="width: 100%; height: 25px; margin-top: 10px; ">Anmelden</button>
-	                        <button onclick="page_navigate('/internal/account/register.php');" style="width: 100%; height: 50px; margin-top: 10px; ">Mich als Schüler hinzufügen</button>
+	                        <button onclick="page_navigate('/account/login');" style="width: 100%; height: 25px; margin-top: 10px; ">Anmelden</button>
+	                        <button onclick="page_navigate('/account/register');" style="width: 100%; height: 50px; margin-top: 10px; ">Mich als Schüler hinzufügen</button>
 	                    </div>
 	                <? } ?>
                 </div>
