@@ -15,7 +15,11 @@
 </p>
 <a href="/">Zurück zur Startseite</a>
 <h2>Mitwirkende</h2>
+<div class="centriert">
+<div style="text-align: left;">
 <li>Artur Darius Herrmann</li>
 <li>Florian Reschke</li>
+</div>
+</div>
 </body>
 </html>
