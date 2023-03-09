@@ -214,12 +214,7 @@ if($chat_data){
 						last_message_id = -1;
 					}
 				}
-				post_request("/ajax/load_new_messages.php", {chat: chat_id, last: Number(last_message_id)}, function(data){
-					setTimeout(function(){
-						window.running_chat_reader = false;
-					    get_messages_data();
-					}, 50);
-					data = JSON.parse(data);
+				function add_to_chat(data){
 					var is_first = (last_message_id == -1);
 					var first_new = true;
 					data.forEach(function(z){
@@ -305,7 +300,27 @@ if($chat_data){
 						    messages_count++;
 						    document.getElementById("chat_messages_count").innerText = messages_count;
 						}
+						
+						z.new = false;
+						localStorage.setItem(chat_id+"_"+z.id, z);
 					});
+				}
+				var has = [];
+				var i = 1;
+				while(localStorage.getItem(chat_id+"_"+(Number(last_message_id)+i))) {
+					has.push(localStorage.getItem(chat_id+"_"+(Number(last_message_id)+i)));
+				    i++;
+				}
+				if(has.length > 0){
+					add_to_chat(has);
+				}
+				post_request("/ajax/load_new_messages.php", {chat: chat_id, last: Number(last_message_id)}, function(data){
+					setTimeout(function(){
+						window.running_chat_reader = false;
+					    get_messages_data();
+					}, 50);
+					data = JSON.parse(data);
+					add_to_chat(data);
 				});
 			}
 			get_messages_data();
