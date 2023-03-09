@@ -158,11 +158,12 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 	}, 50);
 	
     var XHRt = new XMLHttpRequest();
-    XHRt.responseType='document';
     XHRt.onload = function() {
 		fertig = true;
 		page_navigate_loading = false;
-		to.innerHTML = XHRt.responseText.querySelector(from).innerHTML;
+		var parser = new DOMParser();
+        var doc = parser.parseFromString(XHRt.responseText, "text/html");
+		to.innerHTML = doc.querySelector(from).innerHTML;
 		Array.from(to.querySelectorAll("script")).forEach( oldScriptEl => {
 			const newScriptEl = document.createElement("script");
 			Array.from(oldScriptEl.attributes).forEach( attr => {
@@ -172,8 +173,8 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 			newScriptEl.appendChild(scriptText);
 			oldScriptEl.parentNode.replaceChild(newScriptEl, oldScriptEl);
 		});
-		if(document.querySelector("title") && XHRt.response.querySelector("title")){
-		    document.querySelector("title").innerText = XHRt.response.querySelector("title").innerText;
+		if(document.querySelector("title") && doc.querySelector("title")){
+		    document.querySelector("title").innerText = doc.querySelector("title").innerText;
 		}
 		if(page_navigate_reload){
 		    page_navigate_reload = false;
