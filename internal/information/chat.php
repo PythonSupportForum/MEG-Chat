@@ -1,5 +1,5 @@
 <?
-require_once("db.php");
+require_once("../logic/db.php");
 
 if(isset($_SESSION['pupil'])){
 	$stmtCheck = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE id = :id;");
@@ -102,14 +102,14 @@ if($chat_data){
 						    }
 							?>
 							<div style="width: 100%; height: auto; margin-top: 10px; ">
-							    <button onclick="page_navigate('/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
+							    <button onclick="page_navigate('/internal/information/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
 							    <button onclick="window.location.href='/logout.php';" style="background-color: red; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Abmelden</button>
 							</div>
 							<?
 		                } else { ?>
 							<div style="width: 100%; height: auto; ">
-		                        <button onclick="page_navigate('/login.php');" style="width: 100%; height: 25px; ">Anmelden</button>
-		                        <button onclick="page_navigate('/register.php');" style="width: 100%; height: 50px; margin-top: 10px; ">Mich als Schüler hinzufügen</button>
+		                        <button onclick="page_navigate('/internal/account/login.php');" style="width: 100%; height: 25px; ">Anmelden</button>
+		                        <button onclick="page_navigate('/internal/account/register.php');" style="width: 100%; height: 50px; margin-top: 10px; ">Mich als Schüler hinzufügen</button>
 		                    </div>
 		                <? } ?>
 	                </div>
@@ -224,7 +224,7 @@ if($chat_data){
 				}
 				if(running_chat_reader) return;
 				window.running_chat_reader = true;
-				if(chat_id != Number(window.location.href.split("/")[window.location.href.split("/").length-1])){
+				if(chat_id !== Number(window.location.href.split("/")[window.location.href.split("/").length-1])){
 				    chat_id = Number(window.location.href.split("/")[window.location.href.split("/").length-1]);
 				    last_message_id = -1;
 				    loaded_messages_count = 0;
@@ -235,7 +235,7 @@ if($chat_data){
 						last_message_id = -1;
 					}
 				}
-				post_request("/load_new_messages.php", {chat: chat_id, last: Number(last_message_id)}, function(data){
+				post_request("/internal/logic/load_new_messages.php", {chat: chat_id, last: Number(last_message_id)}, function(data){
 					setTimeout(function(){
 						window.running_chat_reader = false;
 					    get_messages_data();

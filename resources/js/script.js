@@ -52,7 +52,7 @@ addLoadEvent(function(){
             });
 	    }).then((subscription) => {
             if(!subscription) return;
-	        fetch("/push_register.php", {
+	        fetch("/internal/logic/push_register.php", {
 			  method: "POST",
 			  headers: {
 			    "Content-type": "application/json",

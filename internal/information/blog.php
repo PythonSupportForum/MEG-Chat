@@ -1,5 +1,5 @@
-<?
-require_once("db.php");
+<?php
+require_once("../logic/db.php");
 
 if(isset($_SESSION['pupil'])){
 	$stmtCheck = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE id = :id;");
@@ -19,8 +19,8 @@ $blog_data = (array)$row;
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MEG Chat | Blog | <? echo htmlspecialchars($blog_data['header']); ?></title>
-        <meta name="description" content="<? echo htmlspecialchars($blog_data['text']); ?>">
+        <title>MEG Chat | Blog | <?php echo htmlspecialchars($blog_data['header']); ?></title>
+        <meta name="description" content="<?php echo htmlspecialchars($blog_data['text']); ?>">
         <meta name="keywords" lang="de" content="meg, max, ernst, gymnasium, chat, online, schueler, chatten, austauschen, hausaufgaben, fragen, blog, artikel, austausch, kontakt">
         <meta name="author" content="Lars Ashauer und Tilo Behnke">
         <meta name="robots" content="index,follow">
@@ -54,45 +54,45 @@ $blog_data = (array)$row;
             </div>
             <div style="width: 100%; height: auto; border-top: 1px solid black; margin-top: 10px; text-align: center; overflow: hidden; " class="centriert">
 				<div style="width: 100%; text-align: center; height: auto; margin-top: 10px; ">
-	                <?
+                    <?php
 					if(isset($_SESSION['pupil'])){
 						?>
-						<h2 style="margin-top: 5px; font-size: 14px; word-wrap: break-word; ">Du bist angemeldet als <? echo htmlspecialchars($pupil_data['fullname']); ?>!</h2>
-						<?
+						<h2 style="margin-top: 5px; font-size: 14px; word-wrap: break-word; ">Du bist angemeldet als <?php echo htmlspecialchars($pupil_data['fullname']); ?>!</h2>
+                        <?php
 						if($pupil_data['activated'] == 0){
 							?>
 							<p style="color: red; font-size: 10px; ">Dein Account ist noch nicht freigeschaltet worden. Bitte gedulte dich einige Zeit oder Kontaktiere einen Administrator. Wir werden deine Identität Prüfen und den Account anschließend freischalten.</p>
-							<?
+                            <?php
 					    }
 						?>
 						<div style="width: 100%; height: auto; margin-top: 10px; ">
-						    <button onclick="page_navigate('/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
+						    <button onclick="page_navigate('/internal/information/schueler/<?php echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
 						    <button onclick="window.location.href='/logout.php';" style="background-color: red; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Abmelden</button>
 						</div>
-						<?
+                        <?php
 	                } else { ?>
 						<div style="width: 100%; height: auto; margin-top: 10px; ">
-	                        <button onclick="page_navigate('/login.php');" style="width: 100%; height: 25px; margin-top: 10px; ">Anmelden</button>
-	                        <button onclick="page_navigate('/register.php');" style="width: 100%; height: 50px; margin-top: 10px; ">Mich als Schüler hinzufügen</button>
+	                        <button onclick="page_navigate('/internal/account/login.php');" style="width: 100%; height: 25px; margin-top: 10px; ">Anmelden</button>
+	                        <button onclick="page_navigate('/internal/account/register.php');" style="width: 100%; height: 50px; margin-top: 10px; ">Mich als Schüler hinzufügen</button>
 	                    </div>
-	                <? } ?>
+                    <?php } ?>
                 </div>
             </div>
         </div>
         <div style="float: left; width: calc( 100% - 162px ); min-width: 600px; max-width: 100%; text-align: center;">
-			<? if(!$blog_data){
+            <?php if(!$blog_data){
 			    ?>
 			    <h1>Dieser Blogbeitrag konnte nicht gefunden werden!</h1>
-			    <?	
+                <?php
 			} else { ?>
-                <h1><? echo htmlspecialchars($blog_data['header']); ?></h1>
+                <h1><?php echo htmlspecialchars($blog_data['header']); ?></h1>
                 <div style="width: 100%; height: auto; " class="centriert">
-                    <img style="width: 500px; max-width: 100%; " src="<? echo htmlspecialchars($blog_data['image']); ?>">
+                    <img style="width: 500px; max-width: 100%; " src="<?php echo htmlspecialchars($blog_data['image']); ?>">
                 </div>
                 <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
-                    <div style="width: 500px; max-width: 100%; font-size: 16px;"><? echo htmlspecialchars($blog_data['text']); ?></div>
+                    <div style="width: 500px; max-width: 100%; font-size: 16px;"><?php echo htmlspecialchars($blog_data['text']); ?></div>
                 </div>
-            <? } ?>
+            <?php } ?>
         </div>
     </body>
 </html>
