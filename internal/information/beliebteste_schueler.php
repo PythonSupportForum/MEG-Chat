@@ -4,7 +4,7 @@
 	$stmtData = $db->prepare("SELECT ".DBTBL.".pupils.*, COUNT(".DBTBL.".pupils_votes.s_to) AS rating_count, COALESCE(SUM(points),0) as rating FROM ".DBTBL.".pupils LEFT JOIN ".DBTBL.".pupils_votes ON ".DBTBL.".pupils.id = ".DBTBL.".pupils_votes.s_to WHERE activated = 1 GROUP BY ".DBTBL.".pupils.id ORDER BY rating DESC LIMIT 20;");
 	$stmtData->execute();
 	while($row = $stmtData->fetchObject()){ $row = (array)$row; ?>
-		<a href="javascript:page_navigate('/internal/information/schueler/<? echo htmlspecialchars($row['id']); ?>');" style="color: black; text-decoration: none; "><div class="schueler_container">
+		<a href="javascript:page_navigate('/schueler/<? echo htmlspecialchars($row['id']); ?>');" style="color: black; text-decoration: none; "><div class="schueler_container">
 		    <div style="height: calc( 100% - 60px ); width: 100%; margin-top: 10px; " class="centriert">
 		        <img loading="lazy" style="width: 130px; height: 130px; border-radius: 50%; " src="<? echo htmlspecialchars(empty($row['avatar']) ? "/resources/images/avatar.png" : $row['avatar']); ?>">
 		    </div>
