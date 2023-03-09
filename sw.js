@@ -1,12 +1,12 @@
 const cacheName = "meg-chat";
 const filesToCache = [
-    "/android-icon-36x36.pn",
-    "/android-icon-48x48.png",
-    "/android-icon-72x72.png",
-    "/android-icon-96x96.png",
-    "/android-icon-144x144.png",
-    "/android-icon-192x192.png",
-    "/resources/images/avatar.png"
+    "/resources/icons/android-icon-36x36.pn",
+    "/resources/icons/android-icon-48x48.png",
+    "/resources/icons/android-icon-72x72.png",
+    "/resources/icons/android-icon-96x96.png",
+    "/resources/icons/android-icon-144x144.png",
+    "/resources/icons/android-icon-192x192.png",
+    "/resources/icons/resources/images/avatar.png"
 ];
 
 self.addEventListener("install", e => {
