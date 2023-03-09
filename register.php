@@ -164,6 +164,9 @@ if(isset($_POST['submit']) && !$total_error){
             margin-bottom: 2px;
         }
     </style>
+<<<<<<< HEAD
+=======
     <style><? require("resources/css/style.css"); ?></style>
+>>>>>>> new_loginform
 </html>
 
