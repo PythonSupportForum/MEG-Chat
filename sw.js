@@ -1,6 +1,6 @@
 const cacheName = "meg-chat";
 const filesToCache = [
-    "/resources/icons/android-icon-36x36.pn",
+    "/resources/icons/android-icon-36x36.png",
     "/resources/icons/android-icon-48x48.png",
     "/resources/icons/android-icon-72x72.png",
     "/resources/icons/android-icon-96x96.png",
@@ -34,15 +34,19 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-self.addEventListener("fetch", event => {
-  event.respondWith(caches.match(event.request, { ignoreSearch: true }).then(response => {
-	  if(response) return response;
-	  
-	  fetch(event.request).then((fetchedResponse) => {
-		  if (event.request.destination === 'image') {
-              cache.put(event.request, fetchedResponse.clone());
-          }
-          return fetchedResponse;
+self.addEventListener('fetch', (event) => {
+  if (event.request.destination === 'image') {
+    event.respondWith(caches.open(cacheName).then((cache) => {
+      return cache.match(event.request).then((cachedResponse) => {
+        const fetchedResponse = fetch(event.request).then((networkResponse) => {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+
+        return cachedResponse || fetchedResponse;
       });
-  }));
+    }));
+  } else {
+    return;
+  }
 });
