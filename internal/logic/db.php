@@ -1,14 +1,14 @@
-<?php
+<?
     ob_start();
     session_start();
 	error_reporting();
 
 	date_default_timezone_set('Europe/Berlin');
 	
-	define('DBHOST','167.235.78.39');
-	define('DBUSER','infinity1_app');
-	define('DBPASS','GP74INXYJo-E#q6/');
-	define('DBTBL', 'infinity1_meg');
+	define('DBHOST','127.0.0.1');
+	define('DBUSER','root');
+	define('DBPASS','Ttito1607200707');
+	define('DBTBL', 'meg');
 
 	try {
 		$db = new PDO("mysql:host=".DBHOST.";charset=utf8mb4;", DBUSER, DBPASS);
@@ -17,4 +17,4 @@
 	    echo $e->getMessage();
 	    exit;
 	}
-
+?>
