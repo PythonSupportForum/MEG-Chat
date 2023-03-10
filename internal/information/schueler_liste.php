@@ -39,7 +39,7 @@ if(isset($_SESSION['pupil'])){
 					    }
 						?>
 						<div style="width: 100%; height: auto; margin-top: 10px; ">
-						    <a href="/schueler/<?php echo htmlspecialchars($pupil_data['id']); ?>"><button" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button></a>
+						    <button onclick="page_navigate('/schueler/<?php echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
 						    <button onclick="window.location.href='/account/logout';" style="background-color: red; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Abmelden</button>
 						</div>
                         <?php

@@ -2,7 +2,7 @@
 require_once("../logic/db.php");
 
 if(isset($_SESSION['pupil'])){
-    $stmtCheck = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE id = :id;");
+	$stmtCheck = $db->prepare("SELECT * FROM ".DBTBL.".pupils WHERE id = :id;");
 	$stmtCheck->execute(array('id' => $_SESSION['pupil']));
 	$pupil_data = (array)$stmtCheck->fetchObject();
 }
@@ -29,7 +29,7 @@ $s_data = (array)$row;
             <div style="width: 100%; height: auto;" class="centriert"><img style="width: 100%;" src="/resources/images/logo.png" alt="MEG Chat Logo"></div>
             <div style="width: 100%; height: auto; " class="centriert"><h2>MEG Chat</h2></div>
             <div style="width: 100%; height: auto; border-top: 1px solid black; " class="centriert">
-                <h2 style="font-size: 16px; " class="text"><a href="/" class="text">Zur Startseite</a></h2>
+                <h2 style="font-size: 16px; " class="text"><a href="javascript:page_navigate('/');" class="text">Zur Startseite</a></h2>
             </div>
             <div style="width: 100%; height: auto; border-top: 1px solid black; margin-top: 10px; text-align: center; overflow: hidden; " class="centriert">
 				<div style="width: 100%; text-align: center; height: auto; margin-top: 10px; ">
