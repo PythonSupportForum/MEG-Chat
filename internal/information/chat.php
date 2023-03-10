@@ -198,11 +198,6 @@ if($chat_data){
 					}, 200);
 				    return;
 				}
-				if(!("running_chat_reader" in window)) {
-					window.running_chat_reader = false;
-				}
-				if(running_chat_reader) return;
-				window.running_chat_reader = true;
 				if(chat_id !== Number(window.location.href.split("/")[window.location.href.split("/").length-1])){
 				    chat_id = Number(window.location.href.split("/")[window.location.href.split("/").length-1]);
 				    last_message_id = -1;
@@ -323,6 +318,11 @@ if($chat_data){
 				} catch(e){
 				    console.log(e);	
 				}
+				if(!("running_chat_reader" in window)) {
+					window.running_chat_reader = false;
+				}
+				if(running_chat_reader) return;
+				window.running_chat_reader = true;
 				post_request("/ajax/load_new_messages.php", {chat: chat_id, last: Number(last_message_id)}, function(data){
 					setTimeout(function(){
 						window.running_chat_reader = false;

@@ -136,9 +136,7 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 	    return;	
 	}
 	var to_text = to;
-	if(url) {
-		window.history.pushState({}, "", url);
-	} else {
+	if(!url) {
 	    url = window.location.href;
 	}
 	page_navigate_loading = url;
@@ -161,6 +159,7 @@ window.page_navigate = function(url, from, to, loading_message = true) {
     XHRt.onload = function() {
 		fertig = true;
 		page_navigate_loading = false;
+		
 		var parser = new DOMParser();
         var doc = parser.parseFromString(XHRt.responseText, "text/html");
 		to.innerHTML = doc.querySelector(from).innerHTML;
@@ -180,6 +179,11 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 		    page_navigate_reload = false;
 		    page_navigate (url, from, to_text, loading_message);
 		}
+		
+		window.history.pushState({}, "", url);
+		
+		//Only for MEG-Chat App:
+		if("get_messages_data" in window) get_messages_data();
 	};
 	XHRt.onerror = function() {
 		fertig = true;
