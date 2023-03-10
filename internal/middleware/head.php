@@ -25,8 +25,8 @@
 <meta content="Meg Chat" property="og:title" />
 <meta content="Eine Austauschplatform für Schüler des MEGs" property="og:description" />
 <?php
-$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-echo $actual_link
+$actual_link = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+echo "<meta content=\"$actual_link\" property=\"og:url\" />"
 ?>
 <meta content="https://meg-chat.de/resources/icons/favicon-96x96.png" property="og:image" />
 <meta content="#0c969e" data-react-helmet="true" name="theme-color" />
