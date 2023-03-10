@@ -35,7 +35,7 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', (event) => {
-  if (event.request.destination === 'image' || true) {
+  if (event.request.method != "POST") {
     event.respondWith(caches.open(cacheName).then((cache) => {
       return cache.match(event.request).then((cachedResponse) => {
         const fetchedResponse = fetch(event.request).then((networkResponse) => {
