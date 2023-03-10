@@ -1,4 +1,4 @@
-<?
+<?php
 require_once("../logic/db.php");
 
 $error = false;
@@ -80,18 +80,18 @@ if(isset($_POST['submit'])){
         <title>MEG Chat | Eintragen</title>
         <meta name="description" content="Regestriere dich als Schüler um an allen Aktivitäten teilnehmen zu können. Nach dem Erstellen deines Kontos, prüfen wir zunächst deine Identität. Anschließend kanst du Gruppen und Kurse beitreten und nich an Chats beteiligen. ">
         <meta name="keywords" lang="de" content="meg, max, ernst, gymnasium, chat, online, schueler, chatten, austauschen, hausaufgaben, fragen">
-        <? require('../middleware/head.php'); ?>
+        <?php require('../middleware/head.php'); ?>
     </head>
     <body>
     <div class="login-wrapper">
         <div class="login-container">
 			<form action="/account/register" method="POST">
               <h2>Mich als Schüler anmelden</h2>
-              <? 
+                <?php
               if($error) {
 				  ?>
-				  <p style="color: red; text-align: center; font-size: 16px; "><? echo htmlspecialchars($error); ?></p>
-				  <?
+				  <p style="color: red; text-align: center; font-size: 16px; "><?php echo htmlspecialchars($error); ?></p>
+                  <?php
 		      }
 			  ?>
 			  <label for="name">Vor und Nachname:</label><br>

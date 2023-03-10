@@ -1,4 +1,4 @@
-<?
+<?php
 require_once("../logic/db.php");
 
 $error = false;
@@ -48,18 +48,18 @@ if(isset($_POST['submit'])){
         <title>MEG Chat | Anmelden</title>
         <meta name="description" content="Melde Dich mit deinem MEG Chat Konto an. ">
         <meta name="keywords" lang="de" content="meg, max, ernst, gymnasium, chat, online, schueler, chatten, austauschen, hausaufgaben, fragen, anmeldung">
-        <? require('../middleware/head.php'); ?>
+        <?php require('../middleware/head.php'); ?>
     </head>
     <body>
     <div class="login-wrapper">
         <div class="login-container">
                 <form class="bottom_login" action="/account/login" method="POST">
                     <h2>Anmelden</h2>
-                    <? 
+                    <?php
 	              if($error) {
 					  ?>
-					  <p style="color: red; text-align: center; font-size: 16px; "><? echo htmlspecialchars($error); ?></p>
-					  <?
+					  <p style="color: red; text-align: center; font-size: 16px; "><?php echo htmlspecialchars($error); ?></p>
+                      <?php
 			      }
 				  ?>
                  <div>

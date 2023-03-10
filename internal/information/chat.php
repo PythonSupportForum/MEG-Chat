@@ -1,4 +1,4 @@
-<?
+<?php
 require_once("../logic/db.php");
 
 if(isset($_SESSION['pupil'])){
@@ -56,10 +56,10 @@ if($chat_data){
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MEG Chat | Chat | <? echo htmlspecialchars($chat_data ? $chat_data['name'] : "Nicht Gefunden"); ?></title>
-        <meta name="description" content="<? echo htmlspecialchars($chat_data ? $chat_data['description'] : "Dieser Chat exestiert nicht, oder Sie haben keinen Zugriff darauf!"); ?>">
+        <title>MEG Chat | Chat | <?php echo htmlspecialchars($chat_data ? $chat_data['name'] : "Nicht Gefunden"); ?></title>
+        <meta name="description" content="<?php echo htmlspecialchars($chat_data ? $chat_data['description'] : "Dieser Chat exestiert nicht, oder Sie haben keinen Zugriff darauf!"); ?>">
         <meta name="keywords" lang="de" content="meg, max, ernst, gymnasium, max ernst gymnasium, brühl, chat, online, schueler, chatten, austauschen, hausaufgaben, fragen, blog, artikel, austausch, kontakt, neues">
-        <? require('../middleware/head.php'); ?>
+        <?php require('../middleware/head.php'); ?>
     </head>
     <body style="background-color: #303030; color: lightgray; ">
         <div style="float: left; width: 540px; max-width: 100%; height: auto; max-height: 100%; overflow-x: hidden; overflow-y: auto; " class="no_scrollbar">
@@ -69,57 +69,57 @@ if($chat_data){
 			    </div>
 			    <div style="width: 50%; height: 100%; float: right; " class="centriert">
 				    <div style="width: calc( 100% - 20px ); text-align: center; height: auto; ">
-		                <?
+                        <?php
 						if(isset($_SESSION['pupil'])){
 							?>
-							<h2 style="margin-top: 5px; font-size: 14px; word-wrap: break-word; ">Du bist angemeldet als <? echo htmlspecialchars($pupil_data['fullname']); ?>!</h2>
-							<?
+							<h2 style="margin-top: 5px; font-size: 14px; word-wrap: break-word; ">Du bist angemeldet als <?php echo htmlspecialchars($pupil_data['fullname']); ?>!</h2>
+                            <?php
 							if($pupil_data['activated'] == 0){
 								?>
 								<p style="color: red; font-size: 10px; ">Dein Account ist noch nicht freigeschaltet worden. Bitte gedulte dich einige Zeit oder Kontaktiere einen Administrator. Wir werden deine Identität Prüfen und den Account anschließend freischalten. Wenn nicht Pech gehabt su Opfer!</p>
-								<?
+                                <?php
 						    }
 							?>
 							<div style="width: 100%; height: auto; margin-top: 10px; ">
-							    <button onclick="page_navigate('/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
+							    <button onclick="page_navigate('/schueler/<?php echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
 							    <button onclick="window.location.href='/account/logout';" style="background-color: red; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Abmelden</button>
 							</div>
-							<?
+                            <?php
 		                } else { ?>
 							<div style="width: 100%; height: auto; ">
 		                        <button onclick="page_navigate('/account/login');" style="width: 100%; height: 25px; ">Anmelden</button>
 		                        <button onclick="page_navigate('/account/register');" style="width: 100%; height: 50px; margin-top: 10px; ">Mich als Schüler hinzufügen</button>
 		                    </div>
-		                <? } ?>
+                        <?php } ?>
 	                </div>
 			    </div>
 			</div>
             <div style="width: 100%; height: auto; margin-top: 20px; ">
 				<div id="all_container">
-					<? require("public_chats.php"); ?>
+                    <?php require("public_chats.php"); ?>
 	            </div>
 	        </div>
         </div>
         <div style="float: left; width: calc( 100% - 542px ); min-width: 350px; max-width: 100%; text-align: center; height: 100%; " id="chat_container">
-			<? if(!$chat_data){
+            <?php if(!$chat_data){
 			    ?>
 			    <h1>Entweder dieser Chat exestiert nicht oder zu hast keinen Zugriff darauf. Sollte dieses Problem weiterhin auftauchen melde dich bitte bei einem Administrator.!</h1>
-			    <?
+                <?php
 			} else { ?>
 				<div style="height: auto; min-height: 110px; margin-top: 6px; " class="centriert">
 					<div style="width: auto; height: 100%; " class="centriert">
 						<div style="height: 110px; width: auto; float: left; " class="centriert">
 							<div>
-				                <h1 style="margin-top: 0px; "><? echo htmlspecialchars($chat_data['name']); ?></h1>
+				                <h1 style="margin-top: 0px; "><?php echo htmlspecialchars($chat_data['name']); ?></h1>
 				                <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
-				                     <h2 style="margin: 0; padding: 0;"><? echo htmlspecialchars($chat_data['description']); ?></h2>
+				                     <h2 style="margin: 0; padding: 0;"><?php echo htmlspecialchars($chat_data['description']); ?></h2>
 				                </div>
 				            </div>
 			            </div>
 			            <div style="height: 110px; width: auto; float: left; border-left: 1px solid white; margin-left: 20px; " class="centriert">
 			                <div style="margin-left: 20px; text-align: left; ">
-			                    <h4 style="text-align: center; "><? echo htmlspecialchars($member_count); ?> Mitglieder</h4>
-			                    <h4 style="margin-top: 10px; text-align: center; "><span id="chat_messages_count"><? echo htmlspecialchars($messages_count); ?></span> Nachrichten</h4>
+			                    <h4 style="text-align: center; "><?php echo htmlspecialchars($member_count); ?> Mitglieder</h4>
+			                    <h4 style="margin-top: 10px; text-align: center; "><span id="chat_messages_count"><?php echo htmlspecialchars($messages_count); ?></span> Nachrichten</h4>
 			                </div>
 			            </div>
 		            </div>
@@ -130,24 +130,24 @@ if($chat_data){
                             <div style="width: 100%; height: auto; overflow: hidden; " id="chat_inner_data"></div>
                             <div style="width: 100%; height: 25px; "></div>
                         </div>
-                        <?
+                        <?php
                         if(!isset($_SESSION['pupil'])){
 							?>
 							<div style="position: absolute; bottom: 0px; right: 0px; left: 0px; min-height: 50px; height: auto; " class="centriert">
 							    <p style="color: red; ">Um selber Nachrichten in diesen Chat schreiben zu können, melde dich bitte an oder regestriere dich. Der Zugang ist nur für Schüler des MEGs erlaubt!</p>
 							</div>
-							<?
+                            <?php
 						} else {
 						    ?>
 						    <textarea rows="1" onkeydown="message_input_keydown(event);" id="private_message_text" style="position: absolute; bottom: 0px; right: 0px; left: 0px; height: 30px;  font-size: 24px; text-align: left; resize: none; background-color: transparent; " class="text" placeholder="Meine Nachricht.."></textarea>
-						    <?	
+                            <?php
 						}
 						?>
                     </div>
                 </div>
-            <? } ?>
+            <?php } ?>
         </div>
-        <? if($chat_data){ ?>
+        <?php if($chat_data){ ?>
         <script>
             window.last_message_id = -1;
             window.loaded_messages_count = 0;
@@ -342,6 +342,6 @@ if($chat_data){
 				}, 200);
 			};
         </script>
-        <? } ?>
+        <?php } ?>
     </body>
 </html>

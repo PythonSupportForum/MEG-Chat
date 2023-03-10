@@ -1,4 +1,4 @@
-<?
+<?php
 require_once("../logic/db.php");
 
 if(isset($_SESSION['pupil'])){
@@ -19,10 +19,10 @@ $s_data = (array)$row;
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MEG Chat | Schüler | <? echo htmlspecialchars($s_data['fullname']); ?></title>
-        <meta name="description" content="<? echo htmlspecialchars($s_data['about_me']); ?>">
-        <meta name="keywords" lang="de" content="max ernst gymnasium, meg, schüler, schueler, klasse, informtionen, profil, <? echo htmlspecialchars($s_data['fullname']); ?>">
-        <? require('../middleware/head.php'); ?>
+        <title>MEG Chat | Schüler | <?php echo htmlspecialchars($s_data['fullname']); ?></title>
+        <meta name="description" content="<?php echo htmlspecialchars($s_data['about_me']); ?>">
+        <meta name="keywords" lang="de" content="max ernst gymnasium, meg, schüler, schueler, klasse, informtionen, profil, <?php echo htmlspecialchars($s_data['fullname']); ?>">
+        <?php require('../middleware/head.php'); ?>
     </head>
     <body>
         <div style="float: left; width: 160px; max-width: 100%; ">
@@ -33,40 +33,40 @@ $s_data = (array)$row;
             </div>
             <div style="width: 100%; height: auto; border-top: 1px solid black; margin-top: 10px; text-align: center; overflow: hidden; " class="centriert">
 				<div style="width: 100%; text-align: center; height: auto; margin-top: 10px; ">
-	                <?
+                    <?php
 					if(isset($_SESSION['pupil'])){
 						?>
-						<h2 style="margin-top: 5px; font-size: 14px; word-wrap: break-word; ">Du bist angemeldet als <? echo htmlspecialchars($pupil_data['fullname']); ?>!</h2>
-						<?
+						<h2 style="margin-top: 5px; font-size: 14px; word-wrap: break-word; ">Du bist angemeldet als <?php echo htmlspecialchars($pupil_data['fullname']); ?>!</h2>
+                        <?php
 						if($pupil_data['activated'] == 0){
 							?>
 							<p style="color: red; font-size: 10px; ">Dein Account ist noch nicht freigeschaltet worden. Bitte gedulte dich einige Zeit oder Kontaktiere einen Administrator. Wir werden deine Identität Prüfen und den Account anschließend freischalten.</p>
-							<?
+                            <?php
 					    }
 						?>
 						<div style="width: 100%; height: auto; margin-top: 10px; ">
-						    <button onclick="page_navigate('/schueler/<? echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
+						    <button onclick="page_navigate('/schueler/<?php echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Einstellungen</button>
 						    <button onclick="window.location.href='/account/logout';" style="background-color: red; color: white; font-size: 16px; width: 100%; height: 25px; margin-top: 10px; ">Abmelden</button>
 						</div>
-						<?
+                        <?php
 	                } else { ?>
 						<div style="width: 100%; height: auto; margin-top: 10px; ">
 	                        <button onclick="page_navigate('/account/login');" style="width: 100%; height: 25px; margin-top: 10px; ">Anmelden</button>
 	                        <button onclick="page_navigate('/account/register');" style="width: 100%; height: 50px; margin-top: 10px; ">Mich als Schüler hinzufügen</button>
 	                    </div>
-	                <? } ?>
+                    <?php } ?>
                 </div>
             </div>
         </div>
         <div style="float: left; width: calc( 100% - 162px ); min-width: 600px; max-width: 100%; text-align: center;">
-			<? if(!$s_data){
+            <?php if(!$s_data){
 			    ?>
 			    <h1>Das Profil dieses Schülers konnte nicht gefunden werden!</h1>
-			    <?	
+                <?php
 			} else { ?>
-                <h1><? echo htmlspecialchars($s_data['fullname']); ?></h1>
+                <h1><?php echo htmlspecialchars($s_data['fullname']); ?></h1>
                 <div style="width: 100%; height: auto; " class="centriert">
-                    <img loading="lazy" id="avatar" style="width: 300px; height: 300px; max-width: 100%; max-height: 100%; border-radius: 50%; " src="<? echo htmlspecialchars(empty($s_data['avatar']) ? "/resources/images/avatar.png" : $s_data['avatar']); ?>">
+                    <img loading="lazy" id="avatar" style="width: 300px; height: 300px; max-width: 100%; max-height: 100%; border-radius: 50%; " src="<?php echo htmlspecialchars(empty($s_data['avatar']) ? "/resources/images/avatar.png" : $s_data['avatar']); ?>">
                 </div>
                 <div style="width: 100%; height: auto; margin-top: 25px; " class="centriert">
 					<div style="width: 500px; max-width: 100%;">
@@ -77,13 +77,13 @@ $s_data = (array)$row;
 						</div>
 						<div id="profile" class="tabcontent" style="display: block; text-align: left; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; ">
 						  <h3>Über mich:</h3>
-						  <p id="about_me_text"><? echo htmlspecialchars(empty($s_data['about_me']) ? "noch nichts" : $s_data['about_me']); ?></p>
-						  <?
+						  <p id="about_me_text"><?php echo htmlspecialchars(empty($s_data['about_me']) ? "noch nichts" : $s_data['about_me']); ?></p>
+                            <?php
 						  if(isset($_SESSION['pupil'])){
 							  if($pupil_data['id'] == $s_data['id']){
 								  ?>
 								  <button onclick="edit_about_me();">Bearbeiten</button>
-								  <?
+                                  <?php
 						      }
 						  }
 						  if(isset($_SESSION['pupil'])){
@@ -92,7 +92,7 @@ $s_data = (array)$row;
 								  <h3>Mein Profilbild ändern:</h3>
 								  <button onclick="upload_avatar();">Bild hochladen</button>
 								  <button onclick="edit_avatar();">URL auswählen</button>
-								  <?
+                                  <?php
 						      }
 						  }
 						  ?>
@@ -100,29 +100,29 @@ $s_data = (array)$row;
 						  <div style="width: 100%; height: 20px; font-size: 14px; ">
 			                  <div style="width: 100%; text-align: left ">
 							      <div style="text-align: left; width: auto; height: auto; ">
-									  <? if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $s_data['id'] != $pupil_data['id']){ ?><a style="color: white; " href="javascript:void(0); " onclick="event.stopPropagation(); vote('<? echo htmlspecialchars($s_data['id']); ?>');"><? } ?>
-									  <div class="schueler_vote_count_<? echo htmlspecialchars($s_data['id']); ?>" style="float: left; color: white; "><? echo $s_data['rating']; ?></div>
+                                      <?php if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $s_data['id'] != $pupil_data['id']){ ?><a style="color: white; " href="javascript:void(0); " onclick="event.stopPropagation(); vote('<?php echo htmlspecialchars($s_data['id']); ?>');"><?php } ?>
+									  <div class="schueler_vote_count_<?php echo htmlspecialchars($s_data['id']); ?>" style="float: left; color: white; "><?php echo $s_data['rating']; ?></div>
 									  <div style="float: left; margin-left: 8px; color: white; ">Stimmen</div>
-									  <? if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $s_data['id'] != $pupil_data['id']){ ?></a><? } ?>
+                                          <?php if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $s_data['id'] != $pupil_data['id']){ ?></a><?php } ?>
 								  </div>
 							  </div>
 						  </div>
-						  <? if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $s_data['id'] != $pupil_data['id']){ ?>
+                            <?php if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $s_data['id'] != $pupil_data['id']){ ?>
 					      <div style="width: 100%; height: 25px; font-size: 14px; margin-top: 15px; ">
-							  <button onclick="event.stopPropagation(); vote('<? echo htmlspecialchars($s_data['id']); ?>');">Gefällt Mir</button>
+							  <button onclick="event.stopPropagation(); vote('<?php echo htmlspecialchars($s_data['id']); ?>');">Gefällt Mir</button>
 						  </div>
-						  <? }?>
+                            <?php }?>
 						</div>
 						<div id="chats_together" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; ">
-						  <?
+                            <?php
 						    if(!isset($_SESSION['pupil'])){
 								?>
-								<h3 style="text-align: center;">Bitte melde dich an um zu sehen, welche Chats du mit <? echo htmlspecialchars($s_data['fullname']); ?> gemeinsam hast.</h3>
-								<?
+								<h3 style="text-align: center;">Bitte melde dich an um zu sehen, welche Chats du mit <?php echo htmlspecialchars($s_data['fullname']); ?> gemeinsam hast.</h3>
+                                <?php
 							} else if($pupil_data['id'] == $s_data['id']){
 							    ?>
 								<h3 style="text-align: center;">Du hast ne Menge Chats mit dir selber xD</h3>
-								<?
+                                <?php
 							} else {
 								$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE public = 0 AND id IN (SELECT chat FROM ".DBTBL.".chats_members WHERE pupil = :pupil) AND id IN (SELECT chat FROM ".DBTBL.".chats_members WHERE pupil = :pupil2); ");
 								$stmtData->execute(array('pupil' => $s_data['id'], 'pupil2' => $pupil_data['id']));
@@ -144,50 +144,50 @@ $s_data = (array)$row;
 									    $count = ((array)$stmtCount->fetchObject())['count'];
 									}
 									?>
-									<div class="chatgruppe" onclick="page_navigate('/internal/information/chat/<? echo htmlspecialchars($row['id']); ?>', '#chat_container'); window.last_message_id = -1;">
+									<div class="chatgruppe" onclick="page_navigate('/internal/information/chat/<?php echo htmlspecialchars($row['id']); ?>', '#chat_container'); window.last_message_id = -1;">
 									    <div style="width: 100%; min-height: 40px; height: auto; ">
 										    <div style="height: auto; width: 100%; min-height: 40px; position: relative; ">
 												<div style="width: calc( 100% - 120px ); ">
-										            <h4 style="margin: 0; padding: 0; font-size: 18px; "><? echo htmlspecialchars($row['name']); ?></h4>
-										            <h6 style="margin: 0; padding: 0; font-size: 14px; font-weight: small; "><? echo htmlspecialchars($row['description']); ?></h6>
+										            <h4 style="margin: 0; padding: 0; font-size: 18px; "><?php echo htmlspecialchars($row['name']); ?></h4>
+										            <h6 style="margin: 0; padding: 0; font-size: 14px; font-weight: small; "><?php echo htmlspecialchars($row['description']); ?></h6>
 										        </div>
-										        <? if($count > 0){ ?>
+                                                <?php if($count > 0){ ?>
 											    <div style="position: absolute; right: 0px; top: 0px; min-height: 40px; height: auto; width: 100px; " class="centriert">
-											        <div style="height: 90%; width: 80%; background-color: red; color: white; border-radius: 10px; font-size: 24px; " class="centriert"><? echo htmlspecialchars($count); ?></div>
+											        <div style="height: 90%; width: 80%; background-color: red; color: white; border-radius: 10px; font-size: 24px; " class="centriert"><?php echo htmlspecialchars($count); ?></div>
 											    </div>
-											    <? } ?>
+                                                <?php } ?>
 										    </div>
 									    </div>
 									</div>
-								<?
+                                    <?php
 								}
 								if($no_chats){
 									?>
-									<h3 style="text-align: center;">Du hast noch keine gemeinsamen Chats mit <? echo htmlspecialchars($s_data['fullname']); ?>.</h3>
-									<?
+									<h3 style="text-align: center;">Du hast noch keine gemeinsamen Chats mit <?php echo htmlspecialchars($s_data['fullname']); ?>.</h3>
+                                    <?php
 								}
 							}
 							?>
 						</div>
 						
 						<div id="contact" class="tabcontent" style="text-align: left; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; ">
-						  <p><strong>Email:</strong> <span id="email_text"><? echo htmlspecialchars($s_data['email']); ?></span> <?
+						  <p><strong>Email:</strong> <span id="email_text"><?php echo htmlspecialchars($s_data['email']); ?></span> <?php
 						  if(isset($_SESSION['pupil'])){
 							  if($pupil_data['id'] == $s_data['id']){
 								  ?>
 								  <button onclick="edit_email();">Bearbeiten</button>
-								  <?
+                                  <?php
 						      }
 						  }
 						  ?></p>
 						</div>
 					</div>
 				</div>
-            <? } ?>
+            <?php } ?>
         </div>
         <script>
 	        window.edit_about_me = function(){
-				html_popup("Erzähl etwas über dich..", '<textarea style="width: 100%; height: 200px; resize: none; " id="about_me_editor"><? echo htmlspecialchars($s_data['about_me']); ?></textarea><button onclick="save_about_me();">Speichern</button>');
+				html_popup("Erzähl etwas über dich..", '<textarea style="width: 100%; height: 200px; resize: none; " id="about_me_editor"><?php echo htmlspecialchars($s_data['about_me']); ?></textarea><button onclick="save_about_me();">Speichern</button>');
 			};
 			window.save_about_me = function(){
 				var value = document.getElementById("about_me_editor").value;
@@ -202,7 +202,7 @@ $s_data = (array)$row;
 				
 			}
 			window.edit_email = function(){
-				html_popup("Email Adresse bearbeiten", '<input type="email" id="email_editor" value="<? echo htmlspecialchars($s_data['email']); ?>" placeholder="mustermann.max@meg-bruehl.de"></input><button onclick="save_email();">Speichern</button>');
+				html_popup("Email Adresse bearbeiten", '<input type="email" id="email_editor" value="<?php echo htmlspecialchars($s_data['email']); ?>" placeholder="mustermann.max@meg-bruehl.de"></input><button onclick="save_email();">Speichern</button>');
 			};
 			window.save_email = function(){
 				var value = document.getElementById("email_editor").value;

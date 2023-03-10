@@ -1,4 +1,4 @@
-<?
+<?php
 if(isset($_SESSION['pupil'])){
 	$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE public = 0 AND id IN (SELECT chat FROM ".DBTBL.".chats_members WHERE pupil = :pupil);");
 	$stmtData->execute(array('pupil' => $pupil_data['id']));
@@ -6,7 +6,7 @@ if(isset($_SESSION['pupil'])){
 ?>
 <div style="margin-top: 20px; max-width: 100%; width: auto; height: auto; float: left; clear: none;" class="private_chats_container" id="private_chats_container">
 	<h2 style="margin-left: 20px; ">Meine Chatgruppen:</h2>
-	<?
+    <?php
 	while($row = $stmtData->fetchObject()){
 		$row = (array)$row;
 		$count = 0;
@@ -23,29 +23,29 @@ if(isset($_SESSION['pupil'])){
 		    $count = ((array)$stmtCount->fetchObject())['count'];
 		}
 		?>
-		<div class="chatgruppe" onclick="page_navigate('/chat/<? echo htmlspecialchars($row['id']); ?>', '#chat_container'); window.last_message_id = -1;">
+		<div class="chatgruppe" onclick="page_navigate('/chat/<?php echo htmlspecialchars($row['id']); ?>', '#chat_container'); window.last_message_id = -1;">
 		    <div style="width: 100%; min-height: 40px; height: auto; ">
 			    <div style="height: auto; width: 100%; min-height: 40px; position: relative; ">
 					<div style="width: calc( 100% - 120px ); ">
-			            <h4 style="margin: 0; padding: 0; font-size: 18px; "><? echo htmlspecialchars($row['name']); ?></h4>
-			            <h6 style="margin: 0; padding: 0; font-size: 14px; font-weight: small; "><? echo htmlspecialchars($row['description']); ?></h6>
+			            <h4 style="margin: 0; padding: 0; font-size: 18px; "><?php echo htmlspecialchars($row['name']); ?></h4>
+			            <h6 style="margin: 0; padding: 0; font-size: 14px; font-weight: small; "><?php echo htmlspecialchars($row['description']); ?></h6>
 			        </div>
-			        <? if($count > 0){ ?>
+                    <?php if($count > 0){ ?>
 				    <div style="position: absolute; right: 0px; top: 0px; min-height: 40px; height: auto; width: 100px; " class="centriert">
-				        <div style="height: 90%; width: 80%; background-color: red; color: white; border-radius: 10px; font-size: 24px; " class="centriert"><? echo htmlspecialchars($count); ?></div>
+				        <div style="height: 90%; width: 80%; background-color: red; color: white; border-radius: 10px; font-size: 24px; " class="centriert"><?php echo htmlspecialchars($count); ?></div>
 				    </div>
-				    <? } ?>
+                    <?php } ?>
 			    </div>
 		    </div>
 		</div>
-	<? } ?>
+    <?php } ?>
 </div>
-<?
+        <?php
 } }
 ?>
 <div style="margin-top: 20px; max-width: 100%; width: auto; height: auto; float: left; clear: none; " class="public_chats_container" id="public_chats_container">
 	<h2 style="margin-left: 20px; ">Öffentliche Chattgruppen:</h2>
-	<?
+    <?php
 	$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE public = 1; ");
 	$stmtData->execute();
 	while($row = $stmtData->fetchObject()){
@@ -64,20 +64,20 @@ if(isset($_SESSION['pupil'])){
 		    $count = ((array)$stmtCount->fetchObject())['count'];
 		}
 		?>
-		<div class="chatgruppe" onclick="page_navigate('/chat/<? echo htmlspecialchars($row['id']); ?>', '#chat_container'); window.last_message_id = -1;">
+		<div class="chatgruppe" onclick="page_navigate('/chat/<?php echo htmlspecialchars($row['id']); ?>', '#chat_container'); window.last_message_id = -1;">
 		    <div style="width: 100%; min-height: 40px; height: auto; ">
 			    <div style="height: auto; width: 100%; min-height: 40px; position: relative; ">
 					<div style="width: calc( 100% - 120px ); ">
-			            <h4 style="margin: 0; padding: 0; font-size: 18px; "><? echo htmlspecialchars($row['name']); ?></h4>
-			            <h6 style="margin: 0; padding: 0; font-size: 14px; font-weight: small; "><? echo htmlspecialchars($row['description']); ?></h6>
+			            <h4 style="margin: 0; padding: 0; font-size: 18px; "><?php echo htmlspecialchars($row['name']); ?></h4>
+			            <h6 style="margin: 0; padding: 0; font-size: 14px; font-weight: small; "><?php echo htmlspecialchars($row['description']); ?></h6>
 			        </div>
-			        <? if($count > 0){ ?>
+                    <?php if($count > 0){ ?>
 				    <div style="position: absolute; right: 0px; top: 0px; min-height: 40px; height: auto; width: 100px; " class="centriert">
-				        <div style="height: 90%; width: 80%; background-color: red; color: white; border-radius: 10px; font-size: 24px; " class="centriert"><? echo htmlspecialchars($count); ?></div>
+				        <div style="height: 90%; width: 80%; background-color: red; color: white; border-radius: 10px; font-size: 24px; " class="centriert"><?php echo htmlspecialchars($count); ?></div>
 				    </div>
-				    <? } ?>
+                    <?php } ?>
 			    </div>
 		    </div>
 		</div>
-	<? } ?>
+    <?php } ?>
 </div>

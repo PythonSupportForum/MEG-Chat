@@ -1,4 +1,4 @@
-<?
+<?php
 $output = array();
 $return_var = -1;
 $message=exec("/var/www/html/MEG-Chat/update.sh 2>&1", $output, $return_var);
@@ -11,10 +11,10 @@ echo "<strong>Rückgabe: </strong><br>".$message;
 if ( $return_var == 0 ) {
     ?>
     <p style="color: green; ">Erfolgreich gespeichert!</p>
-    <?
+    <?php
 } else {
 	?>
     <p style="color: red; ">Fehler beim Speichern!</p>
-    <?
+    <?php
 }
 ?>
