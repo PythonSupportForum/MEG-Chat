@@ -198,15 +198,19 @@ if($chat_data){
 					}, 200);
 				    return;
 				}
-				if(chat_id !== Number(window.location.href.split("/")[window.location.href.split("/").length-1])){
+				function reset_chat(){
+					document.getElementById("chat_inner_data").innerHTML = "";
 				    chat_id = Number(window.location.href.split("/")[window.location.href.split("/").length-1]);
 				    last_message_id = -1;
 				    loaded_messages_count = 0;
 				    last_message_author_id = false;
 				}
+				if(chat_id !== Number(window.location.href.split("/")[window.location.href.split("/").length-1])){
+					reset_chat();
+				}
 				if(last_message_id > -1){
 					if(!document.getElementById("message_"+chat_id+"_"+last_message_id)){
-						last_message_id = -1;
+						reset_chat();
 					}
 				}
 				function add_to_chat(data){
@@ -276,6 +280,7 @@ if($chat_data){
 							var neb = document.createElement("div");
 							neb.style = "position: absolute; top: 0px; left: 0px; height: 40px; width: 40px; display: flex; justify-content: center; align-items: center; ";
 							var neba = document.createElement("img");
+							neba.loading = "lazy";
 							neba.style = "width: 34px; height: 34px; border-radius: 50%; ";
 							neba.src = z.author.avatar || "/resources/images/avatar.png";
 							neb.appendChild(neba);
