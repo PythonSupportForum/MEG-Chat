@@ -118,7 +118,9 @@ if(isset($_POST['submit'])){
         }
         .login-container {
             background:#525252;
-            width: 17%;
+            min-width: 20%;
+            width: 300px;
+            max-width: 100%;
             display: flex;
             flex-direction: row;
             border-radius: 15px;
