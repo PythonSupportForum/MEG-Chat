@@ -20,3 +20,10 @@
 <meta name="msapplication-TileImage" content="/resources/icons/ms-icon-144x144.png">
 <script src="/resources/js/script.js"></script>
 <link rel="stylesheet" href="/resources/css/style.css">
+
+<!-- Discord Embed -->
+<meta content="Meg Chat" property="og:title" />
+<meta content="Eine Austauschplatform für Schüler des MEGs" property="og:description" />
+<meta content="https://meg-chat.de" property="og:url" />
+<meta content="https://meg-chat.de/resources/icons/favicon-96x96.png" property="og:image" />
+<meta content="#0c969e" data-react-helmet="true" name="theme-color" />

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEG Chat | Impressum</title>
     <meta name="description"
-          content="Der Chat für Schüler des Max Ernst Gymnasiums Brühl! Schüler und Schülern. Veräntwortliche Schüler und unser Impressum">
+          content="Der Chat für Schüler des Max Ernst Gymnasiums Brühl! Schüler und Schülern. Verantwortliche Schüler und unser Impressum">
     <meta name="keywords" lang="de"
           content="meg, max, ernst, gymnasium, max ernst gymnasium, brühl, chat, online, schueler, chatten, austauschen, hausaufgaben, fragen, blog, artikel, austausch, kontakt, impressum, verantwortliche">
     <? require('../middleware/head.php'); ?>
