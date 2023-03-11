@@ -42,11 +42,11 @@ self.addEventListener('fetch', (event) => {
           cache.put(event.request, networkResponse.clone());
           return networkResponse;
         });
-        if(event.request.destination == "document"){
-		    return (await fetchedResponse) || cachedResponse;
-		} else {
+        //if(event.request.destination == "document"){
+		//    return (await fetchedResponse) || cachedResponse;
+		//} else {
             return cachedResponse || fetchedResponse;
-        }
+        //}
       });
     }));
   } else {
