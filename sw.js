@@ -35,7 +35,7 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', (event) => {
-	console.log("[ServiceWorker**] Loading: "+event.request.destination);
+	console.log("[ServiceWorker**] Loading: "+);
 
   if (event.request.method != "POST") {
     event.respondWith(caches.open(cacheName).then((cache) => {
@@ -44,8 +44,11 @@ self.addEventListener('fetch', (event) => {
           cache.put(event.request, networkResponse.clone());
           return networkResponse;
         });
-
-        return cachedResponse || fetchedResponse;
+        if(event.request.destination == "document"){
+		    return (await fetchedResponse) || cachedResponse;
+		} else {
+            return cachedResponse || fetchedResponse;
+        }
       });
     }));
   } else {
