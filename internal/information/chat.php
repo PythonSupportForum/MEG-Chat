@@ -110,58 +110,113 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 	        </div>
         </div>
         <?php } if(!isset($_GET['list'])){ ?>
-        <div style="float: left; width: <?php if(!$is_mobile || isset($_GET['list'])){ ?>calc( 100% - 542px )<?php } else { ?>100%<?php } ?>; min-width: 350px; max-width: 100%; text-align: center; height: 100%; " id="chat_container">
-            <?php if(!$chat_data){
-			    ?>
-			    <h1>Entweder dieser Chat exestiert nicht oder zu hast keinen Zugriff darauf. Sollte dieses Problem weiterhin auftauchen melde dich bitte bei einem Administrator.!</h1>
-                <?php
-			} else { ?>
-				<div style="height: auto; min-height: 110px; margin-top: 6px; " class="centriert">
-					<div style="width: auto; height: 100%; " class="centriert">
-						<?php if($is_mobile && !isset($_GET['list'])){ ?>
-						<div style="height: 110px; width: auto; min-width: 50px; float: left; padding-right: 15px; " class="centriert">
-						    <button onclick="page_navigate('/chat/list');" style="min-height: 50px; height: auto; width: 100px; font-size: 16px; ">Zurück zur Übersicht</button>
-						</div>
-						<?php } ?>
-						<div style="height: 110px; width: auto; float: left; " class="centriert">
-							<div>
-				                <h1 style="margin-top: 0px; font-size: 26px; "><?php echo htmlspecialchars($chat_data['name']); ?></h1>
-				                <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
-				                     <h2 style="margin: 0; padding: 0; font-size: 18px; "><?php echo htmlspecialchars($chat_data['description']); ?></h2>
+		<div id="chat_top_container" style="float: left; ">
+	        <div style="float: left; width: <?php if(!$is_mobile || isset($_GET['list'])){ ?>calc( 100% - 542px )<?php } else { ?>100%<?php } ?>; min-width: 350px; max-width: 100%; text-align: center; height: 100%; " id="chat_container">
+	            <?php if(!$chat_data){
+				    ?>
+				    <h1>Entweder dieser Chat exestiert nicht oder zu hast keinen Zugriff darauf. Sollte dieses Problem weiterhin auftauchen melde dich bitte bei einem Administrator.!</h1>
+	                <?php
+				} else { ?>
+					<div style="height: auto; min-height: 110px; margin-top: 6px; " class="centriert">
+						<div style="width: auto; height: 100%; " class="centriert">
+							<?php if($is_mobile && !isset($_GET['list'])){ ?>
+							<div style="height: 110px; width: auto; min-width: 50px; float: left; padding-right: 15px; " class="centriert">
+							    <button onclick="page_navigate('/chat/list');" style="min-height: 50px; height: auto; width: 100px; font-size: 16px; ">Zurück zur Übersicht</button>
+							</div>
+							<?php } ?>
+							<div style="height: 110px; width: auto; float: left; " class="centriert">
+								<div>
+					                <h1 style="margin-top: 0px; font-size: 26px; "><?php echo htmlspecialchars($chat_data['name']); ?></h1>
+					                <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
+					                     <h2 style="margin: 0; padding: 0; font-size: 18px; "><?php echo htmlspecialchars($chat_data['description']); ?></h2>
+					                </div>
+					            </div>
+				            </div>
+				            <div style="height: 110px; width: auto; float: left; border-left: 1px solid white; margin-left: 20px; " class="centriert">
+				                <div style="margin-left: 20px; text-align: left; ">
+				                    <h4 onclick="chat_members_info();" style="text-align: center; cursor: pointer; "><?php echo htmlspecialchars($member_count); ?> Mitglieder</h4>
+				                    <h4 style="margin-top: 10px; text-align: center; "><span id="chat_messages_count"><?php echo htmlspecialchars($messages_count); ?></span> Nachrichten</h4>
 				                </div>
 				            </div>
 			            </div>
-			            <div style="height: 110px; width: auto; float: left; border-left: 1px solid white; margin-left: 20px; " class="centriert">
-			                <div style="margin-left: 20px; text-align: left; ">
-			                    <h4 onclick="chat_members_info();" style="text-align: center; cursor: pointer; "><?php echo htmlspecialchars($member_count); ?> Mitglieder</h4>
-			                    <h4 style="margin-top: 10px; text-align: center; "><span id="chat_messages_count"><?php echo htmlspecialchars($messages_count); ?></span> Nachrichten</h4>
-			                </div>
-			            </div>
-		            </div>
-                </div>
-                <div style="width: 100%; height: calc( 100% - 155px ); min-height: 200px; max-height: 100%; margin-top: 20px; " class="centriert">
-                    <div style="height: 100%; width: 95%; position: relative;">
-                        <div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 52px; overflow-x: hidden; overflow-y: auto; " id="chat_inner_data_container" class="no_scrollbar">
-                            <div style="width: 100%; height: auto; overflow: hidden; " id="chat_inner_data"></div>
-                            <div style="width: 100%; height: 25px; "></div>
-                        </div>
-                        <?php
-                        if(!isset($_SESSION['pupil'])){
+	                </div>
+	                <div style="width: 100%; height: calc( 100% - 155px ); min-height: 200px; max-height: 100%; margin-top: 20px; " class="centriert">
+	                    <div style="height: 100%; width: 95%; position: relative;">
+							<?php if(isset($_GET['members'])){ ?>
+							<div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow-x: hidden; overflow-y: auto; " class="no_scrollbar">
+	                            <div style="width: 100%; height: auto; overflow: hidden; ">
+		                            <?php
+							        $stmtMembers = $db->prepare("SELECT ".DBTBL.".pupils.*, COUNT(".DBTBL.".pupils_votes.s_to) AS rating_count, COALESCE(SUM(points),0) as rating FROM ".DBTBL.".pupils LEFT JOIN ".DBTBL.".pupils_votes ON ".DBTBL.".pupils.id = ".DBTBL.".pupils_votes.s_to WHERE pupils.id IN (SELECT pupil FROM ".DBTBL.".chats_members WHERE chat = :chat) GROUP BY ".DBTBL.".pupils.id ORDER BY LOWER(fullname) ASC LIMIT 10000;");
+									$stmtMembers->execute(array('chat' => $chat_data['id']));
+									while($row = $stmtMembers->fetchObject()){
+									    $row = (array)$row;
+									    ?>
+									    <a href="javascript:page_navigate('/schueler/<?php echo htmlspecialchars($row['id']); ?>');" style="color: black; text-decoration: none; "><div class="schueler_container">
+										    <div style="height: calc( 100% - 60px ); width: 100%; margin-top: 10px; " class="centriert">
+										        <img loading="lazy" style="width: 130px; height: 130px; border-radius: 50%; " src="<?php echo htmlspecialchars(empty($row['avatar']) ? "/resources/images/avatar.png" : $row['avatar']); ?>">
+										    </div>
+										    <div style="width: 100%; height: 40px; word-wrap: break-word; " class="centriert">
+										        <h3 style="word-wrap: break-word;"><?php echo htmlspecialchars($row['fullname']); ?></h3>
+										    </div>
+										    <div style="width: 100%; height: 50px; font-size: 14px; overflow-x: hidden; overflow-y: scroll; " class="centriert no_scrollbar">
+										        <div style="width: 100%; text-align: center; word-wrap: break-word; " class="centriert">
+													<div style="text-align: center; width: auto; height: auto; ">
+														<div style="margin-left: 8px; color: black; "><?php echo htmlspecialchars($row['about_me']); ?></div>
+													</div>
+												</div>
+										    </div>
+										    <div style="width: 100%; height: 20px; font-size: 14px; " class="centriert">
+							                    <div style="width: 100%; text-align: center; " class="centriert">
+													<div style="text-align: center; width: auto; height: auto; ">
+														<?php if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $row['id'] != $pupil_data['id']){ ?><a style="color: black; " href="javascript:void(0); " onclick="event.stopPropagation(); vote('<?php echo htmlspecialchars($row['id']); ?>');"><?php } ?>
+														<div class="schueler_vote_count_<?php echo htmlspecialchars($row['id']); ?>" style="float: left; color: black; "><?php echo $row['rating']; ?></div>
+														<div style="float: left; margin-left: 8px; color: black; ">Stimmen</div>
+															<?php if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $row['id'] != $pupil_data['id']){ ?></a><?php } ?>
+													</div>
+												</div>
+										    </div>
+												<?php if(isset($_SESSION['pupil']) && $pupil_data['activated'] == 1 && $row['id'] != $pupil_data['id']){ ?>
+											<div style="width: 100%; height: 25px; font-size: 14px; " class="centriert">
+											    <button onclick="event.stopPropagation(); vote('<?php echo htmlspecialchars($row['id']); ?>');">Gefällt Mir</button>
+											</div>
+												<?php }?>
+											<div style="width: 100%; height: 10px; "></div>
+										</div></a>
+									    <?	
+									}
+									if($chat_data['public'] == 1){
+										?>
+										<div style="width: 100%; height: auto; margin-top: 20px; text-align: center; ">Dieser Chat ist öffentlich. Das heißt das Jeder die Nachrichten in diesem Chat lesen kann, auch ohne Mitglied zu sein.</div>
+										<?php
+									}	
+									?>
+	                            </div>
+	                            <div style="width: 100%; height: 25px; "></div>
+	                        </div>
+							<?php } else { ?>
+	                        <div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 52px; overflow-x: hidden; overflow-y: auto; " id="chat_inner_data_container" class="no_scrollbar">
+	                            <div style="width: 100%; height: auto; overflow: hidden; " id="chat_inner_data"></div>
+	                            <div style="width: 100%; height: 25px; "></div>
+	                        </div>
+	                        <?php
+	                        if(!isset($_SESSION['pupil'])){
+								?>
+								<div style="position: absolute; bottom: 0px; right: 0px; left: 0px; min-height: 50px; height: auto; max-height: 65px; overflow-y: auto; " class="centriert no_scrollbar">
+								    <p style="color: red; ">Um selber Nachrichten in diesen Chat schreiben zu können, melde dich bitte an oder regestriere dich. Der Zugang ist nur für Schüler des MEGs erlaubt!</p>
+								</div>
+	                            <?php
+							} else {
+							    ?>
+							    <textarea rows="1" onkeydown="message_input_keydown(event);" id="private_message_text" style="position: absolute; bottom: 0px; right: 0px; left: 0px; height: 30px;  font-size: 24px; text-align: left; resize: none; background-color: transparent; " class="text" placeholder="Meine Nachricht.."></textarea>
+	                            <?php
+							}
+						    }
 							?>
-							<div style="position: absolute; bottom: 0px; right: 0px; left: 0px; min-height: 50px; height: auto; max-height: 65px; overflow-y: auto; " class="centriert no_scrollbar">
-							    <p style="color: red; ">Um selber Nachrichten in diesen Chat schreiben zu können, melde dich bitte an oder regestriere dich. Der Zugang ist nur für Schüler des MEGs erlaubt!</p>
-							</div>
-                            <?php
-						} else {
-						    ?>
-						    <textarea rows="1" onkeydown="message_input_keydown(event);" id="private_message_text" style="position: absolute; bottom: 0px; right: 0px; left: 0px; height: 30px;  font-size: 24px; text-align: left; resize: none; background-color: transparent; " class="text" placeholder="Meine Nachricht.."></textarea>
-                            <?php
-						}
-						?>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
+	                    </div>
+	                </div>
+	            <?php } ?>
+	        </div>
+	    </div>
         <?php if($chat_data){ ?>
         <script>
             window.last_message_id = -1;
@@ -359,8 +414,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 				}, 200);
 			};
 			window.chat_members_info = function(){
-				html_popup("Chat Mitglieder", '<div class="chat_members_container no_scrollbar" style="padding-bottom: 20px; "></div><div style="width: 100%; height: 20px; "></div>');
-				page_navigate("/ajax/chat_members.php?chat="+chat_id, "body", ".chat_members_container");
+				page_navigate("/chat/"+chat_id+"?members=true", "#chat_top_container");
 			};
         </script>
         <?php } } ?>
