@@ -145,8 +145,8 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 							<?php if(isset($_GET['members'])){ ?>
 							<div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow-x: hidden; overflow-y: auto; " class="no_scrollbar">
 	                            <div style="width: 100%; height: auto; overflow: hidden; ">
-									<div style="width: 100%; height: 80px; ">
-									    <h2 style="text-align: center; ">Mitglieder</h2>
+									<div style="width: 100%; height: 50px; ">
+									    <h2 style="text-align: center; "><u>Mitglieder</u></h2>
 									</div>
 		                            <?php
 							        $stmtMembers = $db->prepare("SELECT ".DBTBL.".pupils.*, COUNT(".DBTBL.".pupils_votes.s_to) AS rating_count, COALESCE(SUM(points),0) as rating FROM ".DBTBL.".pupils LEFT JOIN ".DBTBL.".pupils_votes ON ".DBTBL.".pupils.id = ".DBTBL.".pupils_votes.s_to WHERE pupils.id IN (SELECT pupil FROM ".DBTBL.".chats_members WHERE chat = :chat) GROUP BY ".DBTBL.".pupils.id ORDER BY LOWER(fullname) ASC LIMIT 10000;");
@@ -189,7 +189,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 									}
 									if($chat_data['public'] == 1){
 										?>
-										<div style="width: 100%; height: auto; margin-top: 20px; text-align: center; ">Dieser Chat ist öffentlich. Das heißt das Jeder die Nachrichten in diesem Chat lesen kann, auch ohne Mitglied zu sein.</div>
+										<div style="width: 100%; height: auto; margin-top: 20px; text-align: center; color: red; ">Dieser Chat ist öffentlich. Das heißt das Jeder die Nachrichten in diesem Chat lesen kann, auch ohne Mitglied zu sein.</div>
 										<?php
 									}	
 									?>
@@ -420,7 +420,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 				page_navigate("/chat/"+chat_id+"?members=true", "#chat_top_container");
 			};
 			window.chat_messages_info = function(){
-				page_navigate("/chat/"+chat_id+"?members=true", "#chat_top_container");
+				page_navigate("/chat/"+chat_id, "#chat_top_container");
 			};
         </script>
         <?php } } ?>
