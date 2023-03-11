@@ -241,8 +241,7 @@ window.popup = function(header, text, can_close = true, bgcolor = "white", color
 	} else {
 		f.innerText = text;
 	}
-	f.style.color = color;
-	f.style.fontSize = "14px";
+	f.style = "color: black; font-size: 14px;";
 	c.appendChild(f);
 	a.appendChild(c);
 	e.appendChild(a);

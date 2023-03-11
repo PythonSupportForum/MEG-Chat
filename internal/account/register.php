@@ -100,7 +100,10 @@ if(isset($_POST['submit'])){
 			  <input type="email" id="email" name="email" placeholder="muster.max@meg-bruehl.de" autocomplete="on"><br>
 			  <label for="password">Passwort:</label><br>
 			  <input type="password" id="password" name="password"  autocomplete="on"><br><br>
-                Ihr Account muss anschließend erst von einem Administrator aktiviert werden.
+              <div class="login-register">
+					<a href="/account/login">Anmelden</a>
+					<a href="/">Zur Startseite</a>
+			   </div>
 			  <input id="submit" name="submit" type="submit" value="Eintragen">
 			</form>
         </div>
@@ -148,6 +151,9 @@ if(isset($_POST['submit'])){
         #email {
             border-radius: 15px;
             margin-bottom: 2px;
+        }
+        .login-register {
+            padding: 1%;
         }
     </style>
 </html>

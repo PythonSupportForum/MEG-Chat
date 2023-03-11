@@ -72,7 +72,7 @@ if(isset($_POST['submit'])){
                   </div>
                    <div class="login-register">
                         <a href="/account/register">Register</a>
-                        <a href="/">Passwort vergessen</a>
+                        <a href="/">Zur Startseite</a>
                    </div>
                   <input id="submit" name="submit" type="submit" value="Anmelden">
                 </form>
