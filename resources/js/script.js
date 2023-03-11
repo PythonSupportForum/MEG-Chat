@@ -203,7 +203,7 @@ window.html_popup = function(header, html, can_close = true, bgcolor = "white", 
 window.popup = function(header, text, can_close = true, bgcolor = "white", color = "black", html = false){
 	var e = document.createElement("div");
 	e.classList.add("popup");
-	e.style = "position: fixed; top: 0px; right: 0px; bottom: 0px; left: 0px; display: flex; justify-content: center; align-items: center; ";
+	e.style = "position: fixed; top: 0px; right: 0px; bottom: 0px; left: 0px; display: flex; justify-content: center; align-items: center; overflow-x: hidden; ";
 	var a = document.createElement("div");
 	a.style = "width: 500px; max-width: 99%; height: auto; max-height: 90%; min-height: 100px; border-radius: 20px; box-shadow: 8px 8px 46px -5px rgba(0,0,0,0.62); -webkit-box-shadow: 8px 8px 46px -5px rgba(0,0,0,0.62); -moz-box-shadow: 8px 8px 46px -5px rgba(0,0,0,0.62); position: relative; overflow-x: hidden; overflow-y: auto;";
 	a.style.color = color;
