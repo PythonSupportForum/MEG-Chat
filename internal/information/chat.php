@@ -7,16 +7,18 @@ if(isset($_SESSION['pupil'])){
 	$pupil_data = (array)$stmtCheck->fetchObject();
 }
 
-$chat = $_GET['chat'];
+$chat = isset($_GET['chat']) ? $_GET['chat'] : false;
 
 $chat_data = false;
 $member = false;
 
-$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE id = :id; ");
-$stmtData->execute(array('id' => $chat));
-$row = $stmtData->fetchObject();
-if($row){
-	$chat_data = (array)$row;
+if($chat){
+	$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".chats WHERE id = :id; ");
+	$stmtData->execute(array('id' => $chat));
+	$row = $stmtData->fetchObject();
+	if($row){
+		$chat_data = (array)$row;
+	}
 }
 
 if($chat_data){
@@ -50,6 +52,10 @@ if($chat_data){
 	$stmtMessagesCount->execute(array('chat' => $chat_data['id']));
 	$messages_count = ((array)$stmtMessagesCount->fetchObject())['count'];
 }
+
+function isMobile() {
+    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -62,6 +68,7 @@ if($chat_data){
         <?php require('../middleware/head.php'); ?>
     </head>
     <body style="background-color: #303030; color: lightgray; ">
+		<?php if(!isMobile() || isset($_GET['list'])){ ?>
         <div style="float: left; width: 540px; max-width: 100%; height: auto; max-height: 100%; overflow-x: hidden; overflow-y: auto; " class="no_scrollbar">
 			<div style="width: 100%; height: 145px; margin-top: 20px; ">
 			    <div style="width: 50%; height: 100%; float: left; cursor: pointer; " class="centriert" onclick="page_navigate('/');">
@@ -100,6 +107,7 @@ if($chat_data){
 	            </div>
 	        </div>
         </div>
+        <?php } if(!isset($_GET['list'])){ ?>
         <div style="float: left; width: calc( 100% - 542px ); min-width: 350px; max-width: 100%; text-align: center; height: 100%; " id="chat_container">
             <?php if(!$chat_data){
 			    ?>
@@ -347,6 +355,6 @@ if($chat_data){
 				}, 200);
 			};
         </script>
-        <?php } ?>
+        <?php } } ?>
     </body>
 </html>

@@ -236,12 +236,12 @@ window.popup = function(header, text, can_close = true, bgcolor = "white", color
 	d.style.color = color;
 	c.appendChild(d);
 	var f = document.createElement("p");
+	f.style = "color: black; font-size: 14px;";
 	if(html){
 	    f.innerHTML = text;
 	} else {
 		f.innerText = text;
 	}
-	f.style = "color: black; font-size: 14px;";
 	c.appendChild(f);
 	a.appendChild(c);
 	e.appendChild(a);
