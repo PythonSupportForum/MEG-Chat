@@ -123,8 +123,8 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 						    <button onclick="page_navigate('/chat/list');" style="min-height: 50px; height: auto; width:  auto; font-size: 16px; background-color: transparent; font-size: 24px; color: white; border: none; outline: none; ">&#8678;</button>
 						</div>
 						<?php } ?>
-						<div style="height: 110px; width: auto; float: left; " class="centriert">
-							<div>
+						<div onclick="chat_messages_info();" style="height: 110px; width: auto; float: left; " class="centriert">
+							<div onclick="chat_messages_info();">
 				                <h1 style="margin-top: 0px; font-size: 24px; "><?php echo htmlspecialchars($chat_data['name']); ?></h1>
 				                <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
 				                     <h2 style="margin: 0; padding: 0; font-size: 13px; "><?php echo htmlspecialchars($chat_data['description']); ?></h2>
@@ -146,7 +146,6 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
                             <div style="width: 100%; height: auto; overflow: hidden; ">
 								<div style="width: 100%; height: 50px; position: relative; ">
 								    <h2 style="text-align: center; "><u>Mitglieder</u></h2>
-								    <button onclick="chat_messages_info();" style="position: absolute; left: 20px; top: 10px; height: 30px; width: 80px; ">Zurück</button> 
 								</div>
 	                            <?php
 						        $stmtMembers = $db->prepare("SELECT ".DBTBL.".pupils.*, COUNT(".DBTBL.".pupils_votes.s_to) AS rating_count, COALESCE(SUM(points),0) as rating FROM ".DBTBL.".pupils LEFT JOIN ".DBTBL.".pupils_votes ON ".DBTBL.".pupils.id = ".DBTBL.".pupils_votes.s_to WHERE pupils.id IN (SELECT pupil FROM ".DBTBL.".chats_members WHERE chat = :chat) GROUP BY ".DBTBL.".pupils.id ORDER BY LOWER(fullname) ASC LIMIT 10000;");
