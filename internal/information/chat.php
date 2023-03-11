@@ -135,7 +135,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 				            <div style="height: 110px; width: auto; float: left; border-left: 1px solid white; margin-left: 20px; " class="centriert">
 				                <div style="margin-left: 20px; text-align: left; ">
 				                    <h4 onclick="chat_members_info();" style="text-align: center; cursor: pointer; "><?php echo htmlspecialchars($member_count); ?> Mitglieder</h4>
-				                    <h4 style="margin-top: 10px; text-align: center; "><span id="chat_messages_count"><?php echo htmlspecialchars($messages_count); ?></span> Nachrichten</h4>
+				                    <h4 onclick="chat_messages_info();" style="margin-top: 10px; text-align: center; cursor: grab; "><span id="chat_messages_count"><?php echo htmlspecialchars($messages_count); ?></span> Nachrichten</h4>
 				                </div>
 				            </div>
 			            </div>
@@ -145,6 +145,9 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 							<?php if(isset($_GET['members'])){ ?>
 							<div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow-x: hidden; overflow-y: auto; " class="no_scrollbar">
 	                            <div style="width: 100%; height: auto; overflow: hidden; ">
+									<div style="width: 100%; height: 80px; ">
+									    <h2 style="text-align: center; ">Mitglieder</h2>
+									</div>
 		                            <?php
 							        $stmtMembers = $db->prepare("SELECT ".DBTBL.".pupils.*, COUNT(".DBTBL.".pupils_votes.s_to) AS rating_count, COALESCE(SUM(points),0) as rating FROM ".DBTBL.".pupils LEFT JOIN ".DBTBL.".pupils_votes ON ".DBTBL.".pupils.id = ".DBTBL.".pupils_votes.s_to WHERE pupils.id IN (SELECT pupil FROM ".DBTBL.".chats_members WHERE chat = :chat) GROUP BY ".DBTBL.".pupils.id ORDER BY LOWER(fullname) ASC LIMIT 10000;");
 									$stmtMembers->execute(array('chat' => $chat_data['id']));
@@ -414,6 +417,9 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 				}, 200);
 			};
 			window.chat_members_info = function(){
+				page_navigate("/chat/"+chat_id+"?members=true", "#chat_top_container");
+			};
+			window.chat_messages_info = function(){
 				page_navigate("/chat/"+chat_id+"?members=true", "#chat_top_container");
 			};
         </script>
