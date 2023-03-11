@@ -20,13 +20,13 @@ if(isset($_SESSION['pupil'])){
     <body>
 		<div class="head centriert">
 			<div style="text-align: center; ">
-				<div style="height: 100%; float: left; min-width: 140px; width: auto; " class="centriert">
-				    <img style="height: 130px; text-align: center; " src="/resources/images/logo.png">
+				<div style="height: 100%; float: left; min-width: 120px; width: auto; " class="centriert">
+				    <img style="height: 120px; text-align: center; " src="/resources/images/logo.png">
 				</div>
-				<div style="height: 100%; min-height: 150px; margin-left: 20px; float: left; min-width: 200px; width: auto; " class="centriert">
+				<div style="height: 100%; min-height: 120px; margin-left: 20px; float: left; min-width: 180px; width: auto; " class="centriert">
 					<div style="text-align: center; ">
-		                <h1 style="font-size: 28px; margin: 0; padding: 0; ">Der MEG Chat!</h1>
-		                <h2 style="font-size: 20px; margin: 0; padding: 0; margin-top: 10px; ">Schüler unter Schülern</h2>
+		                <h1 style="font-size: 26px; margin: 0; padding: 0; ">Der MEG Chat!</h1>
+		                <h2 style="font-size: 18px; margin: 0; padding: 0; margin-top: 10px; ">Schüler unter Schülern</h2>
 		            </div>
 		        </div>
 		        <div style="height: 100%; min-height: 150px; margin-left: 20px; float: left; min-width: 200px; width: auto; max-width: calc( 100% - 40px ); " class="centriert">
