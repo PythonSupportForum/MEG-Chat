@@ -66,7 +66,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
             </div>
         </div>
         <?php } ?>
-        <div style="float: left; width: <?php if($is_mobile){ ?>calc( 100% - 162px )<?php } else { ?>100%<?php } ?>; min-width: 300px; max-width: 100%; text-align: center;">
+        <div style="float: left; width: <?php if(!$is_mobile){ ?>calc( 100% - 162px )<?php } else { ?>100%<?php } ?>; min-width: 300px; max-width: 100%; text-align: center;">
             <?php if(!$s_data){
 			    ?>
 			    <h1>Das Profil dieses Schülers konnte nicht gefunden werden!</h1>
