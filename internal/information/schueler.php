@@ -13,6 +13,12 @@ $stmtData = $db->prepare("SELECT ".DBTBL.".pupils.*, COUNT(".DBTBL.".pupils_vote
 $stmtData->execute(array('id' => $s));
 $row = $stmtData->fetchObject();
 $s_data = (array)$row;
+
+if(isset($_SERVER['HTTP_USER_AGENT'])){
+    $is_mobile = preg_match("/(android|webos|avantgo|iphone|ipad|ipod|blackberry|iemobile|bolt|boost|cricket|docomo|fone|hiptop|mini|opera mini|kitkat|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+} else {
+	$is_mobile = isset($_COOKIE['desktop']) ? ($_COOKIE['desktop'] == "a") : true;
+}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -25,6 +31,7 @@ $s_data = (array)$row;
         <?php require('../middleware/head.php'); ?>
     </head>
     <body>
+		<?php if(!$is_mobile){ ?>
         <div style="float: left; width: 160px; max-width: 100%; ">
             <div style="width: 100%; height: auto;" class="centriert"><img style="width: 100%;" src="/resources/images/logo.png" alt="MEG Chat Logo"></div>
             <div style="width: 100%; height: auto; " class="centriert"><h2>MEG Chat</h2></div>
@@ -58,7 +65,8 @@ $s_data = (array)$row;
                 </div>
             </div>
         </div>
-        <div style="float: left; width: calc( 100% - 162px ); min-width: 600px; max-width: 100%; text-align: center;">
+        <?php } ?>
+        <div style="float: left; width: <?php if($is_mobile){ ?>calc( 100% - 162px )<?php } else { ?>100%<?php } ?>; min-width: 600px; max-width: 100%; text-align: center;">
             <?php if(!$s_data){
 			    ?>
 			    <h1>Das Profil dieses Schülers konnte nicht gefunden werden!</h1>
