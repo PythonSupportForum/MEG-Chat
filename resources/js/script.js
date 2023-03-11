@@ -117,7 +117,11 @@ window.post_request = function(url, data = {}, then = false){
 	xhr.open('POST', url, true);
 	xhr.onload = function () {
 	    if(then){
-		    then(this.responseText);
+			try {
+		        then(this.responseText);
+		    } catch(e){
+			    console.log("Netzwerkfehler! "+this.responseText);
+			}
 		}
 	};
 	xhr.onerror = function () {
