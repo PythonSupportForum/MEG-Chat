@@ -360,7 +360,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 			};
 			window.chat_members_info = function(){
 				html_popup("Chat Mitglieder", '<div class="chat_members_container"></div>');
-				page_navigate("/ajax/chat_members.php?chat="+chat_id, ".chat_members_container", "body");
+				page_navigate("/ajax/chat_members.php?chat="+chat_id, "body", ".chat_members_container");
 			};
         </script>
         <?php } } ?>
