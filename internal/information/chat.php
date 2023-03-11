@@ -110,8 +110,8 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 	        </div>
         </div>
         <?php } if(!isset($_GET['list'])){ ?>
-		<div id="chat_top_container" style="float: left; ">
-	        <div style="float: left; width: <?php if(!$is_mobile || isset($_GET['list'])){ ?>calc( 100% - 542px )<?php } else { ?>100%<?php } ?>; min-width: 350px; max-width: 100%; text-align: center; height: 100%; " id="chat_container">
+		<div id="chat_top_container" style="float: left; width: <?php if(!$is_mobile || isset($_GET['list'])){ ?>calc( 100% - 542px )<?php } else { ?>100%<?php } ?>; min-width: 350px; max-width: 100%; text-align: center; height: 100%; ">
+	        <div style="height: 100%; width: 100%; " id="chat_container">
 	            <?php if(!$chat_data){
 				    ?>
 				    <h1>Entweder dieser Chat exestiert nicht oder zu hast keinen Zugriff darauf. Sollte dieses Problem weiterhin auftauchen melde dich bitte bei einem Administrator.!</h1>
