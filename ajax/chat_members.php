@@ -89,9 +89,10 @@ if(!$chat_data) return;
 		}
 		if($chat_data['public'] == 1){
 			?>
-			<div style="margin-top: 20px; text-align: center; ">Dieser Chat ist öffentlich. Das heißt das Jeder die Nachrichten in diesem Chat lesen kann, auch ohne Mitglied zu sein.</div>
+			<div style="width: 100%; height: auto; margin-top: 20px; text-align: center; ">Dieser Chat ist öffentlich. Das heißt das Jeder die Nachrichten in diesem Chat lesen kann, auch ohne Mitglied zu sein.</div>
 			<?php
 		}	
 		?>
+		<div style="width: 100%; height: 20px; "></div>
     </body>
 </html>
