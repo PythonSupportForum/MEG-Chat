@@ -359,7 +359,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 				}, 200);
 			};
 			window.chat_members_info = function(){
-				html_popup("Chat Mitglieder", '<div class="chat_members_container"></div><div style="width: 100%; height: 20px; "></div>');
+				html_popup("Chat Mitglieder", '<div class="chat_members_container no_scrollbar"></div><div style="width: 100%; height: 20px; "></div>');
 				page_navigate("/ajax/chat_members.php?chat="+chat_id, "body", ".chat_members_container");
 			};
         </script>
