@@ -315,12 +315,13 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 						
 						if(last_message_author_id == z.author.id){
 							var ne = document.createElement("div");
-							ne.style = "width: 100%; height: auto; min-height: 20px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; ";
+							ne.style = "width: 100%; height: auto; min-height: 20px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; word-wrap: break-word; ";
 							ne.id = "message_"+chat_id+"_"+z.id;
 							var nei = document.createElement("div");
 							nei.style = "margin-left: 44px; ";
 							var nt = document.createElement("span");
 							nt.innerText = z.text;
+							nt.style = "word-wrap: break-word; ";
 							nt.onclick = function(){
 							    
 							};
@@ -333,7 +334,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 							document.getElementById("chat_inner_data_container").scrollTop = document.getElementById("chat_inner_data_container").scrollHeight;
 						} else {
 							var ne = document.createElement("div");
-							ne.style = "width: 100%; height: auto; margin-top: 10px; min-height: 40px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; transition: all 0.4s; border-radius: 12px; ";
+							ne.style = "width: 100%; height: auto; margin-top: 10px; min-height: 40px; word-warp: break-word; color: white; text-align: left; font-size: 14px; position: relative; transition: all 0.4s; border-radius: 12px; word-wrap: break-word; ";
 							ne.id = "message_"+chat_id+"_"+z.id;
 							var nei = document.createElement("div");
 							nei.style = "margin-left: 44px; margin-top: 4px; ";
@@ -347,7 +348,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 							na2.style = "font-size: 8px; font-weight: small; margin-left: 10px; ";
 							nei.appendChild(na2);
 							var nt = document.createElement("span");
-							nt.style = "margin-left: 10px; ";
+							nt.style = "margin-left: 10px; word-wrap: break-word; ";
 							nt.innerText = "\n"+z.text;
 							nei.appendChild(nt);
 							ne.appendChild(nei);
