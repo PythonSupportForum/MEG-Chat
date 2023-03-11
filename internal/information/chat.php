@@ -53,9 +53,7 @@ if($chat_data){
 	$messages_count = ((array)$stmtMessagesCount->fetchObject())['count'];
 }
 
-function isMobile() {
-    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
-}
+$is_mobile = preg_match("/(android|webos|avantgo|iphone|ipad|ipod|blackberry|iemobile|bolt|boost|cricket|docomo|fone|hiptop|mini|opera mini|kitkat|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -68,7 +66,7 @@ function isMobile() {
         <?php require('../middleware/head.php'); ?>
     </head>
     <body style="background-color: #303030; color: lightgray; ">
-		<?php if(!isMobile() || isset($_GET['list'])){ ?>
+		<?php if(!$is_mobile || isset($_GET['list'])){ ?>
         <div style="float: left; width: 540px; max-width: 100%; height: auto; max-height: 100%; overflow-x: hidden; overflow-y: auto; " class="no_scrollbar">
 			<div style="width: 100%; height: 145px; margin-top: 20px; ">
 			    <div style="width: 50%; height: 100%; float: left; cursor: pointer; " class="centriert" onclick="page_navigate('/');">
