@@ -93,6 +93,6 @@ if(!$chat_data) return;
 			<?php
 		}	
 		?>
-		<div style="width: 100%; height: 20px; "></div>
+		<div style="width: 100%; height: 20px; "></div> 
     </body>
 </html>

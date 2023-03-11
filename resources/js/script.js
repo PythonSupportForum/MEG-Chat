@@ -304,4 +304,4 @@ window.ask_for_notification_permissions = function(){
 	if (Notification.permission !== "granted" && !localStorage.getItem('noNotifications')) {
 		html_popup("Benachrichtigungen für dieses Gerät aktivieren", '<p style="font-size: 16px; ">Der MEG-Chat braucht die Berechtigung Ihnen neue Nachrichten direkt anzuzeigen. Bitte aktivieren Sie diese Funktion wenn Sie immmer auf dem neuesten Stand bleiben wollen.</p><button onclick="never_ask_for_notifications();">Auf diesem Gerät nicht mehr Fragen</button><button onclick="get_notification_permission();">Benachrichtige mich</button>');
     }
-};
+}; 
