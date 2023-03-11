@@ -139,7 +139,6 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 		page_navigate_reload = true;
 	    return;	
 	}
-	var change_url = !from;
 	var to_text = to;
 	if(!url) {
 	    url = window.location.href;
@@ -185,7 +184,7 @@ window.page_navigate = function(url, from, to, loading_message = true) {
 		    page_navigate (url, from, to_text, loading_message);
 		}
 		
-		if(change_url) window.history.pushState({}, "", url);
+		window.history.pushState({}, "", url);
 		
 		//Only for MEG-Chat App:
 		if("get_messages_data" in window) get_messages_data();
