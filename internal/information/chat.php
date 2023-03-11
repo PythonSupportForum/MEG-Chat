@@ -133,14 +133,14 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 			            </div>
 			            <div style="height: 110px; width: auto; float: left; border-left: 1px solid white; margin-left: 20px; " class="centriert">
 			                <div style="margin-left: 20px; text-align: left; ">
-			                    <h4 style="text-align: center; "><?php echo htmlspecialchars($member_count); ?> Mitglieder</h4>
+			                    <h4 onclick="chat_members_info();" style="text-align: center; "><?php echo htmlspecialchars($member_count); ?> Mitglieder</h4>
 			                    <h4 style="margin-top: 10px; text-align: center; "><span id="chat_messages_count"><?php echo htmlspecialchars($messages_count); ?></span> Nachrichten</h4>
 			                </div>
 			            </div>
 		            </div>
                 </div>
                 <div style="width: 100%; height: calc( 100% - 155px ); min-height: 200px; max-height: 100%; margin-top: 20px; " class="centriert">
-                    <div style="height: 100%; min-width: 320px; width: 80%; max-width: 95%; position: relative;">
+                    <div style="height: 100%; width: 95%; position: relative;">
                         <div style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 52px; overflow-x: hidden; overflow-y: auto; " id="chat_inner_data_container" class="no_scrollbar">
                             <div style="width: 100%; height: auto; overflow: hidden; " id="chat_inner_data"></div>
                             <div style="width: 100%; height: 25px; "></div>
@@ -278,10 +278,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 							var na = document.createElement("u");
 							na.innerText = z.author.username;
 							na.style = "font-weight: bold; cursor: pointer; ";
-							na.onclick = function(){
-								console.log("hi");
-								page_navigate("/schueler/"+z.author.id);
-							};
+							na.onclick = 'page_navigate("/schueler/'+z.author.id+');';
 							nei.appendChild(na);
 							var na2 = document.createElement("span");
 							na2.innerText = z.time;
@@ -360,6 +357,10 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 				setTimeout(function(){
 					document.getElementById("message_"+chat_id+"_"+message_id).style.backgroundColor = "transparent";
 				}, 200);
+			};
+			window.chat_members_info = function(){
+				html_popup("Chat Mitglieder", '<div class="chat_members_container"></div>');
+				page_navigate("/ajax/chat_members.php?chat="+chat_id, ".chat_members_container", "body");
 			};
         </script>
         <?php } } ?>
