@@ -118,11 +118,16 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 			} else { ?>
 				<div style="height: auto; min-height: 110px; margin-top: 6px; " class="centriert">
 					<div style="width: auto; height: 100%; " class="centriert">
+						<?php if($is_mobile && !isset($_GET['list'])){ ?>
+						<div style="height: 110px; width: auto; min-width: 50px; float: left; padding-right: 15px; " class="centriert">
+						    <button style="height: 50px; width: 100px; font-size: 16px; ">Zurück zur Übersicht</button>
+						</div>
+						<?php } ?>
 						<div style="height: 110px; width: auto; float: left; " class="centriert">
 							<div>
-				                <h1 style="margin-top: 0px; "><?php echo htmlspecialchars($chat_data['name']); ?></h1>
+				                <h1 style="margin-top: 0px; font-size: 26px; "><?php echo htmlspecialchars($chat_data['name']); ?></h1>
 				                <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
-				                     <h2 style="margin: 0; padding: 0;"><?php echo htmlspecialchars($chat_data['description']); ?></h2>
+				                     <h2 style="margin: 0; padding: 0; font-size: 18px; "><?php echo htmlspecialchars($chat_data['description']); ?></h2>
 				                </div>
 				            </div>
 			            </div>
@@ -143,7 +148,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
                         <?php
                         if(!isset($_SESSION['pupil'])){
 							?>
-							<div style="position: absolute; bottom: 0px; right: 0px; left: 0px; min-height: 50px; height: auto; " class="centriert">
+							<div style="position: absolute; bottom: 0px; right: 0px; left: 0px; min-height: 50px; height: auto; max-height: 65px; overflow-y: auto; " class="centriert no_scrollbar">
 							    <p style="color: red; ">Um selber Nachrichten in diesen Chat schreiben zu können, melde dich bitte an oder regestriere dich. Der Zugang ist nur für Schüler des MEGs erlaubt!</p>
 							</div>
                             <?php
