@@ -264,18 +264,22 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 			};
 			
 			window.get_messages_data = async function(){
-				if(!document.getElementById("chat_container")){
+				if(!document.getElementById("chat_container") || !document.getElementById("chat_inner_data_container")){
 					setTimeout(function(){
 					    get_messages_data();
 					}, 200);
 				    return;
 				}
 				function reset_chat(){
-					document.getElementById("chat_inner_data").innerHTML = "";
-				    chat_id = Number(window.location.href.split("/")[window.location.href.split("/").length-1]);
-				    last_message_id = -1;
-				    loaded_messages_count = 0;
-				    last_message_author_id = false;
+					try {
+						document.getElementById("chat_inner_data").innerHTML = "";
+					    chat_id = Number(window.location.href.split("/")[window.location.href.split("/").length-1]);
+					    last_message_id = -1;
+					    loaded_messages_count = 0;
+					    last_message_author_id = false;
+					} catch(e){
+					    console.log(e);	
+					}
 				}
 				if(chat_id !== Number(window.location.href.split("/")[window.location.href.split("/").length-1])){
 					reset_chat();
