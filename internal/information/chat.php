@@ -119,8 +119,8 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 				<div style="height: auto; min-height: 110px; margin-top: 6px; " class="centriert">
 					<div style="width: auto; height: 100%; " class="centriert">
 						<?php if($is_mobile && !isset($_GET['list'])){ ?>
-						<div style="height: 110px; width: auto; min-width: 50px; float: left; padding-right: 15px; " class="centriert">
-						    <button onclick="page_navigate('/chat/list');" style="min-height: 50px; height: auto; width:  auto; font-size: 16px; background-color: transparent; font-size: 20px; color: white; ">&#8678;</button>
+						<div style="height: 110px; width: auto; min-width: 20px; float: left; padding-right: 15px; " class="centriert">
+						    <button onclick="page_navigate('/chat/list');" style="min-height: 50px; height: auto; width:  auto; font-size: 16px; background-color: transparent; font-size: 24px; color: white; border: none; outline: none; ">&#8678;</button>
 						</div>
 						<?php } ?>
 						<div style="height: 110px; width: auto; float: left; " class="centriert">
