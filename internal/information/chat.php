@@ -120,14 +120,14 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 					<div style="width: auto; height: 100%; " class="centriert">
 						<?php if($is_mobile && !isset($_GET['list'])){ ?>
 						<div style="height: 110px; width: auto; min-width: 50px; float: left; padding-right: 15px; " class="centriert">
-						    <button onclick="page_navigate('/chat/list');" style="min-height: 50px; height: auto; width: 100px; font-size: 16px; ">Zurück zur Übersicht</button>
+						    <button onclick="page_navigate('/chat/list');" style="min-height: 50px; height: auto; width: 100px; font-size: 16px; ">Zurück</button>
 						</div>
 						<?php } ?>
 						<div style="height: 110px; width: auto; float: left; " class="centriert">
 							<div>
-				                <h1 style="margin-top: 0px; font-size: 26px; "><?php echo htmlspecialchars($chat_data['name']); ?></h1>
+				                <h1 style="margin-top: 0px; font-size: 24px; "><?php echo htmlspecialchars($chat_data['name']); ?></h1>
 				                <div style="width: 100%; height: auto; margin-top: 10px; " class="centriert">
-				                     <h2 style="margin: 0; padding: 0; font-size: 18px; "><?php echo htmlspecialchars($chat_data['description']); ?></h2>
+				                     <h2 style="margin: 0; padding: 0; font-size: 13px; "><?php echo htmlspecialchars($chat_data['description']); ?></h2>
 				                </div>
 				            </div>
 			            </div>

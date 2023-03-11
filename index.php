@@ -20,8 +20,8 @@ if(isset($_SESSION['pupil'])){
     <body>
 		<div class="head centriert">
 			<div style="text-align: center; ">
-				<div style="height: 100%; float: left; min-width: 160px; width: auto; " class="centriert">
-				    <img style="height: 150px; text-align: center; " src="/resources/images/logo.png">
+				<div style="height: 100%; float: left; min-width: 140px; width: auto; " class="centriert">
+				    <img style="height: 130px; text-align: center; " src="/resources/images/logo.png">
 				</div>
 				<div style="height: 100%; min-height: 150px; margin-left: 20px; float: left; min-width: 200px; width: auto; " class="centriert">
 					<div style="text-align: center; ">
