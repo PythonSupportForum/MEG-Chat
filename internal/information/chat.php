@@ -187,13 +187,15 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 									</div></a>
 								    <?	
 								}
-								if($chat_data['public'] == 1){
-									?>
-									<div style="width: 100%; height: auto; margin-top: 20px; text-align: center; color: red; ">Dieser Chat ist öffentlich. Das heißt das Jeder die Nachrichten in diesem Chat lesen kann, auch ohne Mitglied zu sein.</div>
-									<?php
-								}	
-								?>
+						        ?>
                             </div>
+                            <?php
+                            if($chat_data['public'] == 1){
+								?>
+								<div style="width: 100%; height: auto; margin-top: 20px; text-align: center; color: red; ">Dieser Chat ist öffentlich. Das heißt das Jeder die Nachrichten in diesem Chat lesen kann, auch ohne Mitglied zu sein.</div>
+								<?php
+							}
+							?>
                             <div style="width: 100%; height: 25px; "></div>
                         </div>
 						<?php } else { ?>

@@ -4,7 +4,7 @@
 	$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".blog ORDER BY time DESC;");
 	$stmtData->execute();
 	while($row = $stmtData->fetchObject()){ $row = (array)$row; ?>
-		<a href="javascript:page_navigate('/blog/<?php echo htmlspecialchars($row['id']); ?>');" style="color: black; float: left; "><div class="blog_entry">
+		<a href="javascript:page_navigate('/blog/<?php echo htmlspecialchars($row['id']); ?>');" style="color: black; float: left; width: auto; max-width: 100%; "><div class="blog_entry">
 		    <div style="width: 100%; height: 100px; margin-top: 20px; " class="centriert">
 		        <img style="height: 100%; width: auto; " src="<?php echo htmlspecialchars($row['image']); ?>">
 		    </div>
