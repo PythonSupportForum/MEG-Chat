@@ -120,7 +120,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 					<div style="width: auto; height: 100%; " class="centriert">
 						<?php if($is_mobile && !isset($_GET['list'])){ ?>
 						<div style="height: 110px; width: auto; min-width: 20px; float: left; padding-right: 15px; " class="centriert">
-						    <button onclick="page_navigate('/chat/list');" style="min-height: 50px; height: auto; width:  auto; font-size: 16px; background-color: transparent; font-size: 24px; color: white; border: none; outline: none; ">&#8678;</button>
+						    <button onclick="if(member_window) { chat_messages_info(); } else { page_navigate('/chat/list'); }" style="min-height: 50px; height: auto; width:  auto; font-size: 16px; background-color: transparent; font-size: 24px; color: white; border: none; outline: none; ">&#8678;</button>
 						</div>
 						<?php } ?>
 						<div onclick="chat_messages_info();" style="height: 110px; width: auto; float: left; " class="centriert">
@@ -226,6 +226,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
             window.loaded_messages_count = 0;
             window.chat_id = Number(window.location.href.split("/")[window.location.href.split("/").length-1]);
             window.last_message_author_id = false;
+            window.member_window = false;
             
 			window.message_input_keydown = function(evt) {
 				if(document.getElementById("private_message_text").value.split("\n").length < document.getElementById("private_message_text").rows){
@@ -423,9 +424,11 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 			};
 			window.chat_members_info = function(){
 				page_navigate("/chat/"+chat_id+"?members=true", "#chat_inner_data_content_container");
+				member_window = true;
 			};
 			window.chat_messages_info = function(){
 				page_navigate("/chat/"+chat_id, "#chat_inner_data_content_container");
+				member_window = false;
 			};
         </script>
         <?php } } ?>
