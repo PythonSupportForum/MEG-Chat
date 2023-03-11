@@ -133,7 +133,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 			            </div>
 			            <div style="height: 110px; width: auto; float: left; border-left: 1px solid white; margin-left: 20px; " class="centriert">
 			                <div style="margin-left: 20px; text-align: left; ">
-			                    <h4 onclick="chat_members_info();" style="text-align: center; "><?php echo htmlspecialchars($member_count); ?> Mitglieder</h4>
+			                    <h4 onclick="chat_members_info();" style="text-align: center; cursor: pointer; "><?php echo htmlspecialchars($member_count); ?> Mitglieder</h4>
 			                    <h4 style="margin-top: 10px; text-align: center; "><span id="chat_messages_count"><?php echo htmlspecialchars($messages_count); ?></span> Nachrichten</h4>
 			                </div>
 			            </div>
