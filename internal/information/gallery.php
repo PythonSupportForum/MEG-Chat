@@ -26,12 +26,12 @@ if(isset($_SESSION['pupil'])){
       <button id="add-image-btn" onclick="upload();">Neues Bild hinzufügen</button>
     </header>
     <main>
-      <div class="image-gallery">
+      <div class="image-gallery" id="pictures">
 		<?php
 		$stmtData = $db->prepare("SELECT * FROM ".DBTBL.".pictures ORDER BY id DESC;");
 		$stmtData->execute();
 		while($row = $stmtData->fetchObject()){ $row = (array)$row; ?>
-			<img src="<?php echo htmlspecialchars($row['path']); ?>" alt="Bild aus der MEG Chat Gallerie">
+			<img loading="lazy" src="<?php echo htmlspecialchars($row['path']); ?>" alt="Bild aus der MEG Chat Gallerie">
 	    <?php } ?>
       </div>
     </main>
@@ -110,11 +110,14 @@ if(isset($_SESSION['pupil'])){
 		      reader.onload = () => resolve(reader.result);
 		      reader.readAsDataURL(file);
 		    });
+		    document.getElementById("add-image-btn").innerText = "Hochladen...";
 		    post_request("/ajax/picture_upload.php", {data: dataUrl}, function(data){
-			if(data.length > 2){
-			    popup("Fehler!", data);
-			}
-		  });
+				document.getElementById("add-image-btn").innerText = "Neues Bild hinzufügen";
+		        if(data.length > 2){
+			        popup("Fehler!", data);
+			    }
+			    page_navigate(window.location.href, "#pictures");
+		    });
 		  };
 		  e.click();
 	  };
