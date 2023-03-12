@@ -18,4 +18,8 @@ RewriteRule ^zeitung$ internal/information/zeitung.php [QSA]
 RewriteRule ^zeitung/([0-9]+)$ internal/information/zeitung.php?zeitung=$1 [QSA]
 RewriteRule ^impressum$ internal/information/impressum.php [QSA]
 
+RewriteRule ^gallerie$ internal/information/gallery.php [QSA]
+RewriteRule ^gallerie/$ internal/information/gallery.php [QSA]
+RewriteRule ^gallerie/([0-9]+)$ internal/information/gallery.php?picture=$1 [QSA]
+
 ErrorDocument 404 /error/404.html
