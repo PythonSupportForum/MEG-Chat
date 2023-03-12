@@ -30,10 +30,10 @@ if($key == "about_me"){
 	if(!getimagesize($value)){
         echo "Die eingegebene URL verweist auf kein gültiges Bild. Bitte überprüfe Deine Eingabe und versuche es erneut.";
 	} else {
-		if (!file_exists("uploads")) {
-		    mkdir("uploads", 0770, true);
+		if (!file_exists("../uploads")) {
+		    mkdir("../uploads", 0770, true);
 		}
-		$path = "uploads/".$pupil_data['id']."_".rand(100000,100000000);
+		$path = "../uploads/".$pupil_data['id']."_".rand(100000,100000000);
 		file_put_contents($path, file_get_contents($value));
         $pupil_data['avatar'] = "/".$path;
 	}

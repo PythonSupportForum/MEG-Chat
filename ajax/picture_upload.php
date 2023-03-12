@@ -17,10 +17,10 @@ if(!getimagesize($value)){
     return exit();
 }
 
-if (!file_exists("uploads")) {
-    mkdir("uploads", 0770, true);
+if (!file_exists("../uploads")) {
+    mkdir("../uploads", 0770, true);
 }
-$path = "uploads/".$pupil_data['id']."_".rand(100000,100000000);
+$path = "../uploads/".$pupil_data['id']."_".rand(100000,100000000);
 file_put_contents($path, file_get_contents($value));
 $path = "/".$path;
 
