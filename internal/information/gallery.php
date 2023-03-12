@@ -29,7 +29,7 @@ if(isset($_SESSION['pupil'])){
           <?php
       } else {
 		  ?>
-		  <button id="add-image-btn" onclick="page_navigate('/account/login');" style="width: 100%; height: 25px; ">Anmelden / Regestrieren</button>
+		  <button id="add-image-btn" onclick="page_navigate('/account/login');" style="width: 100%; height: 25px; ">Anmelden</button>
 		  <?php  
 	  }
       ?>
