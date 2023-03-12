@@ -245,6 +245,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 				e.accept = "image/*";
 				e.onchange = async function(){
 					var file = e.files[0];
+					if(!file) return;
 				    var dataUrl = await new Promise(resolve => {
 				      let reader = new FileReader();
 				      reader.onload = () => resolve(reader.result);
