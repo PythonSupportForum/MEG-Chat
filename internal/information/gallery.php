@@ -29,7 +29,7 @@ if(isset($_SESSION['pupil'])){
           <?php
       } else {
 		  ?>
-		  <button onclick="page_navigate('/account/login');" style="width: 100%; height: 25px; ">Anmelden / Regestrieren</button>
+		  <button id="add-image-btn" onclick="page_navigate('/account/login');" style="width: 100%; height: 25px; ">Anmelden / Regestrieren</button>
 		  <?php  
 	  }
       ?>
@@ -86,7 +86,7 @@ if(isset($_SESSION['pupil'])){
 		
 		.image-gallery {
 		  display: grid;
-		  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		  gap: 20px;
 		}
 		
@@ -94,6 +94,7 @@ if(isset($_SESSION['pupil'])){
 		  width: 100%;
 		  height: auto;
 		  border-radius: 5px;
+		  transition: all 1s;
 		}
 		
 		.image-gallery img:hover {
