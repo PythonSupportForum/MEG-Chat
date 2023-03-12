@@ -86,7 +86,7 @@ if(isset($_SESSION['pupil'])){
 		
 		.image-gallery {
 		  display: grid;
-		  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 		  gap: 20px;
 		}
 		
@@ -94,7 +94,7 @@ if(isset($_SESSION['pupil'])){
 		  width: 100%;
 		  height: auto;
 		  border-radius: 5px;
-		  transition: all 1s;
+		  transition: all 0.2s;
 		}
 		
 		.image-gallery img:hover {
