@@ -23,7 +23,16 @@ if(isset($_SESSION['pupil'])){
       <h1>MEG - Bildergalerie</h1>
       <h4>Wie auf den IPads nur in Besser!</h4>
       </div>
-      <button id="add-image-btn" onclick="upload();">Neues Bild hinzufügen</button>
+      <?php
+      if(isset($_SESSION['pupil'])){?>
+          <button id="add-image-btn" onclick="upload();">Neues Bild hinzufügen</button>
+          <?php
+      } else {
+		  ?>
+		  <button onclick="page_navigate('/account/login');" style="width: 100%; height: 25px; ">Anmelden / Regestrieren</button>
+		  <?php  
+	  }
+      ?>
     </header>
     <main>
       <div class="image-gallery" id="pictures">
