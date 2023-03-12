@@ -201,7 +201,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 			};
 			window.save_about_me = function(){
 				var value = document.getElementById("about_me_editor").value;
-				post_request("/profile_edit.php", {key: "about_me", value: value}, function(data){
+				post_request("/ajax/profile_edit.php", {key: "about_me", value: value}, function(data){
 					if(data.length > 2){
 					    popup("Fehler!", data);
 					} else {
@@ -216,7 +216,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 			};
 			window.save_email = function(){
 				var value = document.getElementById("email_editor").value;
-				post_request("/internal/logic/profile_edit.php", {key: "email", value: value}, function(data){
+				post_request("/ajax/profile_edit.php", {key: "email", value: value}, function(data){
 					if(data.length > 2){
 					    popup("Fehler!", data);
 					} else {
@@ -230,7 +230,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 			};
 			window.save_avatar = function(){
 				var value = document.getElementById("avatar_editor").value;
-				post_request("/internal/logic/profile_edit.php", {key: "avatar", value: value}, function(data){
+				post_request("/ajax/profile_edit.php", {key: "avatar", value: value}, function(data){
 					if(data.length > 2){
 					    popup("Fehler!", data);
 					} else {
@@ -250,7 +250,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){
 				      reader.onload = () => resolve(reader.result);
 				      reader.readAsDataURL(file);
 				    });
-				    post_request("/profile_edit.php", {key: "avatar", value: dataUrl}, function(data){
+				    post_request("/ajax/profile_edit.php", {key: "avatar", value: dataUrl}, function(data){
 					if(data.length > 2){
 					    popup("Fehler!", data);
 					} else {
