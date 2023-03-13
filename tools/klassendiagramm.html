@@ -37,7 +37,7 @@
               var accessModifier = el[0] == "private" ? "-" : "+";
               var attributeName = el[2].split(";")[0];
               var attributeType = el[1];
-		      classDiagramDefinition += `${accessModifier} ${attributeName} : ${attributeType}
+		      classDiagramDefinition += `${accessModifier}${attributeName} : ${attributeType}
 		  `;
 		  }
 		
