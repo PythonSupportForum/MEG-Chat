@@ -43,7 +43,7 @@ self.addEventListener('fetch', (event) => {
           return networkResponse;
         });
         if(event.request.destination == "document"){
-		    return (await fetchedResponse) || cachedResponse;
+		    return fetchedResponse || cachedResponse;
 		} else {
             return cachedResponse || fetchedResponse;
         }
