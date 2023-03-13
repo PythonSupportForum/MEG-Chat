@@ -24,9 +24,7 @@
 		  const attributes = javaCode.match(new RegExp(attributeRegex.source, "g"));
 		  const methods = javaCode.match(new RegExp(methodRegex.source, "g"));
 		  
-		  let classDiagramHtml = `<div style="border: 1px solid black; padding: 10px;">
-		                            <div style="font-weight: bold; text-align: center;">${className}</div>
-		                            <ul>`;
+		  let classDiagramHtml = '<div style="border: 1px solid black; padding: 10px;"><div style="font-weight: bold; text-align: center;">${className}</div><ul>';
 		  
 		  for (let attribute of attributes) {
 		    let [accessModifier, attributeName, attributeType] = attribute.match(attributeRegex).slice(1);
