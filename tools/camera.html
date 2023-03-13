@@ -1,35 +1,104 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript Kamera App</title>
+    <style>
+      body {
+        background-color: #f0e7d8;
+        color: #333;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
 
-<head>
-    <title>JavaScript Kamera-App</title>
-</head>
+      h1 {
+        font-size: 2.5rem;
+        margin: 2rem 0;
+      }
 
-<body>
-    <h1>JavaScript Kamera-App</h1>
-    <video id="kamera-stream" autoplay></video>
-    <button id="foto-aufnehmen">Foto aufnehmen</button>
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #cameraView {
+        width: 100%;
+        height: auto;
+        margin: 2rem 0;
+        border: 2px solid #333;
+      }
+
+      .button {
+        padding: 1rem 2rem;
+        background-color: #39ff14;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin: 2rem 0;
+      }
+
+      .button:hover {
+        background-color: #4efc03;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>JavaScript Kamera App</h1>
+      <video id="cameraView"></video>
+      <button class="button" onclick="takePicture()">Bild aufnehmen</button>
+      <a id="downloadLink" href="#" download>Herunterladen</a>
+    </div>
+
     <script>
-        const kameraStream = document.getElementById('kamera-stream');
-          const fotoAufnehmenButton = document.getElementById('foto-aufnehmen');
-    
-          navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-            .then(function(stream) {
-              kameraStream.srcObject = stream;
-            })
-            .catch(function(error) {
-              console.error('Kamera-Berechtigung wurde nicht erteilt', error);
-            });
-    
-          fotoAufnehmenButton.addEventListener('click', function() {
-            const canvas = document.createElement('canvas');
-            canvas.width = kameraStream.videoWidth;
-            canvas.height = kameraStream.videoHeight;
-            canvas.getContext('2d').drawImage(kameraStream, 0, 0, canvas.width, canvas.height);
-            const foto = canvas.toDataURL('image/png');
-            const fotoAnzeige = document.createElement('img');
-            fotoAnzeige.src = foto;
-            document.body.appendChild(fotoAnzeige);
-          });
+      const cameraView = document.getElementById("cameraView");
+      const downloadLink = document.getElementById("downloadLink");
+
+      function hasGetUserMedia() {
+        return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+      }
+
+      function handleSuccess(stream) {
+        cameraView.srcObject = stream;
+      }
+
+      function handleError(error) {
+        console.error("Error accessing media devices.", error);
+      }
+
+      async function initCamera() {
+        if (hasGetUserMedia()) {
+          try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            handleSuccess(stream);
+          } catch (e) {
+            handleError(e);
+          }
+        } else {
+          alert("getUserMedia() is not supported by your browser");
+        }
+      }
+
+      function takePicture() {
+        const canvas = document.createElement("canvas");
+        canvas.width = cameraView.videoWidth;
+        canvas.height = cameraView.videoHeight;
+        const context = canvas.getContext("2d");
+        context.drawImage(cameraView, 0, 0, canvas.width, canvas.height);
+        const dataUrl = canvas.toDataURL("image/png");
+        downloadLink.href = dataUrl;
+        downloadLink.click();
+      }
+
+      initCamera();
     </script>
-</body>
+  </body>
+</html>
