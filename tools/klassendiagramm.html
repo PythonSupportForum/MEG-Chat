@@ -28,14 +28,12 @@
 		  const attributes = javaCode.match(attributeRegex);
 		  const methods = javaCode.match(methodRegex);
 		
-		  let classDiagramDefinition = `classDiagram
-		  class ${className} {
+		  let classDiagramDefinition = `classDiagramzclass ${className} {
 		  `;
 		
 		  for (let attribute of attributes) {
-		    let [_, accessModifier, attributeType, attributeName, defaultValue] = attribute.split(/\s+/);
-		    classDiagramDefinition += `${accessModifier} ${attributeName}: ${attributeType}
-		  `;
+		    let [status, attributeType, attributeName] = attribute.split(/\s+/);
+		    classDiagramDefinition += (status == "private" ? "-" : "+")+" "+attributeName+" : "+attributeType+"\n";
 		  }
 		
 		  for (let method of methods) {
