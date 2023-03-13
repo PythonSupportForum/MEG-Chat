@@ -19,47 +19,38 @@
   </body>
   <script>
       function generateClassDiagram() {
-  const javaCode = document.getElementById("javaCode").value.trim();
-  const classRegex = /class\s+(\w+)/;
-  const attributeRegex = /(\+|\-)\s+(\w+)\s*:\s*(\w+)/;
-  const methodRegex = /(\+|\-)\s+(\w+)\((.*)\)\s*:\s*(\w+)/;
-  
-  const className = javaCode.match(classRegex)[1];
-  const attributes = javaCode.match(new RegExp(attributeRegex.source, "g"));
-  const methods = javaCode.match(new RegExp(methodRegex.source, "g"));
-  
-  let classDiagramDefinition = `classDiagram
-  class ${className} {
-  `;
-  
-  for (let attribute of attributes) {
-    let [accessModifier, attributeName, attributeType] = attribute.match(attributeRegex).slice(1);
-    classDiagramDefinition += `${accessModifier === '+' ? 'public' : 'private'} ${attributeName}: ${attributeType}
-  `;
-  }
-  
-  for (let method of methods) {
-    let [accessModifier, methodName, parameters, returnType] = method.match(methodRegex).slice(1);
-    classDiagramDefinition += `${accessModifier === '+' ? 'public' : 'private'} ${methodName}(${parameters}): ${returnType}
-  `;
-  }
-  
-  classDiagramDefinition += `}
-  `;
-  
-  const classDiagramHtml = `<div class="mermaid">${classDiagramDefinition}</div>`;
-  
-  document.getElementById("classDiagram").innerHTML = classDiagramHtml;
-  mermaid.init();
-}
-Dieses Skript liest den Java-Code aus dem Eingabefeld aus und verwendet reguläre Ausdrücke, um den Klassennamen, die Attribute und Methoden aus dem Code auszulesen. Anschließend wird eine Mermaid.js-Definition für das Klassendiagramm generiert, indem die Informationen in das entsprechende Format für Mermaid.js umgewandelt werden. Schließlich wird das Klassendiagramm als HTML mit der entsprechenden Mermaid.js-Klasse generiert und in das Dokument eingefügt.
-
-Bitte stellen Sie sicher, dass die Mermaid.js-Bibliothek im Head-Bereich der HTML-Datei eingebunden ist und das Skript als script.js im selben Verzeichnis wie
-
-
-
-
-
-
+		  const javaCode = document.getElementById("javaCode").value.trim();
+		  const classRegex = /class\s+(\w+)/;
+		  const attributeRegex = /(public|private|protected)\s+(\w+)\s+(\w+)(\s*=\s*.+)?;/g;
+		  const methodRegex = /(public|private|protected)\s+(\w+)\s+(\w+)\s*\(([^)]*)\)\s*:/g;
+		
+		  const className = javaCode.match(classRegex)[1];
+		  const attributes = javaCode.match(attributeRegex);
+		  const methods = javaCode.match(methodRegex);
+		
+		  let classDiagramDefinition = `classDiagram
+		  class ${className} {
+		  `;
+		
+		  for (let attribute of attributes) {
+		    let [_, accessModifier, attributeType, attributeName, defaultValue] = attribute.split(/\s+/);
+		    classDiagramDefinition += `${accessModifier} ${attributeName}: ${attributeType}
+		  `;
+		  }
+		
+		  for (let method of methods) {
+		    let [_, accessModifier, returnType, methodName, parameters] = method.split(/\s+/);
+		    classDiagramDefinition += `${accessModifier} ${methodName}(${parameters}): ${returnType}
+		  `;
+		  }
+		
+		  classDiagramDefinition += `}
+		  `;
+		
+		  const classDiagramHtml = `<div class="mermaid">${classDiagramDefinition}</div>`;
+		
+		  document.getElementById("classDiagram").innerHTML = classDiagramHtml;
+		  mermaid.init();
+	  }
   </script>
 </html>
