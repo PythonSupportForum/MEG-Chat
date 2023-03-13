@@ -43,7 +43,7 @@ if(isset($_SESSION['pupil'])){
                                     <?php
 							    }
 								?>
-								<button onclick="page_navigate('/schueler/<?php echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: blue; color: white; font-size: 16px; ">Einstellungen</button>
+								<button onclick="page_navigate('/schueler/<?php echo htmlspecialchars($pupil_data['id']); ?>');" style="background-color: darkslategray; color: white; font-size: 16px; ">Einstellungen</button>
 								<button onclick="window.location.href='/account/logout';" style="background-color: red; color: white; font-size: 16px; ">Abmelden</button>
                                 <?php
 			                } else { ?>
