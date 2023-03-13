@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Kamera-App</title>
+</head>
+
+<body>
+    <h1>JavaScript Kamera-App</h1>
+    <video id="kamera-stream" autoplay></video>
+    <button id="foto-aufnehmen">Foto aufnehmen</button>
+    <script>
+        const kameraStream = document.getElementById('kamera-stream');
+          const fotoAufnehmenButton = document.getElementById('foto-aufnehmen');
+    
+          navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+            .then(function(stream) {
+              kameraStream.srcObject = stream;
+            })
+            .catch(function(error) {
+              console.error('Kamera-Berechtigung wurde nicht erteilt', error);
+            });
+    
+          fotoAufnehmenButton.addEventListener('click', function() {
+            const canvas = document.createElement('canvas');
+            canvas.width = kameraStream.videoWidth;
+            canvas.height = kameraStream.videoHeight;
+            canvas.getContext('2d').drawImage(kameraStream, 0, 0, canvas.width, canvas.height);
+            const foto = canvas.toDataURL('image/png');
+            const fotoAnzeige = document.createElement('img');
+            fotoAnzeige.src = foto;
+            document.body.appendChild(fotoAnzeige);
+          });
+    </script>
+</body>
