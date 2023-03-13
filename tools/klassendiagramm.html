@@ -21,27 +21,47 @@
       function generateClassDiagram() {
 		  const javaCode = document.getElementById("javaCode").value.trim();
 		  const classRegex = /class\s+(\w+)/;
-		  const attributeRegex = /(public|private|protected)\s+(\w+)\s+(\w+)(\s*=\s*.+)?;/g;
-		  const methodRegex = /(public|private|protected)\s+(\w+)\s+(\w+)\s*\(([^)]*)\)\s*:/g;
+		  const attributeRegex = /(public|private|protected)\s+([^\s]+)\s+(\w+)(\s*=\s*.+)?;/g;
+		  const methodRegex = /(public|private|protected)\s+([\w<>?,.\[\]]+)\s+(\w+)\s*\((.*?)\)/g;
 		
 		  const className = javaCode.match(classRegex)[1];
 		  const attributes = javaCode.match(attributeRegex);
 		  const methods = javaCode.match(methodRegex);
 		
-		  let classDiagramDefinition = `classDiagramzclass ${className} {
+		  let classDiagramDefinition = `classDiagram
+		  class ${className} {
 		  `;
 		
 		  for (let attribute of attributes) {
-		    let [status, attributeType, attributeName] = attribute.split(/\s+/);
-		    classDiagramDefinition += (status == "private" ? "-" : "+")+" "+attributeName+" : "+attributeType+"\n";
-		  }
-		
-		  for (let method of methods) {
-		    let [_, accessModifier, returnType, methodName, parameters] = method.split(/\s+/);
-		    classDiagramDefinition += `${accessModifier} ${methodName}(${parameters}): ${returnType}
+			  var el = attribute.split(/\s+/);
+              var accessModifier = el[0] == "private" ? "-" : "+";
+              var attributeName = el[2].split(";")[0];
+              var attributeType = el[1];
+		      classDiagramDefinition += `${accessModifier} ${attributeName} : ${attributeType}
 		  `;
 		  }
 		
+		  for (let method of methods) {
+			  var el = method.split("(")[0].split(" ");
+		      var accessModifier = el[0] == "private" ? "-" : "+";
+		      var returnType = el[1];
+		      var methodName = el[2];
+		      var elp = method.split("(")[1].split(")")[0].split(",");
+		      var parameterList = "";
+		      elp.forEach(function(s){
+				  if(s.trim().length == 0) return;
+				  var d = s.split(" ");
+				  console.log(d);
+				  if(parameterList.length != 0) parameterList += " ; ";
+				  parameterList += d[1]+" : "+d[0];
+			  });
+			  console.log(parameterList);
+			  console.log(returnType);
+		      
+		      classDiagramDefinition += `${accessModifier} ${methodName}(${parameterList}) : ${returnType}
+		  `;
+		  }
+		  
 		  classDiagramDefinition += `}
 		  `;
 		
