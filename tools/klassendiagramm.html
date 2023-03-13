@@ -43,7 +43,7 @@
 		
 		  for (let method of methods) {
 			  var el = method.split("(")[0].split(" ");
-		      var accessModifier = el[0] == "private" ? "-" : "+";
+		      var accessModifier = el[0] == "private" ? "- " : "+ ";
 		      var returnType = el[1];
 		      var methodName = el[2];
 		      var elp = method.split("(")[1].split(")")[0].split(",");
@@ -58,7 +58,7 @@
 			  console.log(parameterList);
 			  console.log(returnType);
 		      
-		      classDiagramDefinition += `${accessModifier} ${methodName}(${parameterList}) : ${returnType}
+		      classDiagramDefinition += `${accessModifier}  ${methodName}(${parameterList}) ${returnType}
 		  `;
 		  }
 		  
