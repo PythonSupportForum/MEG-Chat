@@ -284,7 +284,7 @@ window.openTab = function(evt, cityName) {
 
 setInterval(function(){
 	if(document.getElementById("all_container")){
-		page_navigate(window.location.href, "#all_container", "#all_container", false);
+		page_navigate("/", "#all_container", "#all_container", false);
 	}
 }, 1000);
 
