@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Klassendiagramm-Generator</title>
+  </head>
+  <body>
+    <h1>Klassendiagramm-Generator</h1>
+    <form>
+      <label for="javaCode">Java-Klasse:</label><br>
+      <textarea id="javaCode" name="javaCode"></textarea><br>
+      <input type="button" value="Generieren" onclick="generateClassDiagram()">
+    </form>
+    <div id="classDiagram"></div>
+  </body>
+  <script>
+      function generateClassDiagram() {
+		  const javaCode = document.getElementById("javaCode").value.trim();
+		  const classRegex = /class\s+(\w+)/;
+		  const attributeRegex = /(\+|\-)\s+(\w+)\s*:\s*(\w+)/;
+		  const methodRegex = /(\+|\-)\s+(\w+)\((.*)\)\s*:\s*(\w+)/;
+		  
+		  const className = javaCode.match(classRegex)[1];
+		  const attributes = javaCode.match(new RegExp(attributeRegex.source, "g"));
+		  const methods = javaCode.match(new RegExp(methodRegex.source, "g"));
+		  
+		  let classDiagramHtml = `<div style="border: 1px solid black; padding: 10px;">
+		                            <div style="font-weight: bold; text-align: center;">${className}</div>
+		                            <ul>`;
+		  
+		  for (let attribute of attributes) {
+		    let [accessModifier, attributeName, attributeType] = attribute.match(attributeRegex).slice(1);
+		    classDiagramHtml += `<li>${accessModifier} ${attributeName}: ${attributeType}</li>`;
+		  }
+		  
+		  classDiagramHtml += `</ul><hr><ul>`;
+		  
+		  for (let method of methods) {
+		    let [accessModifier, methodName, parameters, returnType] = method.match(methodRegex).slice(1);
+		    classDiagramHtml += `<li>${accessModifier} ${methodName}(${parameters}): ${returnType}</li>`;
+		  }
+		  
+		  classDiagramHtml += `</ul></div>`;
+		  
+		  document.getElementById("classDiagram").innerHTML = classDiagramHtml;
+		}
+  
+  </script>
+</html>
